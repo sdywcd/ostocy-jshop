@@ -126,6 +126,8 @@ public class Serial {
 	public static final String ELECTRONICMENUORDER="electronicmenuorder";
 	//关联商品表
 	public static final String GOODSBELINKED="goodsbelinked";
+	//团购购物车主键生成
+	public static final String GROUPCARTINFO="groupcartinfo";
 	
 	private SerialTService serialTService;
 	

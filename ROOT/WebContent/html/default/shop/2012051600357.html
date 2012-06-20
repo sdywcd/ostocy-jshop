@@ -218,7 +218,7 @@
           <input type="hidden" id="hidprice" name="hidprice" value="810"/>
           <input type="hidden" id="hidpictureurl" name="hidpictureurl" value="/Uploads/20120516/2012051618114993350.jpg,/Uploads/20120516/2012051618115225280.jpg,/Uploads/20120516/2012051618115499906.jpg,">
           <input type="hidden" id="hidhtmlpath" name="hidhtmlpath" value="html/default/shop/2012051600357.html">
-          <input type="hidden" id="hidmemberprice" name="hidmemberprice" value="7,600"/>
+          <input type="hidden" id="hidmemberprice" name="hidmemberprice" value="7600"/>
           <div class="detail_info_rm3"> 
             <!--隐藏的规格标记表示是否开启了规格-->
             <input type="hidden" id="hidguigeflag" name="hidguigeflag" value="1"/>
@@ -250,461 +250,123 @@
           </div>
         </div>
         <div class="setmeal mt10">
-          <script type="text/javascript" src="/js/jquery.js"></script>
-          <script type="text/javascript" src="/js/tao3c.js"></script>
-          <script type="text/javascript" src="/js/jQZoom/jquery.jqzoom.js"></script>
-          <script type="text/javascript">
-
-
-
-var PACK_PRODUCTS_FLAG = 'pack_product_';
-var pack_products = {'productid':'','data':{},'length':0};
-var total =0;
-
-function submitPack(pid){
-	if(pack_products.data[pid]){
-		jQuery('#pack_product_' + pid).attr("class","");
-		jQuery('#img_pack_product_' + pid).attr("src","../images/shop_1.gif");
-		delete pack_products.data[pid];
-		pack_products['length'] = pack_products['length'] - 1;
-		total = parseInt(total)-parseInt(jQuery('#pp_price_' + pid).val());
-	}else{
-		jQuery('#pack_product_' + pid).attr("class","cur");
-		jQuery('#img_pack_product_' + pid).attr("src","../images/shop_2.gif");
-		pack_products.data[pid] = '1';
-		pack_products['length'] = pack_products['length'] + 1;
-		total = parseInt(total)+parseInt(jQuery('#pp_price_' + pid).val());
-	}
-	if(total>0){
-		var temp  = total/100+888.00;
-		var ex = /^\d+$/;
-		if (ex.test(temp)) {
-			// 则为整数
-			jQuery("#packTotalPrice").html(temp+".00");
-		}
-		else{
-			jQuery("#packTotalPrice").html(temp);
-		}
-		jQuery(".left_div").css("display","");
-	}else{
-		jQuery(".left_div").css("display","none");
-	}
-}
-
-function addPackProducts(){
-	if(pack_products.length <= 0){
-		alert("您没有选择组合套餐商品！");
-		return;
-	}
-	jQuery('#pack_products').val(json2str(pack_products.data));
-	document.getElementById("productForm").submit();
-}
-
-function addPackProductsToCart(url) {
-	createXMLHttpRequest();
-	if (xmlHttp == null) {
-		window.status = "你的浏览器不支持AJAX!";
-		return;
-	}
-	xmlHttp.open("POST", url, true);
-	xmlHttp.onreadystatechange = addPackProductsToCartCallBack;
-	xmlHttp.setRequestHeader("Content-Type",
-					"application/x-www-form.urlencoded");
-	xmlHttp.send(url);
-}
-function addPackProductsToCartCallBack() {
-	if (xmlHttp.readyState == 4) {
-		var obj = xmlHttp.responseText;
-		alert(obj);
-	}
-}
-
-jQuery(function(){
-	var $content= jQuery("#detail_scro1");
-	var i= 4;
-	var m= 4;
-	var l= 0
-	var count=$content.find("li").length;
-	jQuery("#ctrlR_unit").click(function(){
-		if(!$content.is(":animated")){
-			if(m<count){
-				m++;
-				$content.animate({left:l-125},600);
-				l=l-125;
-			}
-		}
-	});
-	jQuery("#ctrlL_unit").click(function(){
-		if(!$content.is(":animated")){
-			if(m>i){
-				m--;
-				$content.animate({left:l+125},600);
-				l=l+125;
-			}
-		}
-	});
-	
-});
-</script>
           <div class="setmeal_top">
             <p><img src="/ui/default/images/setmeal_t_1.gif"></p>
             <cite><img src="/ui/default//images/setmeal_t_3.gif"></cite></div>
           <h1 id="unit_h1">
             <p>该商品所有的套餐列表</p>
-            <cite>总共有3件可选套餐 </cite></h1>
-          <script type="text/javascript" src="/js/jquery.js"></script>
-          <script type="text/javascript">
-	function noticeShowControl(){
-		if(jQuery('#divPop').css("display")=="none"){
-			jQuery('#divPop').css('display','');
-		}else{
-			jQuery('#divPop').css('display','none');
-		}
-	}
-</script>
+            <cite>总共有(goodsbelinked.size)件可选套餐 </cite></h1>
+			
           <div class="set_1" id="div_set1">
             <div class="set_1_l">
-              <p><img width="160" hight="160" src="http://img.tao3c.com/601/603/51311/51315/51410/196100_1_pic200_2625.jpg" alt="诺基亚（NOKIA）C5-03 标准版 3G手机（白银色）WCDMA/GSM 非定制机"></p>
-              <span>整机已含标配</span> </div>
+              <p>
+				   <img width="160" hight="160" src="/Uploads/20120516/2012051618114993350.jpg" alt="戴尔（DELL）XPS14Z--328S 14英寸笔记本电脑">
+			 </p>
+              <span></span> </div>
             <div class="set_1_r">
-              <div class="pageup"> <img id="ctrlL_unit" src="/ui/default/images/pageup_1.gif" style="cursor:pointer;"> </div>
+              <div class="pageup">  </div>
               <div class="set_1_r_unit">
                 <div class="smallunit" id="detail_scro1">
                   <ul>
-                    <li id="pack_product_206913" class="">
-                      <div class="set_1_r_1"><a href="/product/206913.html" target="_blank;"><img src="http://img.tao3c.com/601/603/51311/51317/51331/206913_2_pic100_9663.jpg" alt="索科特（SOCOT）3G立式全能手机万能座充 "></a></div>
-                      <div class="set_1_r_2"><a href="/product/206913.html" target="_blank;" title="索科特（SOCOT）3G立式全能手机万能座充 ">索科特（SOCOT）3G立式全能手机万能座充 </a></div>
-                      <div class="set_1_r_3">高鸿价:￥25.00 </div>
-                      <div class="set_1_r_4">套餐价:￥22.00</div>
-                      <input type="hidden" id="pp_price_206913" value="2200">
-                      <div class="set_1_r_5"><img id="img_pack_product_206913" src="/ui/default/images/shop_1.gif" onclick="submitPack(206913);" style="cursor:pointer;"></div>
-                    </li>
-                    <li id="pack_product_248135" class="">
-                      <div class="set_1_r_1"><a href="/product/248135.html" target="_blank;"><img src="http://img.tao3c.com/601/603/51311/51324/51383/248135_1_pic100_2867.jpg" alt="闪迪（SanDisk）8G Micro-SDHC（TF）存储卡 Class4"></a></div>
-                      <div class="set_1_r_2"><a href="/product/248135.html" target="_blank;" title="闪迪（SanDisk）8G Micro-SDHC（TF）存储卡 Class4">闪迪（SanDisk）8G Micro-SDHC（TF）存储卡 Class4</a></div>
-                      <div class="set_1_r_3">高鸿价:￥29.00 </div>
-                      <div class="set_1_r_4">套餐价:￥28.00</div>
-                      <input type="hidden" id="pp_price_248135" value="2800">
-                      <div class="set_1_r_5"><img id="img_pack_product_248135" src="/ui/default/images/shop_1.gif" onclick="submitPack(248135);" style="cursor:pointer;"></div>
-                    </li>
-                    <li id="pack_product_251646" class="">
-                      <div class="set_1_r_1"><a href="/product/251646.html" target="_blank;"><img src="http://img.tao3c.com/601/603/51311/51317/78100/251646_1_pic100_6547.JPG" alt="爱晶达 数码原色贴膜（诺基亚 C5-03）"></a></div>
-                      <div class="set_1_r_2"><a href="/product/251646.html" target="_blank;" title="爱晶达 数码原色贴膜（诺基亚 C5-03）">爱晶达 数码原色贴膜（诺基亚 C5-03）</a></div>
-                      <div class="set_1_r_3">高鸿价:￥9.00 </div>
-                      <div class="set_1_r_4">套餐价:￥8.00</div>
-                      <input type="hidden" id="pp_price_251646" value="800">
-                      <div class="set_1_r_5"><img id="img_pack_product_251646" src="/ui/default/images/shop_1.gif" onclick="submitPack(251646);" style="cursor:pointer;"></div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="pagedn" style="z-index:6;"> <img id="ctrlR_unit" src="/ui/default/images/pagedn_2.gif" style="cursor:pointer;"> </div>
-            </div>
-          </div>
-          <div class="set_2" id="div_set2">
-            <div class="left_div" style="display:none;">
-              <p><cite>套餐选购总金额: <span id="packTotalPrice"></span></cite></p>
-            </div>
-            <div class="right_div"> <img id="addPackProductsToCart" src="/ui/default/images/setmeal_btn.gif" onclick="addPackProducts();" style="cursor:pointer;"> </div>
-          </div>
-          <div class="setmeal_bottom">
-            <p><img src="/ui/default/images/setmeal_t_4.gif"></p>
-            <cite><img src="/ui/default/images/setmeal_t_6.gif"></cite> </div>
-        </div>
-      </div>
-      <div class="prodetailtext mt10">
-        <div>
-          <ul class="css-tabs">
-            <li onClick="showdiv('0')"><a href="javascript:;">商品详情</a></li>
-            <li onClick="showdiv('1')"><a href="javascript:;" >具体参数</a></li>
-            <li onClick="showdiv('5')"><a href="javascript:;" >包装清单</a></li>
-            <li onClick="showdiv('2')"><a href="javascript:;" >售后服务</a></li>
-            <li onClick="showdiv('3')"><a href="javascript:;" >客户点评</a></li>
-            <li onClick="showdiv('4')"><a href="javascript:;" >售前咨询</a></li>
-          </ul>
-          <div class="css-panes">
-            <!--1-->
-            <div id="gddiv0" class="tabother" style="display:block;">
-              <div class="prodetailbox" id="cont1">
-                <div class="prodetailbox_title"> 戴尔（DELL）XPS14Z--328S 14英寸笔记本电脑 </div>
-                <div class="prodetailtext"> <div class="prodetailtext mt10" style="margin:10px 0px 0px;padding:0px;list-style:none;width:770px;float:left;font-family:宋体;color:#484848;line-height:normal;"><div class="prodetailbox" id="cont1" style="margin:0px;padding:10px;list-style:none;width:750px;float:left;"><div class="prodetailbox_title" style="margin:0px;padding:20px 10px 10px;list-style:none;width:730px;background-image:url(http://tao3c.cn/datang/templets/Default/Default/images/prodetail_title.gif);font-size:14px;font-weight:bold;text-align:center;line-height:20px;background-position:50% 100%;background-repeat:repeat no-repeat;"><span style="line-height:normal;">&nbsp;</span></div>
-<div class="prodetailtext" style="margin:0px;padding:0px;list-style:none;width:750px;float:left;overflow:hidden;"><div style="margin:0px;padding:0px;list-style:none;"><h1 style="margin:0px;padding:0px 0px 12px;list-style:none;width:768px;background-color:#f8f8f8;border-left-color:#cacaca;border-left-style:solid;border-left-width:1px;border-right-color:#cacaca;border-right-style:solid;border-right-width:1px;border-bottom-color:#ebebeb;border-bottom-style:solid;border-bottom-width:1px;font-size:0px;float:left;"><span style="margin:0px;padding:0px;list-style:none;font-size:12px;">New! XPS 14z笔记本电脑</span></h1>
-</div>
-<div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;width:250px;"><div style="margin:0px;padding:0px;list-style:none;width:250px;"><span style="margin:0px;padding:0px;list-style:none;">创•想无边</span></div>
-</div>
-</div>
-<div style="margin:0px;padding:0px;list-style:none;"><p style="margin-top:0px;margin-bottom:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;">• 第二代酷睿i系列处理器<br style="margin:0px;padding:0px;list-style:none;" />
-• 14寸高清无边框显示屏<br style="margin:0px;padding:0px;list-style:none;" />
-• 13寸机身，极致轻薄便携</span></p>
-<p style="margin-top:0px;margin-bottom:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;">&nbsp;</span></p>
-</div>
-<div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><strong style="margin:0px;padding:0px;list-style:none;">极致纤薄，无比强大</strong><br style="margin:0px;padding:0px;list-style:none;" />
-XPS 14z 笔记本电脑厚度为 0.9 英寸（ 23 毫米），起始重量为 4.36 磅 （ 1.98 千克），具备非凡的超薄设计。 但配备第 2 代英特尔 ® 酷睿 ™ 处理器，可提供卓越性能。 电池续航时间长达 6 小时 58 分钟，随时可以带着在路上使用。<br style="margin:0px;padding:0px;list-style:none;" />
-&nbsp;<br style="margin:0px;padding:0px;list-style:none;" />
-<br style="margin:0px;padding:0px;list-style:none;" />
-<strong style="margin:0px;padding:0px;list-style:none;">无边框设计</strong><br style="margin:0px;padding:0px;list-style:none;" />
-窄边框显示屏和超薄铝制框架可使您全身心关注宽大的 14 英寸高清显示屏。 这一切尽在 13 英寸的纤巧机身中。<br style="margin:0px;padding:0px;list-style:none;" />
-<br style="margin:0px;padding:0px;list-style:none;" />
-<strong style="margin:0px;padding:0px;list-style:none;">高性能显卡显威</strong><br style="margin:0px;padding:0px;list-style:none;" />
-清晰锐利的图像仅仅是个开始。1G NVIDIA<sup style="margin:0px;padding:0px;list-style:none;">®</sup>GeForce<sup style="margin:0px;padding:0px;list-style:none;">®</sup>独立显卡等选项让您轻松体验引人入胜的 Web 内容，以及在支持 3D 功能的电视上营造逼真的 3D 体验。</span></div>
-<div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><img title="XPS 14z Laptop" alt="XPS 14z Laptop" src="http://i.dell.com/das/xa.ashx/global-site-design%20WEB/ebdfbf7b-c770-5c53-efab-12ead059863c/1/OriginalJPG?id=Dell/Product_Images/Dell_Client_Products/Notebooks/XPS_Notebooks/XPS_14z/overview/cn/laptop-xps-14z-love-pdp-module-2.jpg" style="margin:0px;padding:0px;list-style:none;border:0px;" /></span><div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><strong style="margin:0px;padding:0px;list-style:none;">精湛工艺</strong><br style="margin:0px;padding:0px;list-style:none;" />
-XPS 14z 笔记本电脑是精心设计的典范。 了解其精致的饰边、巧妙的细节以及兼具惊艳外观和耐用性的阳极氧化铝机身。</span><br style="margin:0px;padding:0px;list-style:none;" />
-<br style="margin:0px;padding:0px;list-style:none;" />
-<span style="margin:0px;padding:0px;list-style:none;"><strong style="margin:0px;padding:0px;list-style:none;">轻松进入您的世界</strong><br style="margin:0px;padding:0px;list-style:none;" />
-Dell Stage 让照片、视频、音乐等内容近在您手边。 现在您可以在所有设备上同步内容，以便 随时随地访问您的文件。</span></span></div>
-</div>
-</div>
-<div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><img title="XPS 14z Laptop" alt="XPS 14z Laptop" src="http://i.dell.com/das/xa.ashx/global-site-design%20WEB/8401e1a6-e58f-1011-0b93-fb8bcd59d773/1/OriginalPng?id=Dell/Product_Images/Dell_Client_Products/Notebooks/XPS_Notebooks/XPS_14z/overview/cn/laptop-xps-14z-love-pdp-module-3.jpg" style="margin:0px;padding:0px;list-style:none;border:0px;" /></span></div>
-</div>
-</div>
-<div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;"><p style="margin-top:0px;margin-bottom:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><strong style="margin:0px;padding:0px;list-style:none;">享受至臻完美的XPS 14z体验</strong><br style="margin:0px;padding:0px;list-style:none;" />
-XPS 14z 只是一个开始。 在购机过程中，您还可以选择以下附加项目。</span></p>
-<div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><img title="XPS 14z Laptop" alt="XPS 14z Laptop" src="http://i.dell.com/das/xa.ashx/global-site-design%20WEB/d4e1fdc4-763e-024f-9969-36b790e0f748/1/OriginalJPG?id=Dell/Product_Images/Dell_Client_Products/Notebooks/XPS_Notebooks/XPS_14z/overview/cn/laptop-xps-14z-love-pdp-module-4a.jpg" style="margin:0px;padding:0px;list-style:none;border:0px;" /></span><div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><strong style="margin:0px;padding:0px;list-style:none;">软件</strong><br style="margin:0px;padding:0px;list-style:none;" />
-XPS 14z 笔记本电脑预装了用于视频聊天的 Skype™ Premium 、 McAfee 防病毒软件及其他功能。</span></div>
-</div>
-</div>
-<div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><img title="XPS 14z Laptop" alt="XPS 14z Laptop" src="http://i.dell.com/das/xa.ashx/global-site-design%20WEB/ab231fd3-190d-c7db-fcfa-117616c95e81/1/OriginalJPG?id=Dell/Product_Images/Dell_Client_Products/Notebooks/XPS_Notebooks/XPS_14z/overview/cn/laptop-xps-14z-love-pdp-module-4b.jpg" style="margin:0px;padding:0px;list-style:none;border:0px;" /></span><div style="margin:0px;padding:0px;list-style:none;"><div style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><strong style="margin:0px;padding:0px;list-style:none;">服务</strong><br style="margin:0px;padding:0px;list-style:none;" />
-我们时刻准备着提供帮助。特别为您提供2年银牌高级服务， 除了有限硬件保修服务</span><span style="margin:0px;padding:0px;list-style:none;"><a style="margin:0px;padding:0px;list-style:none;"><sup style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;;color:#666666;">3</span></sup></a>，还包括上门维修和意外损坏维修。您还可以定制一套适合自己的服务（包括高级软硬件服务等）。</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p style="margin-top:0px;margin-bottom:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;"><span style="margin:0px;padding:0px;list-style:none;;color:#000000;"><br style="margin:0px;padding:0px;list-style:none;" />
-&nbsp;</span></span></span></p>
-</div>
-</div>
-</div>
-<div class="parameter mt40" id="cont2" style="margin:40px 0px 0px;padding:0px;list-style:none;width:750px;float:left;color:#484848;font-family:宋体;line-height:normal;"><div class="tabbarDetail" id="tabber2" style="margin:0px;padding:0px 0px 0px 3px;list-style:none;width:767px;border-bottom-color:#eb7b01;border-bottom-style:solid;border-bottom-width:2px;float:left;"><div class="tabcurrentDetail" style="margin:0px 3px 0px 0px;padding:0px;list-style:none;height:31px;background-image:url(http://tao3c.cn/datang/templets/Default/Default/images/prodetail_tab1_3.gif);float:left;background-position:initial initial;background-repeat:repeat no-repeat;"><br class="Apple-interchange-newline" />
-</div>
-</div>
-</div> </div>
-              </div>
-            </div>
-            <!--2-->
-            <div id="gddiv1" style="display:none;">
-              <div class="parameter mt40" id="cont2">
-                <table width="100%" border="0" cellpadding="0" cellspacing="1" class="parameter_table">
-                  <tr>
-                    <td colspan="2" class="parameter_title"> 重要参数 </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-            <!--5-->
-            <div id="gddiv5" style="display:none;">
-              <div class="prodetailbox" id="cont1">
-                <div class="prodetailtext"> 1212<br /> </div>
-              </div>
-            </div>
-            <!--3-->
-            <div id="gddiv2" style="display:none;">
-              <div class="after mt40" id="cont4">
-                <div class="m_div1">
-                  <p> 本产品全国联保，享受三包服务，质保期为：一年质保 <br>
-                    因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，15日内换货，15日以上在质保期内享受免费保修等三包服务！ </p>
-                </div>
-              </div>
-            </div>
-            <!--4-->
-            <div id="gddiv3" style="display:none;">
-              <div class="packing mt40" id="cont5">
-                <div class="packingbox">  </div>
-                <!--评论只获取10条-->
-                <form id="addRemarks">
-                  <div class="packingreview">
-                    <div class="packcite" id="referDiv" style="display: none;">
-                      <p id="_username"></p>
-                      <div class="packingcontent" id="_content"></div>
-                    </div>
-                    <div class="p_re_div1">
-                      <p> 我要评论 </p>
-                      <cite>
-                      <textarea id="commentcontent" name="commentcontent" cols="" rows=""></textarea>
-                      </cite> </div>
-                    <div class="p_re_div2"> <a href="javascript:;"><img src="/ui/default/images/re_btn1.gif" onclick="addgoodscomment();" /> </a> </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!--5-->
-            <div id="gddiv4" style="display:none;"> 服务暂未开通
-              <!--<div class="consult mt40" id="cont6">
-									<div class="consultdiv1">
-										<div class="consultdiv1_1">
-											网友：lcslms 咨询：现在有货没有？
-										</div>
-										<div class="consultdiv1_2">
+                    <li id="pack_product_2012051600359" class="">
+                      <div class="set_1_r_1"><a href="/
+Expression gbl.htmlpath is undefined on line 166, column 68 in WEB-INF/theme/default/shop/goodsdetail.ftl.
+The problematic instruction:
+----------
+==> ${gbl.htmlpath} [on line 166, column 66 in WEB-INF/theme/default/shop/goodsdetail.ftl]
+----------
 
-											2021：亲爱的顾客您好！有现货的，请您放心购买！感谢您的支持，祝您在高鸿商城购物愉快！ &nbsp;&nbsp;
-											<font color="#2379B5">2011-10-19 08:44</font>
-
-										</div>
-									</div>
-									
-									<form id="addConsults" onsubmit="return false;">
-										<input type="hidden" id="consultObjeId" name="consultObjeId" value="207900" />
-										<input type="hidden" id="mid" name="mid" value="0" />
-										<input type="hidden" id="flag" name="flag" value="consult" />
-										<div class="clear"></div>
-										<div class="consultdiv7">
-											<p>
-												咨询类别
-											</p>
-											<cite><input name="consultType" type="radio" value="1109051" id="consultType" checked="checked" />
-											</cite>
-											<span>商品类</span>
-											<cite><input id="consultType" name="consultType" type="radio" value="1109052" />
-											</cite>
-											<span>服务类</span>
-
-										</div>
-										<div class="consultdiv3">
-											<p>
-												咨询内容
-												<s>*</s>
-											</p>
-											<cite> <input id="consultContent" name="consultContent" type="text" /> <!-- <textarea rows="5" cols="50" id="consultContent" name="consultContent"></textarea> </cite>
-										</div>
-
-										<div class="consultdiv4">
-											<p>
-												您的邮箱
-												<s>*</s>
-											</p>
-											<cite><input id="email" name="email" type="text" onblur="checkEmail();" /> </cite>
-										</div>
-
-										<div class="consultdiv5">
-											<p>
-												验证码
-												<s>*</s>
-											</p>
-											<cite><input name="ValidateCode" id="ValidateCode" type="text" /> </cite><span><img src='/ValidateCode' name="ValidateCode" width="60" height="20" id="vValidateCode" /> </span>
-											<code>
-												<a href="javascript:vCodeRefresh1();">看不清，换一张</a>
-											</code>
-										</div>
-										<div class="consultdiv6">
-											<p>
-												<a href="javascript:;" onclick="checkConsultForm();"><img src="/datang/templets/Default/Default/images/re_btn3.gif" /> </a>
-											</p>
-											<cite></cite>
-										</div>
-									</form>
-								</div>-->
-            </div>
-          </div>
-        </div>
-      </div>
-       </div>
-  </div>
-</div>
-<html>
-<body>
-<div id="foot">
-  <div class="servicepro1 mt7">
-    <div class="servicepro1_t">
-      <p> <img src="/ui/default/images/servicepro_t_l.gif"> </p>
-      <cite><img src="/ui/default/images/servicepro_t_r.gif"> </cite> </div>
-    <div class="servicepro1_c">
-      <div class="servicepro1_l">
-        <div class="service_z1">
-          <h1>1 . 新手指南</h1>
-		  <ul>
-			
-			<li> <a href="/html/default/article/201205060069.html" target="_blank">注册登录</a> </li>
-			
-			<li> <a href="/html/default/article/201205060070.html" target="_blank">购物流程</a> </li>
-			
-			<li> <a href="/html/default/article/201205060071.html" target="_blank">会员介绍</a> </li>
-			
-			<li> <a href="/html/default/article/201205060072.html" target="_blank">品质保证</a> </li>
-			
-			<li> <a href="/html/default/article/201205060073.html" target="_blank">订单状态</a> </li>
-          </ul>
-        </div>
-        <div class="service_z1">
-          <h1>2 . 配送方式</h1>
-		  <ul>
-			
-			<li> <a href="/html/default/article/201205060075.html" target="_blank">EMS配送</a> </li>
-			
-			<li> <a href="/html/default/article/201205060076.html" target="_blank">上门自提</a> </li>
-			
-			<li> <a href="/html/default/article/201205060077.html" target="_blank">快速送货</a> </li>
-			
-			<li> <a href="/html/default/article/notice/201205060078.html" target="_blank">配送范围查询</a> </li>
-			
-			<li> <a href="/html/default/article/201205060079.html" target="_blank">加急送</a> </li>
-          </ul>
-        </div>
-        <div class="service_z1">
-          <h1>3 . 售后服务</h1>
-		  <ul>
-			
-			<li> <a href="/html/default/article/201205060084.html" target="_blank">售后条款</a> </li>
-			
-			<li> <a href="/html/default/article/201205060085.html" target="_blank">服务承诺</a> </li>
-			
-			<li> <a href="/html/default/article/notice/201205060086.html" target="_blank">错货补货</a> </li>
-			
-			<li> <a href="/html/default/article/201205060087.html" target="_blank">退款办理</a> </li>
-			
-			<li> <a href="/html/default/article/notice/201205060088.html" target="_blank">交易条款</a> </li>
-          </ul>
-        </div>
-        <div class="service_z1">
-          <h1>4 . 支付方式</h1>
-		  <ul>
-			
-			<li> <a href="/html/default/article/201205060080.html" target="_blank">货到付款</a> </li>
-			
-			<li> <a href="/html/default/article/201205060081.html" target="_blank">在线支付</a> </li>
-			
-			<li> <a href="/html/default/article/201205060082.html" target="_blank">发票制度</a> </li>
-			
-			<li> <a href="/html/default/article/201205060083.html" target="_blank">公司转账</a> </li>
-          </ul>
-        </div>
-        <div class="service_z1">
-          <h1>5 . 虚拟物品</h1>
-		  <ul>
-			
-			<li> <a href="/html/default/article/notice/201205060089.html" target="_blank">积分政策</a> </li>
-			
-			<li> <a href="/html/default/article/notice/201205060090.html" target="_blank">购物券政策</a> </li>
-			
-			<li> <a href="/html/default/article/notice/201205060091.html" target="_blank">联系客服</a> </li>
-			
-			<li> <a href="/html/default/article/notice/201205060092.html" target="_blank">常见问题</a> </li>
-          </ul>
-        </div>
-   
-      </div>
-      <div class="servicepro1_r"> <img src="/ui/default/images/servicerightpic.gif"> </div>
-    </div>
-    <div class="servicepro1_b">
-      <p> <img src="/ui/default/images/servicepro_b_l.gif"> </p>
-      <cite><img src="/ui/default/images/servicepro_b_r.gif"> </cite> </div>
-  </div>
-  <div class="servicepro2" style="background: none repeat scroll 0% 0% rgb(248, 248, 248);">
-    <div class="servicepro2_l" style="background: none repeat scroll 0% 0% rgb(248, 248, 248);"></div>
-    <div class="servicepro2_1" style="background: none repeat scroll 0% 0% rgb(248, 248, 248);"> <img src="/ui/default/images/servicepro_11.gif"> </div>
-    <div class="servicepro2_2" style="background: none repeat scroll 0% 0% rgb(248, 248, 248);"> <img src="/ui/default/images/servicepro_21.gif"> </div>
-    <div class="servicepro2_4" style="background: none repeat scroll 0% 0% rgb(248, 248, 248);"> <img src="/ui/default/images/servicepro_41.gif"> </div>
-    <div class="servicepro2_3" style="background: none repeat scroll 0% 0% rgb(248, 248, 248);"> <img src="/ui/default/images/servicepro_31.gif"> </div>
-    <div class="servicepro2_r" style="background: none repeat scroll 0% 0% rgb(248, 248, 248);"></div>
-  </div>
-  <!-- 底部文字菜单 -->
-  <div class="copyright">
-    <p> <a href="http://www.ostocy.com" target="_blank">关于我们</a> | <a href="#" target="_blank">帮助中心</a> | <a href="#" target="_blank">联系我们</a> | <a href="#" target="_blank">合作伙伴</a> | <a href="#" target="_blank">友情链接</a> | <a href="#" target="_blank">人才招聘</a> </p>
-    <span>沪ICP备09069935号<br>
-    Copyright&#169;2000-2012 All Rights Reserved 欧斯塔克(上海) 版权所有</span> </div>
-  <div class="link"> </div>
-</div>
-</body>
-</html><script type="text/javascript" src="/ui/default/js/jshopeasyslider.js"></script>
-<script type="text/javascript" src="/ui/default/js/jshop.js"></script>
-</body>
-</html>
+Java backtrace for programmers:
+----------
+freemarker.core.InvalidReferenceException: Expression gbl.htmlpath is undefined on line 166, column 68 in WEB-INF/theme/default/shop/goodsdetail.ftl.
+	at freemarker.core.TemplateObject.assertNonNull(TemplateObject.java:125)
+	at freemarker.core.Expression.getStringValue(Expression.java:118)
+	at freemarker.core.Expression.getStringValue(Expression.java:93)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.MixedContent.accept(MixedContent.java:92)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:179)
+	at freemarker.core.Environment.visit(Environment.java:428)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:102)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.MixedContent.accept(MixedContent.java:92)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:79)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.MixedContent.accept(MixedContent.java:92)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:79)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.MixedContent.accept(MixedContent.java:92)
+	at freemarker.core.Environment.visit(Environment.java:221)
+	at freemarker.core.Environment.process(Environment.java:199)
+	at freemarker.template.Template.process(Template.java:237)
+	at com.jshop.action.tools.FreeMarkerController.init(FreeMarkerController.java:81)
+	at com.jshop.action.templates.CreateHtml.createGoodsT(CreateHtml.java:645)
+	at com.jshop.action.templates.CreateHtml.buildGoodsdetailsPage(CreateHtml.java:265)
+	at com.jshop.action.templates.InitAllHtml.buildAllHtml(InitAllHtml.java:177)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invokeAction(DefaultActionInvocation.java:441)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invokeActionOnly(DefaultActionInvocation.java:280)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:243)
+	at com.opensymphony.xwork2.interceptor.DefaultWorkflowInterceptor.doIntercept(DefaultWorkflowInterceptor.java:165)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.validator.ValidationInterceptor.doIntercept(ValidationInterceptor.java:252)
+	at org.apache.struts2.interceptor.validation.AnnotationValidationInterceptor.doIntercept(AnnotationValidationInterceptor.java:68)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.ConversionErrorInterceptor.intercept(ConversionErrorInterceptor.java:122)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.ParametersInterceptor.doIntercept(ParametersInterceptor.java:195)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.ParametersInterceptor.doIntercept(ParametersInterceptor.java:195)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.StaticParametersInterceptor.intercept(StaticParametersInterceptor.java:179)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at org.apache.struts2.interceptor.MultiselectInterceptor.intercept(MultiselectInterceptor.java:75)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at org.apache.struts2.interceptor.CheckboxInterceptor.intercept(CheckboxInterceptor.java:94)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at org.apache.struts2.interceptor.FileUploadInterceptor.intercept(FileUploadInterceptor.java:235)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.ModelDrivenInterceptor.intercept(ModelDrivenInterceptor.java:89)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.ScopedModelDrivenInterceptor.intercept(ScopedModelDrivenInterceptor.java:130)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at org.apache.struts2.interceptor.debugging.DebuggingInterceptor.intercept(DebuggingInterceptor.java:267)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.ChainingInterceptor.intercept(ChainingInterceptor.java:126)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.PrepareInterceptor.doIntercept(PrepareInterceptor.java:138)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.I18nInterceptor.intercept(I18nInterceptor.java:165)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at org.apache.struts2.interceptor.ServletConfigInterceptor.intercept(ServletConfigInterceptor.java:164)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.AliasInterceptor.intercept(AliasInterceptor.java:179)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor.intercept(ExceptionMappingInterceptor.java:176)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:237)
+	at org.apache.struts2.impl.StrutsActionProxy.execute(StrutsActionProxy.java:52)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:488)
+	at org.apache.struts2.dispatcher.FilterDispatcher.doFilter(FilterDispatcher.java:395)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:286)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:845)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:583)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+	at java.lang.Thread.run(Unknown Source)
