@@ -11,6 +11,7 @@ public interface GroupOrderTDao {
 	 * @param got
 	 * @return
 	 */
+	
 	public int addGroupOrder(GroupOrderT got);
 	
 

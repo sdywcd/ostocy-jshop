@@ -34,4 +34,10 @@ public class GroupCartServiceImpl implements GroupCartService {
 		return this.getGroupCartDao().delGroupCart(cartid);
 	}
 
+	@Override
+	public List<GroupCartT> findAllGroupCartByUserId(String userid) {
+		
+		return this.getGroupCartDao().findAllGroupCartByUserId(userid);
+	}
+
 }

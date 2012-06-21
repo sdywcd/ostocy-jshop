@@ -23,4 +23,10 @@ public interface GroupCartService {
 	 * @return
 	 */
 	public int delGroupCart(String cartid);
+	/**
+	 * 根据userid查询团购购物车内容 前台
+	 * @param userid
+	 * @return
+	 */
+	public abstract List<GroupCartT>findAllGroupCartByUserId(String userid);
 }

@@ -19,5 +19,6 @@ public class GroupOrderTDaoImpl extends HibernateDaoSupport implements GroupOrde
 			throw e;
 		}
 	}
+	
 
 }

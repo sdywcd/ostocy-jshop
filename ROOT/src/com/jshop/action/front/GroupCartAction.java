@@ -2,8 +2,15 @@ package com.jshop.action.front;
 
 import java.util.Date;
 
+
 import javax.annotation.Resource;
 
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
+import org.apache.struts2.convention.annotation.InterceptorRefs;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.json.annotations.JSON;
 import org.springframework.stereotype.Controller;
 
@@ -17,6 +24,9 @@ import com.jshop.service.GoodsGroupTService;
 import com.jshop.service.GroupCartService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+@ParentPackage("jshop")
+@Namespace("")
+@InterceptorRefs( { @InterceptorRef("defaultStack") })
 @Controller("groupCartAction")
 public class GroupCartAction extends ActionSupport{
 	private GroupCartService groupCartService;
@@ -40,11 +50,14 @@ public class GroupCartAction extends ActionSupport{
 	private Date addtime;
 	private Integer quantity;
 	private String picture;
+	
 	private String usersetnum;
 	private String weight;
 	private String state;
 	private String htmlpath;
 	private String productid;
+	private boolean sucflag = false;
+	private boolean slogin = false;
 	@JSON(serialize=false)
 	public Serial getSerial() {
 		return serial;
@@ -198,11 +211,23 @@ public class GroupCartAction extends ActionSupport{
 	public void setGroupid(String groupid) {
 		this.groupid = groupid;
 	}
+	public boolean isSucflag() {
+		return sucflag;
+	}
+	public void setSucflag(boolean sucflag) {
+		this.sucflag = sucflag;
+	}
+	public boolean isSlogin() {
+		return slogin;
+	}
+	public void setSlogin(boolean slogin) {
+		this.slogin = slogin;
+	}
 	/**
 	 * 加入购物车前查询出商品信息
 	 * @return
 	 */
-	public GoodsGroupT GetGoodsGroupTForGroupCart(){
+	public  GoodsGroupT GetGoodsGroupTForGroupCart(){
 		if(Validate.StrNotNull(this.getGroupid())){
 			GoodsGroupT ggt = this.getGoodsGroupTService().findGoodsGroupById(this.getGroupid());
 			if(ggt!=null){
@@ -216,9 +241,10 @@ public class GroupCartAction extends ActionSupport{
 	 * 增加商品到购物车
 	 * @return
 	 */
+	@Action(value = "addGroupCart", results = { @Result(name = "json", type = "json") })
 	public String addGroupCart(){
 		UserT user = (UserT)ActionContext.getContext().get(BaseTools.USER_SESSION_KEY);
-		if(user!=null){
+		
 			GoodsGroupT ggt = this.GetGoodsGroupTForGroupCart();
 			GroupCartT gct = new GroupCartT();
 			gct.setId(this.getSerial().Serialid(serial.GROUPCARTINFO));
@@ -241,9 +267,13 @@ public class GroupCartAction extends ActionSupport{
 			gct.setState("1");
 			gct.setHtmlpath(ggt.getHtmlpath());
 			gct.setProductid("0");
-			this.getGroupCartService().addgroupcart(gct);
+			gct.setGoodsname(ggt.getGoodsname());
+			if(this.getGroupCartService().addgroupcart(gct)>0){
+				this.setSucflag(true);
+			
 			return "json";
-		}
+	}
+		this.setSlogin(false);
 		return "json";
 		
 	}
