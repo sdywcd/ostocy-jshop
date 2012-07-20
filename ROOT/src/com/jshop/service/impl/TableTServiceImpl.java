@@ -63,9 +63,9 @@ public class TableTServiceImpl implements TableTService {
 	}
 
 	@Override
-	public TableT findTableBytablenumber(String tablenumber) {
+	public List<TableT> findTableBytablenumber(String tableNumber) {
 		
-		return this.getTableTDao().findTableBytablenumber(tablenumber);
+		return this.getTableTDao().findTableBytablenumber(tableNumber);
 	}
 
 }

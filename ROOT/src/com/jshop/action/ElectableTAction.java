@@ -242,7 +242,7 @@ public class ElectableTAction extends ActionSupport {
 			}
 			Map<String,Object> cellMap = new HashMap<String,Object>();
 			cellMap.put("id", tt.getTableid());
-			cellMap.put("cell", new Object[]{tt.getTableNumber(),tt.getRoomName(),tt.getFloor(),tt.getTablestate(),BaseTools.formateDbDate(tt.getCreatetime()),tt.getCreatorid(),tt.getNop(),tt.getRnop(),tt.getNote(),tt.getAndroidDevicesCount()});
+			cellMap.put("cell", new Object[]{"<a id='elecstronicorderdetail'href='GetElectronicOrderInternation?tableNumber="+tt.getTableNumber()+"' name='electronicorderdetail' >"+tt.getTableNumber()+"</a>",tt.getRoomName(),tt.getFloor(),tt.getTablestate(),BaseTools.formateDbDate(tt.getCreatetime()),tt.getCreatorid(),tt.getNop(),tt.getRnop(),tt.getNote(),tt.getAndroidDevicesCount()});
 			rows.add(cellMap);
 		}
 	}

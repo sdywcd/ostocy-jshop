@@ -295,8 +295,8 @@ public class ElectronicMenuCartTDaoImpl extends HibernateDaoSupport implements E
 	}
 
 	@Override
-	public int updateElectroMenuCartCookingState(final String cookingstate) {
-		final String queryString="update ElectronicMenuCartT as ec ec.cookingstate=:cookingstate";
+	public int updateElectroMenuCartCookingState(final String cookingstate,final String tableNumber) {
+		final String queryString="update ElectronicMenuCartT as ec set ec.cookingstate=:cookingstate where ec.tableNumber=:tableNumber";
 		try {
 			this.getHibernateTemplate().execute(new HibernateCallback() {
 				
@@ -306,23 +306,25 @@ public class ElectronicMenuCartTDaoImpl extends HibernateDaoSupport implements E
 					int i =0;
 					Query query = session.createQuery(queryString);
 					query.setParameter("cookingstate", cookingstate);
+					query.setParameter("tableNumber", tableNumber);
 					i=query.executeUpdate();				
 					return i;
 				}
 			});
-		} catch (DataAccessException e) {
+		} catch (RuntimeException e) {
 			throw e;
 		}
 		return 0;
 	}
 
 	@Override
-	public ElectronicMenuCartT findElectronicCartByTableNumber(
-			String tablenumber) {
+	public List<ElectronicMenuCartT> findElectronicCartByTableNumber(
+			String tableNumber) {
 		try {
-			ElectronicMenuCartT instance=(ElectronicMenuCartT) this.getHibernateTemplate().get("com.jshop.entity.ElectronicMenuCartT",tablenumber);
-			return instance;
-		} catch (DataAccessException e) {
+			String queryString="from ElectronicMenuCartT as ec where ec.tableNumber=:tableNumber";
+			List<ElectronicMenuCartT>list = this.getHibernateTemplate().findByNamedParam(queryString, "tableNumber", tableNumber);
+			return list;
+		} catch (RuntimeException e) {
 			throw e;
 		}
 	}
