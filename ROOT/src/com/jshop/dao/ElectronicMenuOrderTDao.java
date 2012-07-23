@@ -112,6 +112,7 @@ public interface ElectronicMenuOrderTDao {
 	 */
 	public abstract int updateInvoiceByelectronicMenuOrderid(String electronicMenuOrderid,String invoice);
 	/**
+
 	 *根据餐桌号 更新定单状态
 	 * @param electronicorderstate
 	 * @return
@@ -130,6 +131,8 @@ public interface ElectronicMenuOrderTDao {
 	 * @return
 	 */
 	public int updateElectronicMenuOrderPaystate(String paystate,String tableNumber);
+
+	
 	
 	
 	

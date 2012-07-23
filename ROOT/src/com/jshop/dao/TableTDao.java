@@ -50,7 +50,9 @@ public interface TableTDao {
 	 * @param tableid
 	 * @return
 	 */
+
 	public abstract List<TableT> findTableBytablenumber(String tableNumber);
+
 	
 	/**
 	 * 根据指定sql语句进行排序查询

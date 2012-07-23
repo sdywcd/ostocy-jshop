@@ -295,6 +295,7 @@ public class ElectronicMenuCartTDaoImpl extends HibernateDaoSupport implements E
 	}
 
 	@Override
+
 	public int updateElectroMenuCartCookingState(final String cookingstate,final String tableNumber) {
 		final String queryString="update ElectronicMenuCartT as ec set ec.cookingstate=:cookingstate where ec.tableNumber=:tableNumber";
 		try {
@@ -328,6 +329,29 @@ public class ElectronicMenuCartTDaoImpl extends HibernateDaoSupport implements E
 			throw e;
 		}
 	}
+	public int updateElectroMenuCartCookingState(final String cookingstate) {
+		final String queryString="update ElectronicMenuCartT as ec ec.cookingstate=:cookingstate";
+		try {
+			this.getHibernateTemplate().execute(new HibernateCallback() {
+				
+				@Override
+				public Object doInHibernate(Session session) throws HibernateException,
+						SQLException {
+					int i =0;
+					Query query = session.createQuery(queryString);
+					query.setParameter("cookingstate", cookingstate);
+					i=query.executeUpdate();				
+					return i;
+				}
+			});
+		} catch (DataAccessException e) {
+			throw e;
+		}
+		return 0;
+	}
+
+	
+	
 	
 	
 }

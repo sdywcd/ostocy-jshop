@@ -114,6 +114,7 @@ public interface ElectronicMenuOrderTService {
 	 * @param electronicorderstate
 	 * @return
 	 */
+
 	public int updateElectronicMenuOrderElectrobicOrderState(String electronicorderstate,String tableNumber);
 	
 	/**
@@ -129,5 +130,8 @@ public interface ElectronicMenuOrderTService {
 	 * @return
 	 */
 	public int updateElectronicMenuOrderPaystate(String paystate,String tableNumber);
+
+	
+	
 	
 }

@@ -87,6 +87,7 @@ public class ElectronicMenuOrderTServiceImpl implements ElectronicMenuOrderTServ
 
 	@Override
 	public int updateElectronicMenuOrderElectrobicOrderState(
+
 			String electronicorderstate,String tableNumber) {
 		
 		return this.getElectronicMenuOrderTDao().updateElectronicMenuOrderElectrobicOrderState(electronicorderstate,tableNumber);
@@ -102,6 +103,7 @@ public class ElectronicMenuOrderTServiceImpl implements ElectronicMenuOrderTServ
 	public int updateElectronicMenuOrderPaystate(String paystate,
 			String tableNumber) {
 		return this.getElectronicMenuOrderTDao().updateElectronicMenuOrderPaystate(paystate, tableNumber);
+
 	}
 
 }

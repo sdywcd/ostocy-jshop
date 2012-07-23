@@ -312,6 +312,7 @@ public class ElectronicMenuOrderTDaoImpl extends HibernateDaoSupport implements 
 
 	@Override
 	public int updateElectronicMenuOrderElectrobicOrderState(
+
 			final String electronicorderstate,final String tableNumber) {
 		final String queryString="update ElectronicMenuOrderT as eo set eo.electronicorderstate=:electronicorderstate where eo.tableNumber=:tableNumber ";
 		try {
@@ -374,5 +375,8 @@ public class ElectronicMenuOrderTDaoImpl extends HibernateDaoSupport implements 
 		return 0;
 	}
 
+	
+
+	
 	
 }

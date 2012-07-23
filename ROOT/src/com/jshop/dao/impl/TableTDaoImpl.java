@@ -195,6 +195,7 @@ public class TableTDaoImpl extends HibernateDaoSupport implements TableTDao{
 			String queryString="from TableT as tt where tt.tableNumber=:tableNumber";
 			List<TableT>list=this.getHibernateTemplate().findByNamedParam(queryString, "tableNumber", tableNumber);
 			return list;
+
 		} catch (RuntimeException re) {
 			log.error("findTableBytablenumber failed", re);
 			throw re;

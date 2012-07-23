@@ -254,7 +254,6 @@ ServletRequestAware, ServletResponseAware {
 	public void setPaymentname(String paymentname) {
 		this.paymentname = paymentname;
 	}
-
 	public Map<String, Object> getMap() {
 		return map;
 	}
@@ -446,6 +445,7 @@ ServletRequestAware, ServletResponseAware {
 				}
 		    }else{
 		    	//新增订单
+		    	//这里需要检查electroorderstate=9的情况（餐桌是否使用）
 		    	 List<ElectronicMenuCartT>list=this.getElectronicMenuCartTService().findAllElectronicMenuCartTBytableNumber(tableNumber, tablestate);
 					if(!list.isEmpty()){
 						getElectronicMenuCartT(list);
@@ -540,6 +540,7 @@ ServletRequestAware, ServletResponseAware {
 	 * 获取餐桌信息
 	 * @param tablenumber
 	 */
+
 	public void GetTable(String tableNumber){
 		List<TableT> list=this.getTableTService().findTableBytablenumber(tableNumber);
 		for(TableT table:list){
@@ -674,4 +675,6 @@ ServletRequestAware, ServletResponseAware {
 		this.getElectronicMenuOrderTService().updateElectronicMenuOrderPaystate("1", this.getTableNumber().trim());
 		return "json";
 	}
+
+
 }

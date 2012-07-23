@@ -15,11 +15,11 @@ $(function() {
 $(function(){
 	$('#searchgoods').click(function(){
 		var topKeywords= $('#topKeywords').val();
-		var rp=30;
+		var rp=1;
 		if(topKeywords==""){
 			return false;
 		}else{
-			window.location.href="searchGoodsByGoodsName.action?topKeywords="+topKeywords+"&rp="+rp;			
+			window.location.href="searchGoodsByGoodsName.action?topKeywords="+topKeywords+"&page=1";			
 		}
 		//$.post("searchGoodsByGoodsName.action",{"topKeywords":topKeywords,"rp":rp});
 		return true;
@@ -107,7 +107,7 @@ function clearMsg(val) {
  * 用户注册页部分js
  */
 $(function() {
-	var msg = $.query.get('msg');
+	var msg=$.query.get('msg');
 	if (msg != "") {
 		$("#usernameMsg").html("");
 		$("#passwordMsg").html("");
@@ -1129,7 +1129,9 @@ function submitPack(pid){
         $(".left_div").css("display","none");
     }
 }
-
+/**
+ * 将组合商品加入购物车
+ */
 function addbelinkedGoodsTocart(){
     if(pack_products.length <= 0){
         alert("您没有选择组合套餐商品！");
@@ -1140,7 +1142,7 @@ function addbelinkedGoodsTocart(){
     var needquantity="1";
     var hidurl = $('#hidurl').val();
     $.each(pack_products.data,function(i,v){
-        goodsid+=v;
+        goodsid+=v+",";
     });
     $.post("addCart.action", {
         "goodsid" : goodsid,
