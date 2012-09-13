@@ -25,13 +25,14 @@ import com.jshop.service.impl.ArticleCategoryTServiceImpl;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage("jshop")
+@ParentPackage("jshop")//
 @InterceptorRefs({  
     @InterceptorRef("articlemoduleArticleInterecptor"),  
     @InterceptorRef("defaultStack")
 })
 @Controller("articleCategoryTAction")
 public class ArticleCategoryTAction extends ActionSupport {
+	
 	private ArticleCategoryTService articleCategoryTService;
 	private Serial serial;
 	private String articleCategoryTid;
@@ -635,14 +636,16 @@ public class ArticleCategoryTAction extends ActionSupport {
 
 	/**
 	 * 更新文章分类
-	 * 
+	 * 已添加校验
 	 * @return
 	 */
 	@Action(value = "updateArticleCategoryT", results = { @Result(name = "json", type = "json") })
 	public String updateArticleCategoryT() {
 		int i = this.getArticleCategoryTService().checkArticleCategoryNamewithoutMe(this.getArticleCategoryTid(), this.getName(), BaseTools.adminCreateId());
 		int j = this.getArticleCategoryTService().checkArticleCategorySignwithoutMe(this.getArticleCategoryTid(), this.getSign(), BaseTools.adminCreateId());
-		if (i == 0 && j == 0) {
+		if ((i == 0 && j == 0)&&((Validate.StrNotNull(this.getName())&&Validate.StrNotNull(this.getSign())&&Validate.StrNotNull(this.getSort())&&
+				Validate.StrNotNull(this.getMetaKeywords())&&Validate.StrNotNull(this.getMetaDes())&&Validate.StrNotNull(this.getPosition())
+		)==true)) {
 			bean=this.getArticleCategoryTService().findArticleCategoryByarticleCategoryTid(this.getArticleCategoryTid());
 			bean.setName(this.getName().trim());
 			bean.setSign(this.getSign().trim());

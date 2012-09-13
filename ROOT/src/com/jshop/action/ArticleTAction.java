@@ -94,7 +94,7 @@ public class ArticleTAction extends ActionSupport {
 	private String qtype;
 	private boolean slogin;
 	private boolean sucflag;
-	
+
 	@JSON(serialize = false)
 	public ArticleTService getArticleTService() {
 		return articleTService;
@@ -103,26 +103,27 @@ public class ArticleTAction extends ActionSupport {
 	public void setArticleTService(ArticleTService articleTService) {
 		this.articleTService = articleTService;
 	}
+
 	@JSON(serialize = false)
 	public ArticleCategoryTService getArticleCategoryTService() {
 		return articleCategoryTService;
 	}
 
-	public void setArticleCategoryTService(ArticleCategoryTService articleCategoryTService) {
+	public void setArticleCategoryTService(
+			ArticleCategoryTService articleCategoryTService) {
 		this.articleCategoryTService = articleCategoryTService;
 	}
-
 
 	@JSON(serialize = false)
 	public DataCollectionTAction getDataCollectionTAction() {
 		return dataCollectionTAction;
 	}
 
-	public void setDataCollectionTAction(DataCollectionTAction dataCollectionTAction) {
+	public void setDataCollectionTAction(
+			DataCollectionTAction dataCollectionTAction) {
 		this.dataCollectionTAction = dataCollectionTAction;
 	}
 
-	
 	@JSON(serialize = false)
 	public CreateHtml getCreateHtml() {
 		return createHtml;
@@ -357,7 +358,6 @@ public class ArticleTAction extends ActionSupport {
 		this.actbean = actbean;
 	}
 
-
 	public String getIsnotice() {
 		return isnotice;
 	}
@@ -366,7 +366,6 @@ public class ArticleTAction extends ActionSupport {
 		this.isnotice = isnotice;
 	}
 
-	
 	public Date getCreatetime() {
 		return createtime;
 	}
@@ -400,7 +399,15 @@ public class ArticleTAction extends ActionSupport {
 
 	}
 
+	public boolean dovalidate(String[]... args) {
+		if (true) {
+			return true;
+		} else {
+			return false;
 
+		}
+
+	}
 
 	/**
 	 * 增加文章
@@ -412,33 +419,41 @@ public class ArticleTAction extends ActionSupport {
 	@Action(value = "addArticleT", results = { @Result(name = "json", type = "json") })
 	public String addArticleT() throws IOException, TemplateException {
 		ArticleT at = new ArticleT();
-		at.setArticleid(this.getSerial().Serialid(Serial.ARTICLE));
-		at.setArticleCategoryTid(this.getArticleCategoryTid());
-		at.setArticleCategoryName(this.getArticleCategoryName());
-		at.setTitle(this.getTitle());
-		at.setMetaKeywords(this.getMetaKeywords());
-		at.setMetaDes(this.getMetaDes());
-		at.setContentvalue(this.getContentvalue());
-		at.setAuthor(this.getAuthor());
-		if (this.getIspublication().equals("1")) {
-			at.setIspublication("1");
-			at.setStatus("1");
-		} else {
-			at.setIspublication("0");
-			at.setStatus("0");
+		if ((Validate.StrNotNull(this.getTitle())&&
+				Validate.StrNotNull(this.getContentvalue())&&
+				Validate.StrNotNull(this.getIsrecommend())&&
+				Validate.StrNotNull(this.getIstop()))==true) {
+			at.setArticleid(this.getSerial().Serialid(Serial.ARTICLE));
+			at.setArticleCategoryTid(this.getArticleCategoryTid());
+			at.setArticleCategoryName(this.getArticleCategoryName());
+			at.setTitle(this.getTitle());
+			at.setMetaKeywords(this.getMetaKeywords());
+			at.setMetaDes(this.getMetaDes());
+			at.setContentvalue(this.getContentvalue());
+			at.setAuthor(this.getAuthor());
+			if (this.getIspublication().equals("1")) {
+				at.setIspublication("1");
+				at.setStatus("1");
+			} else {
+				at.setIspublication("0");
+				at.setStatus("0");
+			}
+			at.setIsrecommend(this.getIsrecommend());
+			at.setIstop(this.getIstop());
+			at.setReadcount(0);
+			at.setPageCount(this.getPageCount());
+			at.setCreatetime(BaseTools.systemtime());
+			at.setCreatorid(BaseTools.adminCreateId());
+			at.setUpdatetime(BaseTools.defaulttime());
+			at.setVersiont(0);
+			at.setHtmlPath("#");
 		}
-		at.setIsrecommend(this.getIsrecommend());
-		at.setIstop(this.getIstop());
-		at.setReadcount(0);
-		at.setPageCount(this.getPageCount());
-		at.setCreatetime(BaseTools.systemtime());
-		at.setCreatorid(BaseTools.adminCreateId());
-		at.setUpdatetime(BaseTools.defaulttime());
-		at.setVersiont(0);
-		at.setHtmlPath("#");
-		actbean = this.getArticleCategoryTService().findArticleCategoryByarticleCategoryTid(this.getArticleCategoryTid());
+		actbean = this.getArticleCategoryTService()
+				.findArticleCategoryByarticleCategoryTid(
+						this.getArticleCategoryTid());
 		if (actbean != null) {
-			if (actbean.getPosition() != null && actbean.getPosition().equals("1")) {
+			if (actbean.getPosition() != null
+					&& actbean.getPosition().equals("1")) {
 				at.setPosition("1");
 			} else {
 				at.setPosition("0");
@@ -468,8 +483,9 @@ public class ArticleTAction extends ActionSupport {
 	 */
 	@Action(value = "findArticleByarticleid", results = { @Result(name = "json", type = "json") })
 	public String findArticleByarticleid() {
-		if(Validate.StrNotNull(this.getArticleid())){
-			bean = this.getArticleTService().findArticleByarticleid(this.getArticleid());
+		if (Validate.StrNotNull(this.getArticleid())) {
+			bean = this.getArticleTService().findArticleByarticleid(
+					this.getArticleid());
 			if (bean != null) {
 				this.setSucflag(true);
 				return "json";
@@ -491,6 +507,10 @@ public class ArticleTAction extends ActionSupport {
 	 */
 	@Action(value = "updateArticleT", results = { @Result(name = "json", type = "json") })
 	public String updateArticleT() throws IOException, TemplateException {
+			if((Validate.StrNotNull(this.getTitle())&&
+					Validate.StrNotNull(this.getContentvalue())&&
+					Validate.StrNotNull(this.getIsrecommend())&&
+					Validate.StrNotNull(this.getIstop()))==true){
 		ArticleT at = new ArticleT();
 		at=this.getArticleTService().findArticleByarticleid(this.getArticleid());
 		at.setArticleCategoryTid(this.getArticleCategoryTid());
@@ -523,11 +543,13 @@ public class ArticleTAction extends ActionSupport {
 			}
 		}
 		at.setIsnotice(this.getIsnotice());
+			
 		if (this.getArticleTService().updateArticleT(at) > 0) {
 			this.setBean(at);
 			this.setSucflag(true);
 			return "json";
 		}
+			}
 		this.setSucflag(false);
 		return "json";
 	}
@@ -549,12 +571,12 @@ public class ArticleTAction extends ActionSupport {
 	 * 查询所有文章
 	 * 
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Action(value = "findAllArticleT", results = { @Result(name = "json", type = "json") })
 	public String findAllArticleT() throws Exception {
 		if ("sc".equals(this.getQtype())) {
-			this.findDefaultAllArticle();				
+			this.findDefaultAllArticle();
 		} else {
 			if (Validate.StrisNull(this.getQuery())) {
 				return "json";
@@ -568,8 +590,10 @@ public class ArticleTAction extends ActionSupport {
 	public void findDefaultAllArticle() {
 		int currentPage = page;
 		int lineSize = rp;
-		total = this.getArticleTService().countfindAllArticle(BaseTools.adminCreateId());
-		List<ArticleT> list = this.getArticleTService().findAllArticleT(currentPage, lineSize, BaseTools.adminCreateId());
+		total = this.getArticleTService().countfindAllArticle(
+				BaseTools.adminCreateId());
+		List<ArticleT> list = this.getArticleTService().findAllArticleT(
+				currentPage, lineSize, BaseTools.adminCreateId());
 		if (list != null) {
 			this.ProcessArticleTList(list);
 		}
@@ -600,36 +624,58 @@ public class ArticleTAction extends ActionSupport {
 			}
 			Map<String, Object> cellMap = new HashMap<String, Object>();
 			cellMap.put("id", at.getArticleid());
-			cellMap.put("cell", new Object[] { at.getTitle(), at.getArticleCategoryName(),at.getIsnotice(), at.getIspublication(), at.getIsrecommend(), at.getIstop(), at.getCreatetime(), "<a target='_blank' id='editarticle' href='jshop/admin/pagecontent/addarticle.jsp?articleid=" + at.getArticleid() + "' name='editarticle'>[编辑]</a>" + "<a target='_blank' id='browerarticle' href='" + at.getHtmlPath() + "' name='browerarticle'>[预览]</a>" });
+			cellMap.put(
+					"cell",
+					new Object[] {
+							at.getTitle(),
+							at.getArticleCategoryName(),
+							at.getIsnotice(),
+							at.getIspublication(),
+							at.getIsrecommend(),
+							at.getIstop(),
+							at.getCreatetime(),
+							"<a target='_blank' id='editarticle' href='jshop/admin/pagecontent/addarticle.jsp?articleid="
+									+ at.getArticleid()
+									+ "' name='editarticle'>[编辑]</a>"
+									+ "<a target='_blank' id='browerarticle' href='"
+									+ at.getHtmlPath()
+									+ "' name='browerarticle'>[预览]</a>" });
 			rows.add(cellMap);
 		}
 	}
+
 	/**
 	 * 生成文章PDF文件
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	@Action(value="PDF", results = { @Result(name = "json", type = "json")})
-	public  String PDF() throws Exception{		
+	@Action(value = "PDF", results = { @Result(name = "json", type = "json") })
+	public String PDF() throws Exception {
 		Document d = new Document();
 		try {
-			bean=this.getArticleTService().findArticleByarticleid(this.getArticleid());
-			String path=ServletActionContext.getServletContext().getRealPath("");//获取根目录
-			String savePath=isexistdir();
-			savePath=path+savePath;
-			String savePDF= savePath+bean.getTitle();
-			PdfWriter.getInstance(d, new FileOutputStream(savePDF+".PDF"));
-			BaseFont bf = BaseFont.createFont( "c:\\windows\\fonts\\simsun.ttc,1", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			bean = this.getArticleTService().findArticleByarticleid(
+					this.getArticleid());
+			String path = ServletActionContext.getServletContext().getRealPath(
+					"");// 获取根目录
+			String savePath = isexistdir();
+			savePath = path + savePath;
+			String savePDF = savePath + bean.getTitle();
+			PdfWriter.getInstance(d, new FileOutputStream(savePDF + ".PDF"));
+			BaseFont bf = BaseFont.createFont(
+					"c:\\windows\\fonts\\simsun.ttc,1", BaseFont.IDENTITY_H,
+					BaseFont.EMBEDDED);
 			d.addAuthor("作者-alextao");
 			d.open();
-			d.add(new Paragraph(bean.getContentvalue(),new Font(bf)));
+			d.add(new Paragraph(bean.getContentvalue(), new Font(bf)));
 			d.close();
 		} catch (Exception e) {
 			throw e;
-		} 
+		}
 		return "json";
-		
+
 	}
+
 	/**
 	 * 检测目录是否存在
 	 * 
@@ -640,21 +686,21 @@ public class ArticleTAction extends ActionSupport {
 		String nowTimeStr = "";
 		String savedir = "/PDF/";
 		String realpath = "";
-//		SimpleDateFormat sDateFormat;
-//		sDateFormat = new SimpleDateFormat("yyyyMMdd");
-//		nowTimeStr = sDateFormat.format(new Date());
-		String savePath = ServletActionContext.getServletContext().getRealPath("");
-		savePath = savePath + savedir ;
+		// SimpleDateFormat sDateFormat;
+		// sDateFormat = new SimpleDateFormat("yyyyMMdd");
+		// nowTimeStr = sDateFormat.format(new Date());
+		String savePath = ServletActionContext.getServletContext().getRealPath(
+				"");
+		savePath = savePath + savedir;
 		File dir = new File(savePath);
 		if (!dir.exists()) {
 			dir.mkdirs();
-			realpath = savedir ;
+			realpath = savedir;
 			return realpath;
 		} else {
-			realpath = savedir ;
+			realpath = savedir;
 			return realpath;
 		}
 	}
 
-	
 }

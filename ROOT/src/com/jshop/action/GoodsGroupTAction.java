@@ -268,6 +268,16 @@ public class GoodsGroupTAction extends ActionSupport {
 	 */
 	@Action(value="addGoodsGroupT",results={@Result(name="json",type="json")})
 	public String addGoodsGroupT(){
+		if(Validate.StrNotNull(this.getGoodsid())&&
+		Validate.StrNotNull(this.getGoodsname())&&
+		Validate.StrNotNull(this.getState())&&
+		Validate.StrNotNull(this.getCashstate())&&
+		Validate.StrNotNull(String.valueOf(this.getLimitbuy()))&&
+		Validate.StrNotNull(String.valueOf(this.getSalequantity()))&&
+		Validate.StrNotNull(String.valueOf(this.getSendpoint()))){
+			this.setGoodsgroup(false);
+			return "json";
+		}
 		GoodsGroupT ggt = new GoodsGroupT();		
 		ggt.setGroupid(this.getSerial().Serialid(Serial.GOODSGROUPT));
 		ggt.setGoodsid(this.getGoodsid().trim());
@@ -384,6 +394,20 @@ public class GoodsGroupTAction extends ActionSupport {
 	 */
 	@Action(value="updateGoodsGroup",results={@Result(name="json",type="json")})
 	public String updateGoodsGroup(){
+		if(Validate.StrNotNull(this.getGoodsid())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(String.valueOf(this.getCashlimit()))&&
+				Validate.StrNotNull(this.getCashstate())&&
+				Validate.StrNotNull(String.valueOf(this.getLimitbuy()))&&
+				Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getState())&&
+				Validate.StrNotNull(String.valueOf(this.getSendpoint()))&&
+				Validate.StrNotNull(String.valueOf(this.getGroupprice()))&&
+						Validate.StrNotNull(String.valueOf(this.getMemberprice()))&&
+						Validate.StrNotNull(this.getPictureurl())){
+			this.setGoodsgroup(false);
+			return "json";
+		}
 		GoodsGroupT ggt = new GoodsGroupT();
 		ggt.setGroupid(this.getGroupid().trim());
 		ggt.setBegintime(this.getBegintime());
