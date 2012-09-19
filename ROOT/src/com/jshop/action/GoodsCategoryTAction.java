@@ -602,7 +602,7 @@ public class GoodsCategoryTAction extends ActionSupport {
 	public String addGoodsCategory() {
 		if (Validate.StrNotNull(this.getGrade())
 				&& Validate.StrNotNull(this.getName())
-				&& Validate.StrNotNull(this.getMobilesync())) {
+				&& Validate.StrNotNull(this.getMobilesync())==false) {
 			this.setSucflag(false);
 			return "json";
 		}
@@ -653,7 +653,7 @@ public class GoodsCategoryTAction extends ActionSupport {
 		if (Validate.StrNotNull(this.getName())
 				&& Validate.StrNotNull(this.getParentName())
 				&& Validate.StrNotNull(this.getLogo())
-				&& Validate.StrNotNull(this.getMobilesync())) {
+				&& Validate.StrNotNull(this.getMobilesync())==false) {
 			this.setSucflag(false);
 			return "json";
 		}
@@ -707,7 +707,7 @@ public class GoodsCategoryTAction extends ActionSupport {
 	public String addGoodsCategoryThree() {
 		if (Validate.StrNotNull(this.getParentName1())
 				&& Validate.StrNotNull(this.getLogo())
-				&& Validate.StrNotNull(this.getMobilesync())) {
+				&& Validate.StrNotNull(this.getMobilesync())==false) {
 
 			this.setSucflag(false);
 			return "json"; 
@@ -853,7 +853,7 @@ public class GoodsCategoryTAction extends ActionSupport {
 	public String updateGoodscategoryT() throws IOException, TemplateException {
 		if(Validate.StrNotNull(this.getName())&&
 				Validate.StrNotNull(this.getLogo())&&
-				Validate.StrNotNull(this.getMobilesync())){
+				Validate.StrNotNull(this.getMobilesync())==false){
 			this.setSucflag(false);
 			return "json";
 		}

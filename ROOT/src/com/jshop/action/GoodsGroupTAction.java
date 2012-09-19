@@ -274,7 +274,7 @@ public class GoodsGroupTAction extends ActionSupport {
 		Validate.StrNotNull(this.getCashstate())&&
 		Validate.StrNotNull(String.valueOf(this.getLimitbuy()))&&
 		Validate.StrNotNull(String.valueOf(this.getSalequantity()))&&
-		Validate.StrNotNull(String.valueOf(this.getSendpoint()))){
+		Validate.StrNotNull(String.valueOf(this.getSendpoint()))==false){
 			this.setGoodsgroup(false);
 			return "json";
 		}
@@ -306,7 +306,7 @@ public class GoodsGroupTAction extends ActionSupport {
 		}	
 		return "json";
 	}
-
+ 
 	/**
 	 * 处理迭代商品信息
 	 * @param ggtList
@@ -404,7 +404,7 @@ public class GoodsGroupTAction extends ActionSupport {
 				Validate.StrNotNull(String.valueOf(this.getSendpoint()))&&
 				Validate.StrNotNull(String.valueOf(this.getGroupprice()))&&
 						Validate.StrNotNull(String.valueOf(this.getMemberprice()))&&
-						Validate.StrNotNull(this.getPictureurl())){
+						Validate.StrNotNull(this.getPictureurl())==false){
 			this.setGoodsgroup(false);
 			return "json";
 		}

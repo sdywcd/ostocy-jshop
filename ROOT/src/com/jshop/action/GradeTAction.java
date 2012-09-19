@@ -207,6 +207,10 @@ public class GradeTAction extends ActionSupport {
 	 */
 	@Action(value = "addGradet", results = { @Result(name = "json", type = "json") })
 	public String addGradet() {
+		if((Validate.StrNotNull(this.getNeedcost())&&Validate.StrNotNull(this.getDiscount()))==false){
+			this.setSucflag(false);
+			return "json";
+		}
 		GradeT gt = new GradeT();
 		gt.setGradeid(this.getSerial().Serialid(Serial.GRADE));
 		gt.setGradevalue("0");
@@ -281,6 +285,10 @@ public class GradeTAction extends ActionSupport {
 	 */
 	@Action(value = "UpdateGradeById", results = { @Result(name = "json", type = "json") })
 	public String UpdateGradeById() {
+		if((Validate.StrNotNull(this.getNeedcost())&&Validate.StrNotNull(this.getDiscount()))==false){
+			this.setSucflag(false);
+			return "json";
+		}
 		GradeT gt = new GradeT();
 		gt.setGradeid(this.getGradeid().trim());
 		gt.setGradevalue("0");

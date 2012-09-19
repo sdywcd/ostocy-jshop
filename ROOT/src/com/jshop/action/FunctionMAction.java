@@ -174,7 +174,7 @@ public class FunctionMAction extends ActionSupport {
 		if(Validate.StrNotNull(this.getFunctionname())&&
 				Validate.StrNotNull(this.getVisitmethodname())&&
 				Validate.StrNotNull(this.getVisiturl())&&
-				Validate.StrNotNull(this.getModuleid())){
+				Validate.StrNotNull(this.getModuleid())==true){
 		FunctionM fm=new FunctionM();
 		fm.setId(this.getSerial().Serialid(Serial.FUNCTION));
 		fm.setFunctionname(this.getFunctionname());

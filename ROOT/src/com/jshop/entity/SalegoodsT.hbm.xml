@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-9-18 10:14:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.jshop.entity.SalegoodsT" table="salegoods_t" catalog="jshopactive">
+        <id name="salegoodsid" type="string">
+            <column name="SALEGOODSID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="salegoodsname" type="string">
+            <column name="SALEGOODSNAME" length="20" not-null="true" />
+        </property>
+        <property name="salegoodsnumber" type="string">
+            <column name="SALEGOODSNUMBER" length="50" not-null="true" />
+        </property>
+        <property name="salegoodspictureurl" type="string">
+            <column name="SALEGOODSPICTUREURL" length="225" not-null="true" />
+        </property>
+        <property name="salegoodsinformation" type="string">
+            <column name="SALEGOODSINFORMATION" length="200" />
+        </property>
+        <property name="salegoodsstate" type="string">
+            <column name="SALEGOODSSTATE" length="1" not-null="true" />
+        </property>
+        <property name="begingtime" type="timestamp">
+            <column name="BEGINGTIME" length="0" />
+        </property>
+        <property name="endingtime" type="timestamp">
+            <column name="ENDINGTIME" length="0" />
+        </property>
+        <property name="salepeople" type="string">
+            <column name="SALEPEOPLE" length="20" not-null="true" />
+        </property>
+        <property name="salestartingprice" type="double">
+            <column name="SALESTARTINGPRICE" precision="10" not-null="true" />
+        </property>
+        <property name="salejoinpeople" type="int">
+            <column name="SALEJOINPEOPLE" not-null="true" />
+        </property>
+        <property name="salebudget" type="string">
+            <column name="SALEBUDGET" length="200" />
+        </property>
+        <property name="realname" type="string">
+            <column name="REALNAME" length="20" not-null="true" />
+        </property>
+        <property name="userid" type="string">
+            <column name="USERID" length="20" not-null="true" />
+        </property>
+        <property name="saleprice" type="double">
+            <column name="SALEPRICE" precision="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

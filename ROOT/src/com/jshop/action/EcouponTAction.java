@@ -202,7 +202,7 @@ public class EcouponTAction {
 				&& Validate
 						.StrNotNull(String.valueOf(this.getPricededuction()))
 				&& Validate.StrNotNull(this.getState())
-				&& Validate.StrNotNull(this.getNote())) {
+				&& Validate.StrNotNull(this.getNote())==true) {
 			EcouponT et = new EcouponT();
 			// 当ECOUPONSTATE=3的时候，现金抵扣模式
 

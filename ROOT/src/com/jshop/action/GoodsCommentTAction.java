@@ -294,7 +294,7 @@ public class GoodsCommentTAction extends ActionSupport {
 	public String addvirtualGoodsComment() {
 		if (Validate.StrNotNull(this.getGoodsid())&&Validate.StrNotNull(this.getGoodsname())&&
 				Validate.StrNotNull(this.getReplyorcommentusername())&&
-				Validate.StrNotNull(this.getCommentcontent())) {
+				Validate.StrNotNull(this.getCommentcontent())==false) {
 			this.setSucflag(false);
 			return "json";
 		}
