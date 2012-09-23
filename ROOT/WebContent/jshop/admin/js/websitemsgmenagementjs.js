@@ -1,5 +1,7 @@
+var session=true;
 /**
- * flexigrid list 
+ 
+* flexigrid list 
  */
 $(function() {
 	$("#websitemsgmenagement").flexigrid( {
@@ -88,7 +90,7 @@ $(function() {
 	});
 	function action(com, grid) {
 		if (com == '添加') {
-			window.location.href = "addwensitemsg.jsp?session="+session+"#pagecontent";
+			window.location.href = "addwebsitemsg.jsp?session="+session+"#pagecontent";
 			return;
 		} else if (com == '编辑') {
 			if ($('.trSelected', grid).length == 1) {
