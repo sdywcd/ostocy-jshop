@@ -152,7 +152,7 @@
 
 		<script type="text/javascript">
  		KE.show({
-			id : 'detail',
+			id : 'text',
 		    imageUploadJson : '<%=basePath%>/jshop/admin/js/jsp/upload_json.jsp',
 			fileManagerJson : '<%=basePath%>/jshop/admin/js/jsp/file_manager_json.jsp',
 			allowFileManager : true,
