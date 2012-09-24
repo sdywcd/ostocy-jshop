@@ -29,7 +29,7 @@
 					<!-- box / title -->
 					<div class="title">
 						<h5>
-							商品分类设置
+						站内信
 						</h5>
 
 

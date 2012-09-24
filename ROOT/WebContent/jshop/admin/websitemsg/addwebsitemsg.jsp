@@ -87,7 +87,7 @@
 									</label>
 								</div>
 								<div class="input">
-									<input type="text" id="msgtousername" name="msgtousername" class="small" />
+									<input type="text" id="msgtousername" name="msgtousername" class="small" onchange="findusername()" />
 									
 								</div>
 							</div>
@@ -100,9 +100,9 @@
 								<div class="radios">
 								<div class="radio">									
 									<input type=radio id="msgstate" name="msgstate" class="small" value="1" />	
-									<label>开启</label>
+									<label>普通信件</label>
 									<input type=radio id="msgstate" name="msgstate" class="small" checked="checked" value="0"/>	
-									<label>关闭</label>
+									<label>系统邮件</label>
 								</div>	
 								</div>
 							</div>
@@ -118,12 +118,17 @@
 									</div>
 								</div>
 							</div>
-							<div class="form">
+						<div class="table" id="userwebsite" style="display: none">
+								<div id="flexwebsitemembermanagement" style="width: 98%; margin-left: 15px;">
+								<table id="websitemembermanagement" style="display: none;"></table>
+								</div>						
+						</div>
+					<div class="form">
 						<div class="fields">
 							<div class="field field-first">
 								<div class="input">
 									<div class="button highlight">
-										<input type="hidden" id="msgid" name="msgid" />
+										<input type="hidden" id="eid" name="eid" />
 										<input type="button" id="add" name="add" value="提交"  />
 										<input type="button" id="update" name="update" value="更新" style="display: none;" />
 									</div>
@@ -131,6 +136,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 							
 						</div>
@@ -143,8 +149,10 @@
 		<!-- end content -->
 		<!-- footer -->
 		<script type="text/javascript" src="<%=basePath%>/jshop/admin/js/regme.js"></script>
-		<script type="text/javascript" src="<%=basePath%>/jshop/admin/js/regme.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/jshop/admin/js/addwebsitemsgjs.js"></script>
 	
+		<script type="text/javascript" src="<%=basePath%>/jshop/admin/js/jquery.blockUI.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/jshop/admin/js/websitemsguserjs.js"></script>
 		<%@include file="/jshop/admin/footer.jsp"%>
 		<!-- end footert -->
 	
@@ -176,6 +184,27 @@
  		    return !$('#select2 option:selected').remove().appendTo('#select1');  
  		   });  
  		 });  
+ 		
+ 	</script>
+ 	<script type="text/javascript">
+ 	$( function findusername(){
+ 		$('#msgtousername').click(function(){
+ 			$.blockUI({
+ 				message:$('#userwebsite'),
+ 				css:{
+ 					top:'50%',
+ 					left:'50%',
+ 					textAlign:'left',
+ 					marginleft:'-320px',
+ 					marginTop:'-280px',
+ 					width:'600px',
+ 					backgroud:'none'
+ 				}
+ 			});
+ 			$('.blockOverlay').attr('title','信息提示').click($.unblockUI);
+ 			
+ 		});
+ 	});
  		
  	</script>
 	</body>
