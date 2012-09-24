@@ -37,6 +37,7 @@ public class WebsiteMsgTAction {
 	private Date createtime;
 	private String msgstate;
 	private String text;
+	private boolean flag;
 	private List rows = new ArrayList();
 	private int rp;
 	private int page = 1;
@@ -124,6 +125,12 @@ public class WebsiteMsgTAction {
 	public void setText(String text) {
 		this.text = text;
 	}
+	public boolean isFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
 	/**
 	 * 
 	 * @return
@@ -140,11 +147,13 @@ public class WebsiteMsgTAction {
 	@Action(value="findAllWebsiteByMine",results={@Result(name="json",type="json")})
 	public String findAllWebsiteByMine(){
 		int currentPage=page;
-		int lineSize=rp;
+		int lineSize=rp;		
+		String userid = (String) ActionContext.getContext().getSession().get(BaseTools.BACK_USER_SESSION_KEY);		
+		List<WebsiteMsgT> weblist=this.getWebsiteMsgTService().findAllWebsiteMsgByFromUserid(currentPage, lineSize, userid);
+		if(weblist==null) return "json";
+		if(!weblist.isEmpty()){
+		total= this.getWebsiteMsgTService().countfindAllWebsiteMsgByFromUserid(userid);
 		rows.clear();
-		 String adminid = (String) ActionContext.getContext().getSession().get(BaseTools.BACK_USER_SESSION_KEY);
-		total= this.getWebsiteMsgTService().countfindAllWebsiteMsgByFromUserid(adminid);
-		List<WebsiteMsgT> weblist=this.getWebsiteMsgTService().findAllWebsiteMsgByFromUserid(currentPage, lineSize, adminid);
 		for(Iterator it=weblist.iterator();it.hasNext(); ){
 			WebsiteMsgT web=(WebsiteMsgT) it.next();
 			Map<String, Object> map=new HashMap<String,Object>();
@@ -160,6 +169,7 @@ public class WebsiteMsgTAction {
 			rows.add(map);			
 		}
 		return "json";
+		}else return "json";
 	}
 	/**
 	 * 根据id 批量删除站内信
@@ -226,6 +236,7 @@ public class WebsiteMsgTAction {
 			web.setState("0");
 			web.setTitle(this.getTitle());			
 			if(this.getWebsiteMsgTService().addWebsiteMsgT(web)>0){
+				this.setFlag(true);
 				return "json";
 			}
 			return "json";
