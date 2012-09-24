@@ -139,7 +139,8 @@ $(function(){
 				jConfirm('确定编辑此项吗？','信息提示',function(r){
 					if(r){
 					var str	=$('.trSelected',grid)[0].id.substr(3);
-					window.location.href="../member/membermanagement.jsp?session="+session+"#member&eid="+str;
+					window.location.href="../websitemsg/addwebsitemsg.jsp?session="+session+"#pagecontent&eid="+str;
+					
 					return;
 					}
 				});
