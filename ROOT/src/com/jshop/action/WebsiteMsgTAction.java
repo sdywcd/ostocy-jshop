@@ -131,6 +131,32 @@ public class WebsiteMsgTAction {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+
+	public List getRows() {
+		return rows;
+	}
+	public void setRows(List rows) {
+		this.rows = rows;
+	}
+	public int getRp() {
+		return rp;
+	}
+	public void setRp(int rp) {
+		this.rp = rp;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
 	/**
 	 * 
 	 * @return
@@ -138,12 +164,14 @@ public class WebsiteMsgTAction {
 	public String findAllWebsiteMsg(){
 		
 		return "json";
+		
 	}
 	
 	/**
 	 * 查询所有关于发件人是我的信息
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@Action(value="findAllWebsiteByMine",results={@Result(name="json",type="json")})
 	public String findAllWebsiteByMine(){
 		int currentPage=page;
@@ -156,9 +184,13 @@ public class WebsiteMsgTAction {
 		rows.clear();
 		for(Iterator it=weblist.iterator();it.hasNext(); ){
 			WebsiteMsgT web=(WebsiteMsgT) it.next();
-			Map<String, Object> map=new HashMap<String,Object>();
-			map.put("id", web.getMsgid());
-			map.put("cell",new Object[]{
+			if(web.getState().equals("0")){
+				web.setState("未读");
+			}else web.setState("已读");
+			if(web.getMsgstate().equals("1"))web.setMsgstate("普通信件");else web.setMsgstate("系统信件");
+			Map cellMap= new HashMap();
+			cellMap.put("id", web.getMsgid());
+			cellMap.put("cell",new Object[]{
 					web.getTitle(),
 					web.getMsgtousername(),
 					web.getMsgtextid(),
@@ -166,7 +198,7 @@ public class WebsiteMsgTAction {
 					web.getMsgstate(),
 					web.getCreatetime()
 			} );
-			rows.add(map);			
+			rows.add(cellMap);			
 		}
 		return "json";
 		}else return "json";

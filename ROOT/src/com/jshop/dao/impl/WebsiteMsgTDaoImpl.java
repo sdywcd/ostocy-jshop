@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -191,5 +192,21 @@ public class WebsiteMsgTDaoImpl extends HibernateDaoSupport implements WebsiteMs
 			log.error("find all findAllWebsiteMsgByToUsername error", re);
 			throw re;
 		}
+	}
+
+	@Override
+	public int countfindAllWebsitemsgOfStateByToUsername(String msgtousername, String state) {
+		try {
+			String queryString="select count(*) from WebsiteMsgT as web where web.msgtousername=:msgtousername and web.state=:state ";
+			List list=this.getHibernateTemplate().findByNamedParam(queryString, new String[]{"msgtousername","state"}, new String[]{msgtousername,state});
+			if(list.size()>0){
+				Object o =list.get(0);
+				long l=(Long) o;
+				return (int) l;
+			}
+		} catch (DataAccessException e) {
+			throw e;
+		}
+		return 0;
 	}
 }

@@ -239,11 +239,16 @@ public class MyWebsiteMsgAction extends ActionSupport {
 			int lineSize =15;
 			List<WebsiteMsgT> list = this.getWebsiteMsgTService().findAllWebsiteMsgByToUsername(currentPage, lineSize, user.getUsername());
 			int allRecorders=this.getWebsiteMsgTService().countfindAllWebsiteMsgByToUsername(user.getUsername());
+			int allInfo=this.getWebsiteMsgTService().countfindAllWebsitemsgOfStateByToUsername(user.getUsername(), "0");
 			if(list!=null){
 				//路径获取
 				ActionContext.getContext().put("basePath", this.getDataCollectionTAction().getBasePath());
 				//获取我的信件
 				ActionContext.getContext().put("websitemsg", list);
+				//获取所有收件人是我的信息
+				ActionContext.getContext().put("allRecorders", allRecorders);
+				//获取所有收件人是我未读的信息
+				ActionContext.getContext().put("allInfo", allInfo);
 				//获取导航数据
 				ActionContext.getContext().put("siteNavigationList", this.getDataCollectionTAction().findSiteNavigation());
 				//获取商城基本数据
@@ -258,6 +263,10 @@ public class MyWebsiteMsgAction extends ActionSupport {
 				ActionContext.getContext().put("basePath", this.getDataCollectionTAction().getBasePath());
 				//获取我的信件
 				ActionContext.getContext().put("websitemsg", list);
+				//获取所有收件人是我的信息
+				ActionContext.getContext().put("allRecorders", allRecorders);
+				//获取所有收件人是我未读的信息
+				ActionContext.getContext().put("allInfo", allInfo);
 				//获取导航数据
 				ActionContext.getContext().put("siteNavigationList", this.getDataCollectionTAction().findSiteNavigation());
 				//获取商城基本数据
