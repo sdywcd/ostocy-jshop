@@ -150,7 +150,7 @@ $(function(){
 		$.post("addGoodsGroupT.action",{"memberprice":memberprice,"pictureurl":pictureurl,"groupprice":groupprice,"salequantity":salequantity,"cashstate":cashstate,"limitbuy":limitbuy,"endtime":endtime,"state":state,"begintime":begintime,"goodsid":goodsid,"goodsname":goodsname,"detail":detail,"sendpoint":sendpoint,"cashlimit":cashlimit},function(data){
 			if(data.goodsgroup){
 				jAlert('添加成功','信息提示');
-				window.location.href='goodsgroupmanagement.jsp?session'+session+"#goods";
+				window.location.href='addsalegoods.jsp?session'+session+"#goods";
 			}else{
 				jAlert('添加失败','信息提示');
 				return false;

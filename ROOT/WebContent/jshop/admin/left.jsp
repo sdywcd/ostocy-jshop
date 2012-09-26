@@ -58,7 +58,9 @@
 				<li>
 					<a id="link9" href="<%=basePatha%>jshop/admin/activity/ecoupontmanagement.jsp?session=6584359BA964336B9BDE75737952F5AA#goods">电子优惠券</a>
 				</li>
-		
+				<li>
+					<a id="link20" href="<%=basePatha%>jshop/admin/sale/salemanagement.jsp?session=6584359BA964336B9BDE75737952F5AA#goods">拍卖商品管理</a>
+				</li>
 			</ul>
 			<h6 id="h-menu-order">
 				<a href="#order"><span>订单管理</span>

@@ -6,14 +6,15 @@ import java.util.List;
 import com.jshop.entity.SalegoodsT;
 
 /**
- * @author 郭建波 商品拍卖DAO
+ * @author 郭建波
+ *  商品拍卖DAO
  */
 public interface SaleGoodsTDao {
 	/**
 	 * 管理员添加拍卖商品
 	 * 
 	 */
-	public SalegoodsT addsalegoods(SalegoodsT salegoodst);
+	public int addsalegoods(SalegoodsT salegoodst);
 
 	/**
 	 * 根据修改所有拍卖商品信息
@@ -25,7 +26,7 @@ public interface SaleGoodsTDao {
 	 * 
 	 * 根据id查询所有拍卖数据
 	 */
-	public List<SalegoodsT> findsalegoodsById(final String salegoodsid);
+	public SalegoodsT findsalegoodsById(final String salegoodsid);
 
 	/**
 	 * 
@@ -50,18 +51,28 @@ public interface SaleGoodsTDao {
 	 * 
 	 * 根据编号删除拍卖商品
 	 */
-	public boolean deletesalegoods(final String salegoodsnumber);
+	public int deletesalegoods(final String salegoodsnumber);
 
 	/**
 	 * 
 	 * 根据id删除拍卖商品
 	 */
-	public boolean deletesalegoodsById(final String salegoodsid);
+	public int deletesalegoodsT(final String[] list);
+	
 
 	// /**
 	// * 查询所有拍卖商品状态
 	// *
 	// * */
 	// public SalegoodsT findSalegoodsstate(String salegoodsstate);
-
+	/**
+	 * 查询所有拍卖商品的条目
+	 * */
+	public int countAllSalegoodsT();
+	
+	/**
+	 * 	更具字段按照排序方式排序
+	 * 
+	 * */
+	public List<SalegoodsT> sortAllSalegoods(final int currentPage,final int lineSize,final String queryString);
 }

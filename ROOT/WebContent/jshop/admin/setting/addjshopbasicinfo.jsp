@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 
-		<title>增加商城基本信息</title>
+		<title>增加商城基本信息</title> 
 
 		
 

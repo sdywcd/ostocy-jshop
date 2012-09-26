@@ -139,6 +139,8 @@ public class Serial {
 	//电子优惠券
 	public static String ECOUPONT="ecoupont";
 	
+	public static String SALEGOODST="salegoodst";
+	
 	private SerialTService serialTService;
 	
 	
