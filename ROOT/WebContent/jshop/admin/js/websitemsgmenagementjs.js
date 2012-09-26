@@ -97,7 +97,7 @@ $(function() {
 				jConfirm('确定编辑此项吗?', '信息提示', function(r) {
 					if (r) {
 						var str = $('.trSelected', grid)[0].id.substr(3);
-						window.location.href = "addarticlecategory.jsp?session="+session+"#pagecontent&articleCategoryTid=" + str;
+						window.location.href = "websitemsgmenagement.jsp?session="+session+"#pagecontent";
 						return;
 					}
 				});
