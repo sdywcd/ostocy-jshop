@@ -1,10 +1,14 @@
 package com.jshop.action.tools;
 
 import java.util.List;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-
+/**
+ * 分页模型
+ * @author "chenda"
+ *
+ * @param <T>
+ */
 public class PageModel<T>
 {
     
