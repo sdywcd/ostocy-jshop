@@ -11,6 +11,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.json.annotations.JSON;
 import org.springframework.stereotype.Controller;
 import com.jshop.action.templates.DataCollectionTAction;
+import com.jshop.action.templates.FreeMarkervariable;
 import com.jshop.action.tools.BaseTools;
 import com.jshop.action.tools.Serial;
 import com.jshop.entity.MsgtextT;
@@ -242,7 +243,7 @@ public class MyWebsiteMsgAction extends ActionSupport {
 			int allInfo=this.getWebsiteMsgTService().countfindAllWebsitemsgOfStateByToUsername(user.getUsername(), "0");
 			if(list!=null){
 				//路径获取
-				ActionContext.getContext().put("basePath", this.getDataCollectionTAction().getBasePath());
+				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
 				//获取我的信件
 				ActionContext.getContext().put("websitemsg", list);
 				//获取所有收件人是我的信息
@@ -250,17 +251,17 @@ public class MyWebsiteMsgAction extends ActionSupport {
 				//获取所有收件人是我未读的信息
 				ActionContext.getContext().put("allInfo", allInfo);
 				//获取导航数据
-				ActionContext.getContext().put("siteNavigationList", this.getDataCollectionTAction().findSiteNavigation());
+				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
 				//获取商城基本数据
-				ActionContext.getContext().put("jshopbasicinfo", this.getDataCollectionTAction().findJshopbasicInfo());
+				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
 				//获取页脚分类数据
-				ActionContext.getContext().put("footcategory", this.getDataCollectionTAction().findFooterCateogyrT());
+				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
 				//获取页脚文章数据
-				ActionContext.getContext().put("footerarticle", this.getDataCollectionTAction().findFooterArticle());
+				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
 				return SUCCESS;
 			}else{
 				//路径获取
-				ActionContext.getContext().put("basePath", this.getDataCollectionTAction().getBasePath());
+				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
 				//获取我的信件
 				ActionContext.getContext().put("websitemsg", list);
 				//获取所有收件人是我的信息
@@ -268,13 +269,13 @@ public class MyWebsiteMsgAction extends ActionSupport {
 				//获取所有收件人是我未读的信息
 				ActionContext.getContext().put("allInfo", allInfo);
 				//获取导航数据
-				ActionContext.getContext().put("siteNavigationList", this.getDataCollectionTAction().findSiteNavigation());
+				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
 				//获取商城基本数据
-				ActionContext.getContext().put("jshopbasicinfo", this.getDataCollectionTAction().findJshopbasicInfo());
+				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
 				//获取页脚分类数据
-				ActionContext.getContext().put("footcategory", this.getDataCollectionTAction().findFooterCateogyrT());
+				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
 				//获取页脚文章数据
-				ActionContext.getContext().put("footerarticle", this.getDataCollectionTAction().findFooterArticle());
+				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
 				return SUCCESS;
 			}
 		}else{
