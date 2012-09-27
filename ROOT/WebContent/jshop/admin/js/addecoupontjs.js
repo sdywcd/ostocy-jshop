@@ -71,7 +71,7 @@ function eco(){
 		$('#one').show();
 		$('#good').hide();
 		$('#pricededuction').removeAttr("readonly");
-		
+
 		return;
 	}
 	if(ecouponstate=="2"){
@@ -80,7 +80,7 @@ function eco(){
 		$('#pricededuction').attr("value","0.0");
 		$('#pricededuction').attr("readonly","readonly");
 		$('#favourableprices').attr("value","0.0");
-		
+
 		return;
 	}
 	if(ecouponstate=="1"){	
@@ -89,7 +89,7 @@ function eco(){
 		$('#pricededuction').attr("value","0.0");
 		$('#pricededuction').attr("readonly","readonly");
 		$('#favourableprices').attr("value","0.0");
-		
+
 		return;
 	}if(ecouponstate=="0"){
 		$('#one').hide();

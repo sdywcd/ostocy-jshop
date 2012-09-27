@@ -5,6 +5,7 @@ import java.util.List;
 import com.jshop.entity.GoodsGroupT;
 
 public interface GoodsGroupTService {
+	
 	/**
 	 * 增加团购商品
 	 * @param group

@@ -299,6 +299,7 @@ public class GoodsAttributeTAction extends ActionSupport {
 		String a[] = this.getRjson().split("-");
 		int count = 0;
 		for (int i = 0; i < a.length; i++) {
+			if(Validate.StrNotNull(this.getGoodsTypeName())){
 			GoodsAttributeT gat = new GoodsAttributeT();
 			gat.setGoodsattributeid(this.getSerial().Serialid(Serial.GOODSATTRIBUTE));
 			gat.setCreatetime(BaseTools.systemtime());
@@ -310,6 +311,7 @@ public class GoodsAttributeTAction extends ActionSupport {
 			
 			JSONObject jo = (JSONObject) JSONValue.parse(a[i].toString());
 			Iterator iter = jo.keySet().iterator();
+			
 			while (iter.hasNext()) {
 				String key = iter.next().toString();
 				if (key.equals("goodsattributename")) {
@@ -327,7 +329,7 @@ public class GoodsAttributeTAction extends ActionSupport {
 			}
 			if (this.getGoodsAttributeTService().addGoodsAttributeT(gat) > 0) {
 				count++;
-			}
+			}}
 		}
 		if (count == a.length) {
 			this.setSucflag(true);
@@ -344,6 +346,7 @@ public class GoodsAttributeTAction extends ActionSupport {
 	 */
 	@Action(value = "UpdateGoodsAttributeT", results = { @Result(name = "json", type = "json") })
 	public String UpdateGoodsAttributeT() {
+		if(Validate.StrNotNull(this.getGoodsTypeName())){
 		String a[] = this.getRjson().split("-");
 		int count = 0;
 		GoodsAttributeT gat = new GoodsAttributeT();
@@ -376,11 +379,12 @@ public class GoodsAttributeTAction extends ActionSupport {
 			}
 			int j = this.getGoodsAttributeTService().updateGoodsAttributeT(gat);
 			count++;
-
+		
 		}
 		if (count == a.length) {
 			this.setSucflag(true);
 			return "json";
+		}
 		}
 		this.setSucflag(false);
 		return "json";
