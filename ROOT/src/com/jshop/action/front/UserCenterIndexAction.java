@@ -117,8 +117,9 @@ public class UserCenterIndexAction extends ActionSupport {
 	})
 	public String InitUserCenterIndex() {
 		UserT user = (UserT) ActionContext.getContext().getSession().get(BaseTools.USER_SESSION_KEY);
-		int allInfo=this.getWebsiteMsgTService().countfindAllWebsitemsgOfStateByToUsername(user.getUsername(), "0");
 		if (user != null) {
+			int allInfo=this.getWebsiteMsgTService().countfindAllWebsitemsgOfStateByToUsername(user.getUsername(), "0");
+			
 			//获取最近的订单信息
 			this.findAllUserOrderOn(user.getUserid());
 			//乱序获取推荐商品

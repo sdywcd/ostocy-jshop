@@ -212,6 +212,7 @@ public class WebsiteMsgTAction {
 		if(Validate.StrNotNull(this.getMsgid())){
 			String[]s=this.getMsgid().trim().split(",");
 			this.getWebsiteMsgTService().delWebsiteMsgT(s);
+			this.setFlag(true);
 			return "json";
 		}
 		return "json";

@@ -49,11 +49,7 @@ $(function() {
 			name : '添加',
 			bclass : 'add',
 			onpress : action
-		}, {
-			name : '编辑',
-			bclass : 'edit',
-			onpress : action
-		}, {
+		},{
 			name : '删除',
 			bclass : 'delete',
 			onpress : action
@@ -92,20 +88,7 @@ $(function() {
 		if (com == '添加') {
 			window.location.href = "addwebsitemsg.jsp?session="+session+"#pagecontent";
 			return;
-		} else if (com == '编辑') {
-			if ($('.trSelected', grid).length == 1) {
-				jConfirm('确定编辑此项吗?', '信息提示', function(r) {
-					if (r) {
-						var str = $('.trSelected', grid)[0].id.substr(3);
-						window.location.href = "websitemsgmenagement.jsp?session="+session+"#pagecontent";
-						return;
-					}
-				});
-			} else {
-				jAlert('请选择一条信息', '信息提示');
-				return false;
-			}
-		} else if (com == '删除') {
+		}  else if (com == '删除') {
 			if ($('.trSelected', grid).length > 0) {
 				jConfirm('确定删除此项吗?', '信息提示', function(r) {
 					if (r) {
@@ -113,10 +96,10 @@ $(function() {
 						$('.trSelected', grid).each(function() {
 							str += this.id.substr(3) + ",";
 						});
-						$.post("delArticleCategoryT.action", {
-							"articleCategoryTid" : str
+						$.post("delWebsiteMsg.action", {
+							"msgid" : str
 						}, function(data) {
-							$('#articlecategorymanagement').flexReload();
+							$('#websitemsgmenagement').flexReload();
 						});
 					}
 				});
