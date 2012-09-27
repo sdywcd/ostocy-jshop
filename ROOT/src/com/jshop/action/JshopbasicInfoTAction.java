@@ -34,7 +34,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class JshopbasicInfoTAction extends ActionSupport {
 	@Resource(name = "serial")
 	private Serial serial;
-	
+
 	private JshopbasicInfoTService jshopbasicInfoTService;
 
 	private String basicinfoid;
@@ -81,12 +81,14 @@ public class JshopbasicInfoTAction extends ActionSupport {
 	private boolean slogin;
 	private boolean sucflag;
 	private String basepath;
+
 	@JSON(serialize = false)
 	public JshopbasicInfoTService getJshopbasicInfoTService() {
 		return jshopbasicInfoTService;
 	}
 
-	public void setJshopbasicInfoTService(JshopbasicInfoTService jshopbasicInfoTService) {
+	public void setJshopbasicInfoTService(
+			JshopbasicInfoTService jshopbasicInfoTService) {
 		this.jshopbasicInfoTService = jshopbasicInfoTService;
 	}
 
@@ -98,8 +100,6 @@ public class JshopbasicInfoTAction extends ActionSupport {
 	public void setSerial(Serial serial) {
 		this.serial = serial;
 	}
-
-
 
 	public String getBasicinfoid() {
 		return basicinfoid;
@@ -469,6 +469,12 @@ public class JshopbasicInfoTAction extends ActionSupport {
 	 */
 	@Action(value = "addJshopbasicInfoT", results = { @Result(name = "json", type = "json") })
 	public String addJshopbasicInfoT() {
+		if (Validate.StrNotNull(this.getJshopname())
+				&& Validate.StrNotNull(this.getState())
+				&& Validate.StrNotNull(this.getCreatorid())==false) {
+			this.setSucflag(false);
+			return "json";
+		}
 		JshopbasicInfoT jbi = new JshopbasicInfoT();
 		jbi.setBasicinfoid(this.getSerial().Serialid(Serial.JSHOPBASICINFO));
 		jbi.setJshopname(this.getJshopname().trim());
@@ -527,9 +533,12 @@ public class JshopbasicInfoTAction extends ActionSupport {
 
 		int currentPage = page;
 		int lineSize = rp;
-		List<JshopbasicInfoT> list = this.getJshopbasicInfoTService().findAllJshopbasicInfo(currentPage, lineSize, BaseTools.adminCreateId());
+		List<JshopbasicInfoT> list = this.getJshopbasicInfoTService()
+				.findAllJshopbasicInfo(currentPage, lineSize,
+						BaseTools.adminCreateId());
 		if (list != null) {
-			total = this.getJshopbasicInfoTService().countfindAllJshopbasicInfo(BaseTools.adminCreateId());
+			total = this.getJshopbasicInfoTService()
+					.countfindAllJshopbasicInfo(BaseTools.adminCreateId());
 			rows.clear();
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				JshopbasicInfoT jbi = (JshopbasicInfoT) it.next();
@@ -547,7 +556,11 @@ public class JshopbasicInfoTAction extends ActionSupport {
 				}
 				Map cellMap = new HashMap();
 				cellMap.put("id", jbi.getBasicinfoid());
-				cellMap.put("cell", new Object[] { jbi.getJshopname(), jbi.getMetaKeywords(), jbi.getOpenstate(), jbi.getState() });
+				cellMap.put(
+						"cell",
+						new Object[] { jbi.getJshopname(),
+								jbi.getMetaKeywords(), jbi.getOpenstate(),
+								jbi.getState() });
 				rows.add(cellMap);
 			}
 			return "json";
@@ -618,9 +631,11 @@ public class JshopbasicInfoTAction extends ActionSupport {
 	@Action(value = "findJshopbasicInfoTById", results = { @Result(name = "json", type = "json") })
 	public String findJshopbasicInfoTById() {
 		if (Validate.StrNotNull(this.getBasicinfoid())) {
-			beanlist = this.getJshopbasicInfoTService().findJshopbasicInfoTById(this.getBasicinfoid().trim());
+			beanlist = this.getJshopbasicInfoTService()
+					.findJshopbasicInfoTById(this.getBasicinfoid().trim());
 			if (beanlist != null) {
-				beanlist.setSitelogo(BaseTools.getBasePath()+beanlist.getSitelogo());
+				beanlist.setSitelogo(BaseTools.getBasePath()
+						+ beanlist.getSitelogo());
 				return "json";
 			}
 		}
@@ -628,7 +643,7 @@ public class JshopbasicInfoTAction extends ActionSupport {
 	}
 
 	/**
-	 *删除商城基本信息
+	 * 删除商城基本信息
 	 * 
 	 * @return
 	 */
@@ -637,7 +652,8 @@ public class JshopbasicInfoTAction extends ActionSupport {
 
 		if (this.getBasicinfoid() != null) {
 			String[] array = this.getBasicinfoid().trim().split(",");
-			if (this.getJshopbasicInfoTService().delJshopbasicInfo(array, BaseTools.adminCreateId()) > 0) {
+			if (this.getJshopbasicInfoTService().delJshopbasicInfo(array,
+					BaseTools.adminCreateId()) > 0) {
 				return "json";
 			}
 		}
@@ -649,7 +665,8 @@ public class JshopbasicInfoTAction extends ActionSupport {
 	public String updateJshopbasicInfostate() {
 		if (this.getBasicinfoid() != null) {
 			@SuppressWarnings("unused")
-			int i = this.getJshopbasicInfoTService().updateJshopbasicInfostate(this.getBasicinfoid(), this.getOpenstate());
+			int i = this.getJshopbasicInfoTService().updateJshopbasicInfostate(
+					this.getBasicinfoid(), this.getOpenstate());
 			return "json";
 		}
 		return "json";

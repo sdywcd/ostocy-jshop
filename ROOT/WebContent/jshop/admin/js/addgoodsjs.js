@@ -74,7 +74,7 @@ function  validatethenpostinfotoaddgoods(){
 	var weight=$('#weight').val();
 	var weightselect=$('#weightselect').val();
 	var quantity=$('#quantity').val();
-	
+	 
 	//获取商品图片路径集合
 	var pictureurl="";
 	$(":checkbox[name='pcpath'][checked=true]").each(function(){

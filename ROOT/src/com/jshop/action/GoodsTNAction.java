@@ -1238,6 +1238,22 @@ public class GoodsTNAction extends ActionSupport {
 	 * @throws TemplateException
 	 */
 	private boolean addNormalGoods() {
+		if(Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getModel())&&
+				Validate.StrNotNull(this.getNname())&&
+				Validate.StrNotNull(this.getLname())&&
+				Validate.StrNotNull(this.getNavid())&&
+				Validate.StrNotNull(this.getLtypeid())&&
+				Validate.StrNotNull(this.getStypeid())&&
+				Validate.StrNotNull(this.getPictureurl())&&
+				Validate.StrNotNull(this.getQuantity())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(this.getRecommended())==false
+				){
+			return false;
+			
+		}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -1340,6 +1356,23 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateNormalGoods() {
+		//////////////////////////////////////////
+		if(Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getModel())&&
+				Validate.StrNotNull(this.getNname())&&
+				Validate.StrNotNull(this.getLname())&&
+				Validate.StrNotNull(this.getNavid())&&
+				Validate.StrNotNull(this.getLtypeid())&&
+				Validate.StrNotNull(this.getStypeid())&&
+				Validate.StrNotNull(this.getPictureurl())&&
+				Validate.StrNotNull(this.getQuantity())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(this.getRecommended())==false
+				){
+			return false;
+			
+		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());
@@ -1443,6 +1476,23 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean addAttrsGoods() {
+//////////////////////////////////////////////////////////////////////////////
+			if(Validate.StrNotNull(this.getGoodsname())&&
+					Validate.StrNotNull(this.getBrandname())&&
+					Validate.StrNotNull(this.getModel())&&
+					Validate.StrNotNull(this.getNname())&&
+					Validate.StrNotNull(this.getLname())&&
+					Validate.StrNotNull(this.getNavid())&&
+					Validate.StrNotNull(this.getLtypeid())&&
+					Validate.StrNotNull(this.getStypeid())&&
+					Validate.StrNotNull(this.getPictureurl())&&
+					Validate.StrNotNull(this.getQuantity())&&
+					Validate.StrNotNull(this.getDetail())&&
+					Validate.StrNotNull(this.getRecommended())==false
+					){
+				return false;
+				
+			}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -1545,6 +1595,22 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateAttrsGoods() {
+		if(Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getModel())&&
+				Validate.StrNotNull(this.getNname())&&
+				Validate.StrNotNull(this.getLname())&&
+				Validate.StrNotNull(this.getNavid())&&
+				Validate.StrNotNull(this.getLtypeid())&&
+				Validate.StrNotNull(this.getStypeid())&&
+				Validate.StrNotNull(this.getPictureurl())&&
+				Validate.StrNotNull(this.getQuantity())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(this.getRecommended())==false
+				){
+			return false;
+			
+		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());
@@ -1649,6 +1715,22 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean addSpecificationGoods() {
+		if(Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getModel())&&
+				Validate.StrNotNull(this.getNname())&&
+				Validate.StrNotNull(this.getLname())&&
+				Validate.StrNotNull(this.getNavid())&&
+				Validate.StrNotNull(this.getLtypeid())&&
+				Validate.StrNotNull(this.getStypeid())&&
+				Validate.StrNotNull(this.getPictureurl())&&
+				Validate.StrNotNull(this.getQuantity())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(this.getRecommended())==false
+				){
+			return false;
+			
+		}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -1827,6 +1909,22 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateSpecificationGoods() {
+		if(Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getModel())&&
+				Validate.StrNotNull(this.getNname())&&
+				Validate.StrNotNull(this.getLname())&&
+				Validate.StrNotNull(this.getNavid())&&
+				Validate.StrNotNull(this.getLtypeid())&&
+				Validate.StrNotNull(this.getStypeid())&&
+				Validate.StrNotNull(this.getPictureurl())&&
+				Validate.StrNotNull(this.getQuantity())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(this.getRecommended())==false
+				){
+			return false;
+			
+		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());
@@ -2016,6 +2114,22 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean addAttrandSpecificationGoods() {
+		if(Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getModel())&&
+				Validate.StrNotNull(this.getNname())&&
+				Validate.StrNotNull(this.getLname())&&
+				Validate.StrNotNull(this.getNavid())&&
+				Validate.StrNotNull(this.getLtypeid())&&
+				Validate.StrNotNull(this.getStypeid())&&
+				Validate.StrNotNull(this.getPictureurl())&&
+				Validate.StrNotNull(this.getQuantity())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(this.getRecommended())==false
+				){
+			return false;
+			
+		}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -2195,6 +2309,22 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateAttrandSpecificationGoods() {
+		if(Validate.StrNotNull(this.getGoodsname())&&
+				Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getModel())&&
+				Validate.StrNotNull(this.getNname())&&
+				Validate.StrNotNull(this.getLname())&&
+				Validate.StrNotNull(this.getNavid())&&
+				Validate.StrNotNull(this.getLtypeid())&&
+				Validate.StrNotNull(this.getStypeid())&&
+				Validate.StrNotNull(this.getPictureurl())&&
+				Validate.StrNotNull(this.getQuantity())&&
+				Validate.StrNotNull(this.getDetail())&&
+				Validate.StrNotNull(this.getRecommended())==false
+				){
+			return false;
+			
+		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());

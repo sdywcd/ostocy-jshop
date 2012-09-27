@@ -47,7 +47,9 @@ public class BaseTools {
 
 	public static String KEYFORAUTHORITY = "keyforauthority";
 
-	// 默认时间
+	/**
+	 * 默认时间
+	 */
 	public static String DEFAULTTIME = "2010-06-25 12:48:21";
 
 	/**

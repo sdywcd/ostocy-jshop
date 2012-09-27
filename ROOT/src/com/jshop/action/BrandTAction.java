@@ -259,6 +259,8 @@ public class BrandTAction extends ActionSupport {
 	@Action(value = "addBrandt", results = { @Result(name = "json", type = "json") })
 	public String addBrandt() {
 		BrandT bt = new BrandT();
+		if((Validate.StrNotNull(this.getBrandname())&&
+				Validate.StrNotNull(this.getUsername()))==true){
 		bt.setBrandid(this.getSerial().Serialid(Serial.BRAND));
 		bt.setBrandname(this.getBrandname().trim());
 		bt.setCreatorid(BaseTools.adminCreateId());
@@ -268,14 +270,15 @@ public class BrandTAction extends ActionSupport {
 		bt.setLogoPath(this.getLogoPath().trim());
 		bt.setSort(Integer.parseInt(this.getSort().trim()));
 		bt.setUrl(this.getUrl().trim());
+		}
 		if (this.getBrandTService().addBrandt(bt) > 0) {
 			this.setSucflag(true);
 			return "json";
 		} else {
 			this.setSucflag(false);
 			return "json";
+		
 		}
-
 	}
 
 	/**
@@ -315,6 +318,7 @@ public class BrandTAction extends ActionSupport {
 	 */
 	@Action(value = "UpdateBrandt", results = { @Result(name = "json", type = "json") })
 	public String UpdateBrandt() {
+		if(Validate.StrNotNull(this.getUsername())==true){
 		BrandT bt = new BrandT();
 		bt.setBrandid(this.getBrandid());
 		bt.setBrandname(this.getBrandname().trim());
@@ -327,6 +331,7 @@ public class BrandTAction extends ActionSupport {
 		bt.setUrl(this.getUrl().trim());
 		this.getBrandTService().updateBrandt(bt);
 		this.setSucflag(true);
+		}
 		return "json";
 	}
 

@@ -41,9 +41,7 @@ public class WebsiteMsgTAction {
 	private List rows = new ArrayList();
 	private int rp;
 	private int page = 1;
-
 	private int total = 0;
-	
 	@JSON(serialize=false)
 	public WebsiteMsgTService getWebsiteMsgTService() {
 		return websiteMsgTService;
@@ -133,6 +131,7 @@ public class WebsiteMsgTAction {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+
 	public List getRows() {
 		return rows;
 	}
@@ -157,6 +156,7 @@ public class WebsiteMsgTAction {
 	public void setTotal(int total) {
 		this.total = total;
 	}
+
 	/**
 	 * 
 	 * @return
