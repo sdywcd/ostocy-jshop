@@ -203,11 +203,11 @@ public class MyWebsiteMsgAction extends ActionSupport {
 				wm.setMsgtousername(this.getMsgToUsername().trim());
 				wm.setMsgfromuserid(user.getUserid());
 				wm.setMsgfromusrname(user.getUsername());
-				wm.setMsgtextid(this.getMsgtextid());
+				wm.setMsgtextid(mt.getMsgtextid());
 				wm.setMsgstate("1");
 				wm.setState("0");
 				wm.setTitle(this.getTitle().trim());
-				wm.setCreatetime(createtime1);
+				wm.setCreatetime(mt.getSendtime());
 				if(this.getWebsiteMsgTService().addWebsiteMsgT(wm)>0){
 					this.setSflag(true);
 					return "json";
@@ -294,7 +294,7 @@ public class MyWebsiteMsgAction extends ActionSupport {
 			@Result(name = "input",type="redirect",location = "/html/default/shop/login.html")
 	})
 	public String DelWebsiteMsgT(){
-		String temp=this.getMsgid().trim()+",";
+		String temp=this.getMsgid().trim();
 		String []array=temp.split(",");
 		@SuppressWarnings("unused")
 		int i=this.getWebsiteMsgTService().delWebsiteMsgT(array);

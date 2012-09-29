@@ -262,12 +262,10 @@ public class EcouponTAction {
 				} else if (et.getState().equals("0")) {
 					et.setState("关闭");
 				}
-				if (et.getGoodsname().equals("")
-						|| Validate.StrNotNull(et.getGoodsname())) {
+				if (et.getGoodsname().equals("")) {
 					et.setGoodsname("null");
 				}
-				if (et.getGoodsid().equals("")
-						|| Validate.StrNotNull(et.getGoodsid())) {
+				if (et.getGoodsid().equals("")) {
 					et.setGoodsid("null");
 				}
 				Map cellMap = new HashMap();
