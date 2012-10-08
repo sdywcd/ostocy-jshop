@@ -41,7 +41,8 @@ function validate(){
 		if(goodsname=="" || goodsid==""){
 			jAlert("请选择商品","信息提示");
 			return false;
-		}		
+		}
+		
 	}
 	if(note==""){
 		jAlert("注释不能为空","信息提示");
@@ -69,16 +70,26 @@ function eco(){
 	if(ecouponstate=="3"){		
 		$('#one').show();
 		$('#good').hide();
+		$('#pricededuction').removeAttr("readonly");
+
 		return;
 	}
 	if(ecouponstate=="2"){
 		$('#one').show();
 		$('#good').show();
+		$('#pricededuction').attr("value","0.0");
+		$('#pricededuction').attr("readonly","readonly");
+		$('#favourableprices').attr("value","0.0");
+
 		return;
 	}
 	if(ecouponstate=="1"){	
 		$('#one').show();
-		$('#good').show();		
+		$('#good').show();
+		$('#pricededuction').attr("value","0.0");
+		$('#pricededuction').attr("readonly","readonly");
+		$('#favourableprices').attr("value","0.0");
+
 		return;
 	}if(ecouponstate=="0"){
 		$('#one').hide();

@@ -37,6 +37,7 @@ public class WebsiteMsgTAction {
 	private Date createtime;
 	private String msgstate;
 	private String text;
+	private boolean flag;
 	private List rows = new ArrayList();
 	private int rp;
 	private int page = 1;
@@ -124,6 +125,38 @@ public class WebsiteMsgTAction {
 	public void setText(String text) {
 		this.text = text;
 	}
+	public boolean isFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
+	public List getRows() {
+		return rows;
+	}
+	public void setRows(List rows) {
+		this.rows = rows;
+	}
+	public int getRp() {
+		return rp;
+	}
+	public void setRp(int rp) {
+		this.rp = rp;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
 	/**
 	 * 
 	 * @return
@@ -131,25 +164,33 @@ public class WebsiteMsgTAction {
 	public String findAllWebsiteMsg(){
 		
 		return "json";
+		
 	}
 	
 	/**
 	 * 查询所有关于发件人是我的信息
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@Action(value="findAllWebsiteByMine",results={@Result(name="json",type="json")})
 	public String findAllWebsiteByMine(){
 		int currentPage=page;
-		int lineSize=rp;
+		int lineSize=rp;		
+		String userid = (String) ActionContext.getContext().getSession().get(BaseTools.BACK_USER_SESSION_KEY);		
+		List<WebsiteMsgT> weblist=this.getWebsiteMsgTService().findAllWebsiteMsgByFromUserid(currentPage, lineSize, userid);
+		if(weblist==null) return "json";
+		if(!weblist.isEmpty()){
+		total= this.getWebsiteMsgTService().countfindAllWebsiteMsgByFromUserid(userid);
 		rows.clear();
-		 String adminid = (String) ActionContext.getContext().getSession().get(BaseTools.BACK_USER_SESSION_KEY);
-		total= this.getWebsiteMsgTService().countfindAllWebsiteMsgByFromUserid(adminid);
-		List<WebsiteMsgT> weblist=this.getWebsiteMsgTService().findAllWebsiteMsgByFromUserid(currentPage, lineSize, adminid);
 		for(Iterator it=weblist.iterator();it.hasNext(); ){
 			WebsiteMsgT web=(WebsiteMsgT) it.next();
-			Map<String, Object> map=new HashMap<String,Object>();
-			map.put("id", web.getMsgid());
-			map.put("cell",new Object[]{
+			if(web.getState().equals("0")){
+				web.setState("未读");
+			}else web.setState("已读");
+			if(web.getMsgstate().equals("1"))web.setMsgstate("普通信件");else web.setMsgstate("系统信件");
+			Map cellMap= new HashMap();
+			cellMap.put("id", web.getMsgid());
+			cellMap.put("cell",new Object[]{
 					web.getTitle(),
 					web.getMsgtousername(),
 					web.getMsgtextid(),
@@ -157,9 +198,10 @@ public class WebsiteMsgTAction {
 					web.getMsgstate(),
 					web.getCreatetime()
 			} );
-			rows.add(map);			
+			rows.add(cellMap);			
 		}
 		return "json";
+		}else return "json";
 	}
 	/**
 	 * 根据id 批量删除站内信
@@ -170,6 +212,7 @@ public class WebsiteMsgTAction {
 		if(Validate.StrNotNull(this.getMsgid())){
 			String[]s=this.getMsgid().trim().split(",");
 			this.getWebsiteMsgTService().delWebsiteMsgT(s);
+			this.setFlag(true);
 			return "json";
 		}
 		return "json";
@@ -226,6 +269,7 @@ public class WebsiteMsgTAction {
 			web.setState("0");
 			web.setTitle(this.getTitle());			
 			if(this.getWebsiteMsgTService().addWebsiteMsgT(web)>0){
+				this.setFlag(true);
 				return "json";
 			}
 			return "json";
