@@ -1,4 +1,4 @@
-package com.jshop.android.util;
+package com.jshop.android.widget;
 
 import java.io.IOException;
 import java.util.ArrayList;

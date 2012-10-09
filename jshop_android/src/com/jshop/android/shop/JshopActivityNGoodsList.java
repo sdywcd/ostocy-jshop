@@ -56,7 +56,7 @@ import com.jshop.android.sqlite.DBHelper;
 import com.jshop.android.util.Arith;
 import com.jshop.android.util.ChangeTheme;
 import com.jshop.android.util.JshopMParams;
-import com.jshop.android.util.JshopTabHostViewPagerAdapter;
+import com.jshop.android.widget.JshopTabHostViewPagerAdapter;
 import com.jshop.android.util.myOnPageChangeListener;
 import com.jshop.android.widget.JshopListViewAdapter;
 
