@@ -4,10 +4,6 @@ function ons(){
 	if(ecouponstate=="2" || ecouponstate=="1"){
 		$('#goods').show();
 		$('#goodss').show();
-		//$('#pricededuction').attr("value","0.0");
-		$('#pricededuction').attr("readonly","readonly");
-		//$('#favourableprices').attr("value","0.0");
-		$('#favourableprices').attr("readonly","readonly");
 	}else{
 		$('#goods').hide();
 		$('#goodss').hide();

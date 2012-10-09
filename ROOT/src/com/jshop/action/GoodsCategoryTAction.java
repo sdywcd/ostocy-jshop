@@ -44,11 +44,13 @@ import com.opensymphony.xwork2.ActionSupport;
 import freemarker.template.TemplateException;
 
 @ParentPackage("jshop")
-@InterceptorRefs({ @InterceptorRef("goodsmoduleGoodsCategoryTInterecptor"),
-		@InterceptorRef("defaultStack") })
+@InterceptorRefs({  
+    @InterceptorRef("goodsmoduleGoodsCategoryTInterecptor"),  
+    @InterceptorRef("defaultStack")
+})
 @Controller("goodsCategoryTAction")
 public class GoodsCategoryTAction extends ActionSupport {
-
+	
 	private GoodsCategoryTService goodsCategoryTService;
 	private GoodsTService goodsTService;
 	private JshopbasicInfoTService jshopbasicInfoTService;
@@ -99,14 +101,12 @@ public class GoodsCategoryTAction extends ActionSupport {
 	private String sortname;
 	private String sortorder;
 	private String basepath;
-
 	@JSON(serialize = false)
 	public DataCollectionTAction getDataCollectionTAction() {
 		return dataCollectionTAction;
 	}
 
-	public void setDataCollectionTAction(
-			DataCollectionTAction dataCollectionTAction) {
+	public void setDataCollectionTAction(DataCollectionTAction dataCollectionTAction) {
 		this.dataCollectionTAction = dataCollectionTAction;
 	}
 
@@ -115,11 +115,9 @@ public class GoodsCategoryTAction extends ActionSupport {
 		return goodsCategoryTService;
 	}
 
-	public void setGoodsCategoryTService(
-			GoodsCategoryTService goodsCategoryTService) {
+	public void setGoodsCategoryTService(GoodsCategoryTService goodsCategoryTService) {
 		this.goodsCategoryTService = goodsCategoryTService;
 	}
-
 	@JSON(serialize = false)
 	public GoodsTService getGoodsTService() {
 		return goodsTService;
@@ -128,37 +126,30 @@ public class GoodsCategoryTAction extends ActionSupport {
 	public void setGoodsTService(GoodsTService goodsTService) {
 		this.goodsTService = goodsTService;
 	}
-
 	@JSON(serialize = false)
 	public JshopbasicInfoTService getJshopbasicInfoTService() {
 		return jshopbasicInfoTService;
 	}
 
-	public void setJshopbasicInfoTService(
-			JshopbasicInfoTService jshopbasicInfoTService) {
+	public void setJshopbasicInfoTService(JshopbasicInfoTService jshopbasicInfoTService) {
 		this.jshopbasicInfoTService = jshopbasicInfoTService;
 	}
-
 	@JSON(serialize = false)
 	public SiteNavigationTService getSiteNavigationTService() {
 		return siteNavigationTService;
 	}
 
-	public void setSiteNavigationTService(
-			SiteNavigationTService siteNavigationTService) {
+	public void setSiteNavigationTService(SiteNavigationTService siteNavigationTService) {
 		this.siteNavigationTService = siteNavigationTService;
 	}
-
 	@JSON(serialize = false)
 	public ArticleCategoryTService getArticleCategoryTService() {
 		return articleCategoryTService;
 	}
 
-	public void setArticleCategoryTService(
-			ArticleCategoryTService articleCategoryTService) {
+	public void setArticleCategoryTService(ArticleCategoryTService articleCategoryTService) {
 		this.articleCategoryTService = articleCategoryTService;
 	}
-
 	@JSON(serialize = false)
 	public ArticleTService getArticleTService() {
 		return articleTService;
@@ -523,26 +514,31 @@ public class GoodsCategoryTAction extends ActionSupport {
 
 	}
 
+
+
+
+
+
 	/**
 	 * 读取左侧主导航
 	 * 
 	 * @return
 	 */
-	// public void findGoodsCategoryT() {
-	// List<GoodsCategoryT> list =
-	// this.getGoodsCategoryTService().findAllGoodsCategoryBycreatorid(BaseTools.adminCreateId());
-	// if (list != null) {
-	// int gradecount = 0;
-	// for (Iterator it = list.iterator(); it.hasNext();) {
-	// GoodsCategoryT gt = (GoodsCategoryT) it.next();
-	// if (gt.getGrade().equals("0")) {
-	// gradecount++;
-	// }
-	// }
-	// map.put("goodsCategoryTree", list);
-	// map.put("goodsCategoryTreeFirstCount", gradecount);
-	// }
-	// }
+//	public void findGoodsCategoryT() {
+//		List<GoodsCategoryT> list = this.getGoodsCategoryTService().findAllGoodsCategoryBycreatorid(BaseTools.adminCreateId());
+//		if (list != null) {
+//			int gradecount = 0;
+//			for (Iterator it = list.iterator(); it.hasNext();) {
+//				GoodsCategoryT gt = (GoodsCategoryT) it.next();
+//				if (gt.getGrade().equals("0")) {
+//					gradecount++;
+//				}
+//			}
+//			map.put("goodsCategoryTree", list);
+//			map.put("goodsCategoryTreeFirstCount", gradecount);
+//		}
+//	}
+
 
 	/**
 	 * 获取顶级分类和一级分类
@@ -550,15 +546,12 @@ public class GoodsCategoryTAction extends ActionSupport {
 	@Action(value = "findGoodsCategoryByGradeZeroone", results = { @Result(name = "json", type = "json") })
 	public String findGoodsCategoryByGradeZeroone() {
 		this.setGoodscategoryzero("");
-		List<GoodsCategoryT> list = this.getGoodsCategoryTService()
-				.findGoodsCategoryByGrade("0", "1");
+		List<GoodsCategoryT> list = this.getGoodsCategoryTService().findGoodsCategoryByGrade("0", "1");
 		if (list != null) {
 			this.goodscategoryzero = "<option value='-1'>---请选择---</option><option value='0'>顶级分类</option>";
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				GoodsCategoryT gct = (GoodsCategoryT) it.next();
-				this.goodscategoryzero += "<option value='"
-						+ gct.getGoodsCategoryTid() + "'>" + gct.getName()
-						+ "</option>";
+				this.goodscategoryzero += "<option value='" + gct.getGoodsCategoryTid() + "'>" + gct.getName() + "</option>";
 			}
 			this.setSucflag(true);
 			return "json";
@@ -573,15 +566,12 @@ public class GoodsCategoryTAction extends ActionSupport {
 	@Action(value = "findGoodsCategoryByGradeTwo", results = { @Result(name = "json", type = "json") })
 	public String findGoodsCategoryByGradeTwo() {
 		this.setGoodscategorytwo("");
-		List<GoodsCategoryT> list = this.getGoodsCategoryTService()
-				.findGoodsCategoryByGrade("1", "1");
+		List<GoodsCategoryT> list = this.getGoodsCategoryTService().findGoodsCategoryByGrade("1", "1");
 		if (list != null) {
 			this.goodscategorytwo = "<option value='-1'>---请选择---</option>";
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				GoodsCategoryT gct = (GoodsCategoryT) it.next();
-				this.goodscategorytwo += "<option value='"
-						+ gct.getGoodsCategoryTid() + "'>" + gct.getName()
-						+ "</option>";
+				this.goodscategorytwo += "<option value='" + gct.getGoodsCategoryTid() + "'>" + gct.getName() + "</option>";
 			}
 			this.setSucflag(true);
 			return "json";
@@ -600,22 +590,13 @@ public class GoodsCategoryTAction extends ActionSupport {
 	 */
 	@Action(value = "addGoodsCategory", results = { @Result(name = "json", type = "json") })
 	public String addGoodsCategory() {
-		if (Validate.StrNotNull(this.getGrade())
-				&& Validate.StrNotNull(this.getName())
-				&& Validate.StrNotNull(this.getMobilesync())==false) {
-			this.setSucflag(false);
-			return "json";
-		}
-		int i = this.getGoodsCategoryTService().checkGoodscategoryName(
-				this.getName());
-		int j = this.getGoodsCategoryTService().checkGoodscategorySign(
-				this.getSign());
+		int i = this.getGoodsCategoryTService().checkGoodscategoryName(this.getName());
+		int j = this.getGoodsCategoryTService().checkGoodscategorySign(this.getSign());
 		if (i == 0 && j == 0) {
 			if (Integer.parseInt(this.getGrade()) == 0) {
 				GoodsCategoryT gct = new GoodsCategoryT();
-				gct.setGoodsCategoryTid(this.getSerial().Serialid(
-						Serial.GOODSCATEGORY));
-				gct.setGrade(this.getGrade().trim());// 顶级，一级
+				gct.setGoodsCategoryTid(this.getSerial().Serialid(Serial.GOODSCATEGORY));
+				gct.setGrade(this.getGrade().trim());//顶级，一级
 				gct.setMetaKeywords(this.getMetaKeywords().trim());
 				gct.setMetaDes(this.getMetaDes().trim());
 				gct.setName(this.getName().trim());
@@ -650,30 +631,18 @@ public class GoodsCategoryTAction extends ActionSupport {
 	 */
 	@Action(value = "addGoodsCategoryTwo", results = { @Result(name = "json", type = "json") })
 	public String addGoodsCategoryTwo() {
-		if (Validate.StrNotNull(this.getName())
-				&& Validate.StrNotNull(this.getParentName())
-				&& Validate.StrNotNull(this.getLogo())
-				&& Validate.StrNotNull(this.getMobilesync())==false) {
-			this.setSucflag(false);
-			return "json";
-		}
-
-		int i = this.getGoodsCategoryTService().checkGoodscategoryName(
-				this.getName());
-		int j = this.getGoodsCategoryTService().checkGoodscategorySign(
-				this.getSign());
+		int i = this.getGoodsCategoryTService().checkGoodscategoryName(this.getName());
+		int j = this.getGoodsCategoryTService().checkGoodscategorySign(this.getSign());
 		if (i == 0 && j == 0) {
 			if (Integer.parseInt(this.getGrade()) == 1) {
 				GoodsCategoryT gct = new GoodsCategoryT();
-				gct.setGoodsCategoryTid(this.getSerial().Serialid(
-						Serial.GOODSCATEGORY));
-				gct.setGrade(this.getGrade().trim());// 二级
+				gct.setGoodsCategoryTid(this.getSerial().Serialid(Serial.GOODSCATEGORY));
+				gct.setGrade(this.getGrade().trim());//二级
 				gct.setMetaKeywords(this.getMetaKeywords().trim());
 				gct.setMetaDes(this.getMetaDes().trim());
 				gct.setName(this.getName().trim());
 				gct.setState("1");
-				gct.setPath(this.getParentId() + ","
-						+ gct.getGoodsCategoryTid());
+				gct.setPath(this.getParentId() + "," + gct.getGoodsCategoryTid());
 				gct.setSort(Integer.parseInt(this.getSort().trim()));
 				gct.setSign(this.getSign().trim());
 				gct.setGoodsTypeId(this.getGoodsTypeId());
@@ -694,7 +663,6 @@ public class GoodsCategoryTAction extends ActionSupport {
 			return "json";
 		}
 		this.setSucflag(false);
-
 		return "json";
 	}
 
@@ -705,30 +673,18 @@ public class GoodsCategoryTAction extends ActionSupport {
 	 */
 	@Action(value = "addGoodsCategoryThree", results = { @Result(name = "json", type = "json") })
 	public String addGoodsCategoryThree() {
-		if (Validate.StrNotNull(this.getParentName1())
-				&& Validate.StrNotNull(this.getLogo())
-				&& Validate.StrNotNull(this.getMobilesync())==false) {
-
-			this.setSucflag(false);
-			return "json"; 
-		}
-
-		int i = this.getGoodsCategoryTService().checkGoodscategoryName(
-				this.getName());
-		int j = this.getGoodsCategoryTService().checkGoodscategorySign(
-				this.getSign());
+		int i = this.getGoodsCategoryTService().checkGoodscategoryName(this.getName());
+		int j = this.getGoodsCategoryTService().checkGoodscategorySign(this.getSign());
 		if (i == 0 && j == 0) {
 			if (Integer.parseInt(this.getGrade()) == 2) {
 				GoodsCategoryT gct = new GoodsCategoryT();
-				gct.setGoodsCategoryTid(this.getSerial().Serialid(
-						Serial.GOODSCATEGORY));
-				gct.setGrade(this.getGrade().trim());// 三级
+				gct.setGoodsCategoryTid(this.getSerial().Serialid(Serial.GOODSCATEGORY));
+				gct.setGrade(this.getGrade().trim());//三级
 				gct.setMetaKeywords(this.getMetaKeywords().trim());
 				gct.setMetaDes(this.getMetaDes().trim());
 				gct.setName(this.getName().trim());
 				gct.setState("1");
-				gct.setPath(this.getParentId() + "," + this.getParentId1()
-						+ "," + gct.getGoodsCategoryTid());
+				gct.setPath(this.getParentId() + "," + this.getParentId1() + "," + gct.getGoodsCategoryTid());
 				gct.setSort(Integer.parseInt(this.getSort().trim()));
 				gct.setSign(this.getSign().trim());
 				gct.setGoodsTypeId(this.getGoodsTypeId());
@@ -775,14 +731,10 @@ public class GoodsCategoryTAction extends ActionSupport {
 		int currentPage = page;
 		int lineSize = rp;
 		String state = "1";
-		total = this.getGoodsCategoryTService().countfindAllGoodsCategoryT(
-				state);
+		total = this.getGoodsCategoryTService().countfindAllGoodsCategoryT(state);
 		if (Validate.StrNotNull(sortname) && Validate.StrNotNull(sortorder)) {
-			String queryString = "from GoodsCategoryT as gt where state=:state order by "
-					+ sortname + " " + sortorder + " ";
-			List<GoodsCategoryT> list = this.getGoodsCategoryTService()
-					.sortAllGoodsCategoryT(currentPage, lineSize, state,
-							queryString);
+			String queryString = "from GoodsCategoryT as gt where state=:state order by " + sortname + " " + sortorder + " ";
+			List<GoodsCategoryT> list = this.getGoodsCategoryTService().sortAllGoodsCategoryT(currentPage, lineSize, state, queryString);
 			if (list != null) {
 				this.ProcessGoodsCategoryTList(list);
 			}
@@ -801,23 +753,7 @@ public class GoodsCategoryTAction extends ActionSupport {
 			}
 			Map<String, Object> cellMap = new HashMap<String, Object>();
 			cellMap.put("id", gct.getGoodsCategoryTid());
-			cellMap.put(
-					"cell",
-					new Object[] {
-							"<a href='addgoodscategory.jsp?session="
-									+ this.getUsession()
-									+ "#goods&goodsCategoryTid="
-									+ gct.getGoodsCategoryTid() + "'>"
-									+ gct.getName() + "</a>",
-							gct.getParentName(),
-							gct.getGrade(),
-							gct.getSign(),
-							gct.getSort(),
-							BaseTools.formateDbDate(gct.getCreatetime()),
-							gct.getCreatorid(),
-							"<a target='_blank' id='browergoodscategory' href='"
-									+ gct.getHtmlpath()
-									+ "' name='browergoodscategory'>[预览]</a>" });
+			cellMap.put("cell", new Object[] {"<a href='addgoodscategory.jsp?session=" + this.getUsession() + "#goods&goodsCategoryTid=" + gct.getGoodsCategoryTid() + "'>" + gct.getName() + "</a>", gct.getParentName(), gct.getGrade(), gct.getSign(), gct.getSort(), BaseTools.formateDbDate(gct.getCreatetime()), gct.getCreatorid(), "<a target='_blank' id='browergoodscategory' href='" + gct.getHtmlpath() + "' name='browergoodscategory'>[预览]</a>" });
 			rows.add(cellMap);
 		}
 
@@ -831,11 +767,9 @@ public class GoodsCategoryTAction extends ActionSupport {
 	@Action(value = "findGoodscategoryBygoodscategoryId", results = { @Result(name = "json", type = "json") })
 	public String findGoodscategoryBygoodscategoryId() {
 		if (Validate.StrNotNull(this.getGoodsCategoryTid())) {
-			bean = this.getGoodsCategoryTService()
-					.findGoodscategoryBygoodscategoryId(
-							this.getGoodsCategoryTid());
+			bean = this.getGoodsCategoryTService().findGoodscategoryBygoodscategoryId(this.getGoodsCategoryTid());
 			if (bean != null) {
-				bean.setLogo(BaseTools.getBasePath() + bean.getLogo());
+				bean.setLogo(BaseTools.getBasePath()+bean.getLogo());
 				return "json";
 			}
 		}
@@ -851,26 +785,12 @@ public class GoodsCategoryTAction extends ActionSupport {
 	 */
 	@Action(value = "updateGoodscategoryT", results = { @Result(name = "json", type = "json") })
 	public String updateGoodscategoryT() throws IOException, TemplateException {
-		if(Validate.StrNotNull(this.getName())&&
-				Validate.StrNotNull(this.getLogo())&&
-				Validate.StrNotNull(this.getMobilesync())==false){
-			this.setSucflag(false);
-			return "json";
-		}
-		int i = this.getGoodsCategoryTService()
-				.checkGoodscategoryNamewithoutMe(
-						this.getGoodsCategoryTid().trim(),
-						this.getName().trim());
-		int j = this.getGoodsCategoryTService()
-				.checkGoodscategorySignwithoutMe(
-						this.getGoodsCategoryTid().trim(),
-						this.getSign().trim());
+		int i = this.getGoodsCategoryTService().checkGoodscategoryNamewithoutMe(this.getGoodsCategoryTid().trim(), this.getName().trim());
+		int j = this.getGoodsCategoryTService().checkGoodscategorySignwithoutMe(this.getGoodsCategoryTid().trim(), this.getSign().trim());
 		if (i == 0 && j == 0) {
-
+			
 			GoodsCategoryT gct = new GoodsCategoryT();
-			gct = this.getGoodsCategoryTService()
-					.findGoodscategoryBygoodscategoryId(
-							this.getGoodsCategoryTid());
+			gct=this.getGoodsCategoryTService().findGoodscategoryBygoodscategoryId(this.getGoodsCategoryTid());
 			gct.setName(this.getName().trim());
 			gct.setGoodsTypeId(this.getGoodsTypeId().trim());
 			gct.setSign(this.getSign().trim());
@@ -886,7 +806,7 @@ public class GoodsCategoryTAction extends ActionSupport {
 			gct.setMobilesync(this.getMobilesync());
 			this.getGoodsCategoryTService().updateGoodscategoryT(gct);
 			this.setSucflag(true);
-			bean = gct;
+			bean=gct;
 			return "json";
 		} else {
 			this.setSucflag(false);
@@ -902,8 +822,7 @@ public class GoodsCategoryTAction extends ActionSupport {
 	 * @param htmlPath
 	 */
 	public void updateHtmlPath(String goodsCategoryTid, String htmlpath) {
-		this.getGoodsCategoryTService().updateHtmlPath(goodsCategoryTid,
-				htmlpath);
+		this.getGoodsCategoryTService().updateHtmlPath(goodsCategoryTid, htmlpath);
 	}
 
 	/**
@@ -916,15 +835,13 @@ public class GoodsCategoryTAction extends ActionSupport {
 		if (Validate.StrNotNull(this.getGoodsCategoryTid())) {
 			String[] strs = this.getGoodsCategoryTid().split(",");
 			for (int i = 0; i < strs.length; i++) {
-				bean = this.getGoodsCategoryTService()
-						.findGoodscategoryBygoodscategoryId(strs[i]);
+				bean = this.getGoodsCategoryTService().findGoodscategoryBygoodscategoryId(strs[i]);
 				if (bean != null) {
 					if (bean.getGrade().equals("0")) {
 						this.setSucflag(false);
 						return "json";
 					} else {
-						int j = this.getGoodsCategoryTService()
-								.delGoodscategoryT(strs[i], "0");
+						int j = this.getGoodsCategoryTService().delGoodscategoryT(strs[i], "0");
 						if (j > 0) {
 							this.setSucflag(true);
 							return "json";
@@ -932,27 +849,25 @@ public class GoodsCategoryTAction extends ActionSupport {
 					}
 				}
 			}
-			// 更新商品分类的静态页路径
+			//更新商品分类的静态页路径
 			updateGoodsCategoryhtmlpath();
-
+			
 		}
 		this.setSucflag(true);
 		return "json";
 	}
-
+	
+	
 	/**
 	 * 更新商品分类的静态页路径
 	 */
-	public void updateGoodsCategoryhtmlpath() {
-		List<GoodsCategoryT> list = this.getGoodsCategoryTService()
-				.findGoodsCategoryByGrade("0", "1");
-		for (Iterator it = list.iterator(); it.hasNext();) {
-			GoodsCategoryT gct = (GoodsCategoryT) it.next();
-			List<GoodsCategoryT> glist = this.getGoodsCategoryTService()
-					.findGoodscategoryByparentId("1", gct.getParentId());
-			if (glist.isEmpty()) {
-				this.getGoodsCategoryTService().updateHtmlPath(
-						gct.getParentId(), "");
+	public void updateGoodsCategoryhtmlpath(){
+		List<GoodsCategoryT>list=this.getGoodsCategoryTService().findGoodsCategoryByGrade("0","1");
+		for(Iterator it=list.iterator();it.hasNext();){
+			GoodsCategoryT gct=(GoodsCategoryT)it.next();
+			List<GoodsCategoryT>glist=this.getGoodsCategoryTService().findGoodscategoryByparentId("1",gct.getParentId());
+			if(glist.isEmpty()){
+				this.getGoodsCategoryTService().updateHtmlPath(gct.getParentId(), "");
 			}
 		}
 	}
@@ -966,13 +881,11 @@ public class GoodsCategoryTAction extends ActionSupport {
 	public String findGoodscategoryNavid() {
 
 		this.setNavidlist("");
-		this.goodstypetnav = this.getGoodsCategoryTService()
-				.findGoodscategoryByparentIdnull("1");
+		this.goodstypetnav = this.getGoodsCategoryTService().findGoodscategoryByparentIdnull("1");
 		if (this.goodstypetnav != null) {
 			for (Iterator it = goodstypetnav.iterator(); it.hasNext();) {
 				GoodsCategoryT gct = (GoodsCategoryT) it.next();
-				navidlist += "<option value='" + gct.getGoodsCategoryTid()
-						+ "'>" + gct.getName() + "</option>";
+				navidlist += "<option value='" + gct.getGoodsCategoryTid() + "'>" + gct.getName() + "</option>";
 			}
 			this.setNavidlist(navidlist);
 			this.setSucflag(true);
@@ -991,16 +904,12 @@ public class GoodsCategoryTAction extends ActionSupport {
 	public String findGoodscategoryLtypeid() {
 		if (Validate.StrNotNull(this.getParentId())) {
 			this.setLtypeidlist("");
-			this.secondcategory = this
-					.getGoodsCategoryTService()
-					.findGoodscategoryByparentId("1", this.getParentId().trim());
+			this.secondcategory = this.getGoodsCategoryTService().findGoodscategoryByparentId("1", this.getParentId().trim());
 			if (this.secondcategory != null) {
 				this.ltypeidlist = "<option value='0'>---请选择---</option>";
 				for (Iterator it = this.secondcategory.iterator(); it.hasNext();) {
 					GoodsCategoryT gct = (GoodsCategoryT) it.next();
-					ltypeidlist += "<option value='"
-							+ gct.getGoodsCategoryTid() + "'>" + gct.getName()
-							+ "</option>";
+					ltypeidlist += "<option value='" + gct.getGoodsCategoryTid() + "'>" + gct.getName() + "</option>";
 				}
 				this.setLtypeidlist(ltypeidlist);
 				this.setSucflag(true);
@@ -1024,17 +933,12 @@ public class GoodsCategoryTAction extends ActionSupport {
 
 		if (Validate.StrNotNull(this.getParentId())) {
 			this.setLtypeidlist("");
-			this.thiredscategory = this
-					.getGoodsCategoryTService()
-					.findGoodscategoryByparentId("1", this.getParentId().trim());
+			this.thiredscategory = this.getGoodsCategoryTService().findGoodscategoryByparentId("1", this.getParentId().trim());
 			if (this.thiredscategory != null) {
 				this.stypeidlist = "<option value='0'>---请选择---</option>";
-				for (Iterator it = this.thiredscategory.iterator(); it
-						.hasNext();) {
+				for (Iterator it = this.thiredscategory.iterator(); it.hasNext();) {
 					GoodsCategoryT gct = (GoodsCategoryT) it.next();
-					stypeidlist += "<option value='"
-							+ gct.getGoodsCategoryTid() + "'>" + gct.getName()
-							+ "</option>";
+					stypeidlist += "<option value='" + gct.getGoodsCategoryTid() + "'>" + gct.getName() + "</option>";
 				}
 				this.setStypeidlist(stypeidlist);
 				this.setSucflag(true);

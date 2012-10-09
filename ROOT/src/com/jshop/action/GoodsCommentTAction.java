@@ -292,12 +292,7 @@ public class GoodsCommentTAction extends ActionSupport {
 	 */
 	@Action(value = "addvirtualGoodsComment", results = { @Result(name = "json", type = "json") })
 	public String addvirtualGoodsComment() {
-		if (Validate.StrNotNull(this.getGoodsid())&&Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getReplyorcommentusername())&&
-				Validate.StrNotNull(this.getCommentcontent())==false) {
-			this.setSucflag(false);
-			return "json";
-		}
+		if (Validate.StrNotNull(this.getGoodsid())) {
 			g = this.getGoodsTService().findGoodsById(this.getGoodsid());
 			if (g != null) {
 				GoodsCommentT gct = new GoodsCommentT();
@@ -322,7 +317,7 @@ public class GoodsCommentTAction extends ActionSupport {
 					return "json";
 				}
 			}
-		
+		}
 		this.setSucflag(false);
 		return "json";
 	}
