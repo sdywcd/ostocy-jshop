@@ -7,7 +7,6 @@ import org.apache.http.util.EncodingUtils;
 
 import com.jshop.android.shop.JshopActivityNGoodsList;
 import com.jshop.android.sqlite.DBHelper;
-import com.jshop.android.sqlite.DBHelper1;
 import com.jshop.android.util.ChangeTheme;
 import com.jshop.android.util.JshopActivityUtil;
 import com.jshop.android.util.JshopMParams;
@@ -169,6 +168,7 @@ public class JshopMNewIndex extends Activity {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+	
 	private boolean validateserverhost(String serverhost){
 		if("".equals(serverhost)){
 			showDialog("请输入服务器地址");
@@ -176,6 +176,14 @@ public class JshopMNewIndex extends Activity {
 		}
 		return true;
 	}
+	private boolean validateseat(String serverhost){
+		if("".equals(serverhost)){
+			showDialog("请输入座位号");
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * 获取服务器地址
 	 */
@@ -299,7 +307,7 @@ public class JshopMNewIndex extends Activity {
 				TextView seatwhere = (TextView) seatPopupLayout.findViewById(R.id.desireseat);
 				String lctseat = seatwhere.getText().toString();
 				//写入文件并保存坐席
-				if(validateserverhost(lctseat)){
+				if(validateseat(lctseat)){
 					writeSeat(lctseat);
 				}
 			}

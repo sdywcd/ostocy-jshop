@@ -47,9 +47,7 @@
 						<div id="flexmembermanagement" style="width: 98%; margin-left: 15px;">
 							<table id="membermanagement" style="display: none;"></table>
 						</div>
-						<div>
-						<input type="hidden" id="eid" name="eid"/>
-						</div>
+
 					</div>
 				</div>
 				<!-- end table -->

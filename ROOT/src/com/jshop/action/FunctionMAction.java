@@ -171,10 +171,6 @@ public class FunctionMAction extends ActionSupport {
 	 */
 	@Action(value = "addFunctionM", results = { @Result(name = "json", type = "json") })
 	public String addFunctionM(){
-		if(Validate.StrNotNull(this.getFunctionname())&&
-				Validate.StrNotNull(this.getVisitmethodname())&&
-				Validate.StrNotNull(this.getVisiturl())&&
-				Validate.StrNotNull(this.getModuleid())==true){
 		FunctionM fm=new FunctionM();
 		fm.setId(this.getSerial().Serialid(Serial.FUNCTION));
 		fm.setFunctionname(this.getFunctionname());
@@ -184,7 +180,6 @@ public class FunctionMAction extends ActionSupport {
 		fm.setCreatetime(BaseTools.systemtime());
 		this.getFunctionMService().addFunctionM(fm);
 		this.setSucflag(true);
-		}
 		return "json";
 	}
 	
@@ -213,10 +208,6 @@ public class FunctionMAction extends ActionSupport {
 	 */
 	@Action(value = "updateFunctionM", results = { @Result(name = "json", type = "json") })
 	public String updateFunctionM(){
-		if(Validate.StrNotNull(this.getFunctionname())&&
-				Validate.StrNotNull(this.getVisitmethodname())&&
-				Validate.StrNotNull(this.getVisiturl())&&
-				Validate.StrNotNull(this.getModuleid())){
 		bean.setId(this.getId());
 		bean.setFunctionname(this.getFunctionname());
 		bean.setVisitmethodname(this.getVisitmethodname());
@@ -225,7 +216,6 @@ public class FunctionMAction extends ActionSupport {
 		bean.setCreatetime(BaseTools.systemtime());
 		this.getFunctionMService().updateFunctionM(bean);
 		this.setSucflag(true);
-		}
 		return "json";
 	}
 	

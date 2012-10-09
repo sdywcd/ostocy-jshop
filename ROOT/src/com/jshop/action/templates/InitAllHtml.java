@@ -199,10 +199,6 @@ public class InitAllHtml extends ActionSupport {
 			log.info("<p>10,获取首页自定义区域数据</p>");
 			this.getDataCollectionTAction().findEditarea(ContentTag.TEMPLATENAMEFORINDEX, "1", map);
 			buildhtmllog.append(this.getDataCollectionTAction().getLogmsg());
-			//获取商城所有上架的商品
-			buildhtmllog.append("<p>11.获取所有商品上架数据</p>");
-			map.put(FreeMarkervariable.ALLGOODS,this.getDataCollectionTAction().findAllGoodsT());
-			buildhtmllog.append(this.getDataCollectionTAction().getLogmsg());
 			//获取系统所有文章数据
 			map.put(FreeMarkervariable.ARTICLE, this.getDataCollectionTAction().findAllArticleT());
 			

@@ -8,7 +8,7 @@ import com.jshop.entity.WebsiteMsgT;
 public interface WebsiteMsgTDao {
 	
 	/**
-	 * 增加站内信消息
+	 * 增加站内性消息
 	 * @param mt
 	 * @return
 	 */
@@ -53,13 +53,6 @@ public interface WebsiteMsgTDao {
 	 * @return
 	 */
 	public abstract int updateWebsiteMsgstate(String []list,String state);
-	/**
-	 * 根据消息状态统计所有收件人是我消息
-	 * @param msgtousername
-	 * @param state
-	 * @return
-	 */
-	public abstract int countfindAllWebsitemsgOfStateByToUsername(String msgtousername,String state);
 	
 	
 	
