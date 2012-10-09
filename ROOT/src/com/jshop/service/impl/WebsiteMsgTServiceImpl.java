@@ -51,11 +51,4 @@ public class WebsiteMsgTServiceImpl implements WebsiteMsgTService {
 	public int updateWebsiteMsgstate(String[] list, String state) {
 		return this.getWebsiteMsgTDao().updateWebsiteMsgstate(list, state);
 	}
-
-	@Override
-	public int countfindAllWebsitemsgOfStateByToUsername(String msgtousername,
-			String state) {
-		
-		return this.getWebsiteMsgTDao().countfindAllWebsitemsgOfStateByToUsername(msgtousername, state);
-	}
 }

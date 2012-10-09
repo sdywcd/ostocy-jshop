@@ -147,21 +147,23 @@ public class ArticleTDaoImpl extends HibernateDaoSupport implements ArticleTDao 
 		try {
 
 			final String queryString = "update ArticleT as at set at.htmlPath=:htmlPath where at.articleid=:articleid ";
-			Integer integer=(Integer) this.getHibernateTemplate().execute(new HibernateCallback() {
+			this.getHibernateTemplate().execute(new HibernateCallback() {
+
 				public Object doInHibernate(Session session) throws HibernateException, SQLException {
 					int i = 0;
 					Query query = session.createQuery(queryString);
 					query.setParameter("articleid", articleid);
 					query.setParameter("htmlPath", htmlPath);
+
 					i = query.executeUpdate();
 					return i;
 				}
 			});
-			return integer;
 		} catch (RuntimeException re) {
 			log.error("updateHtmlPath error", re);
 			throw re;
 		}
+		return 0;
 	}
 
 	@Override
