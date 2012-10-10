@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -266,6 +267,64 @@ public class TemplateTDaoImpl extends HibernateDaoSupport implements TemplateTDa
 		} catch (RuntimeException re) {
 			log.error("findTemplateBysign error", re);
 			throw re;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TemplateT> findTemplateTByLikeName(final int currentPage,
+			final int lineSize, final String name) {
+		log.debug("findTemplateTByLikeName success");
+		try {
+			final String queryString="from TemplateT as tt where tt.note like ? ";
+			List<TemplateT> list=  this.getHibernateTemplate().executeFind(new HibernateCallback() {
+				
+				@Override
+				public Object doInHibernate(Session session) throws HibernateException,
+						SQLException {
+					Query query = session.createQuery(queryString);
+					query.setFirstResult((currentPage-1)*lineSize);
+					query.setMaxResults(lineSize);
+					query.setParameter(0, "%" + name+ "%");
+					List list = query.list();
+				
+					return list;
+				}
+				});
+			if(list.size()>0){
+				return list;
+			}
+			return null;
+		} catch (DataAccessException e) {
+			log.error("findTemplateTByLikeName error",e);
+			throw e;
+		}
+	}
+
+	@Override
+	public int countTemplateTBYLikeNmae(final String name) {
+		try {
+			final String queryString="select count(*) from TemplateT as tt where tt.note like ?";
+			//List list = this.getHibernateTemplate().findByNamedParam(queryString, "?", "%"+name+"%");
+			List list = this.getHibernateTemplate().executeFind(new HibernateCallback() {
+				
+				@Override
+				public Object doInHibernate(Session session) throws HibernateException,
+						SQLException {
+					Query query = session.createQuery(queryString);
+					query.setParameter(0, "%"+name+"%");
+					List list= query.list();
+					return list;
+				}
+			});
+			if(list.size()>0){
+				Object o =list.get(0);
+				long l=(Long) o;
+				return (int) l;
+			}
+			return 0;
+		} catch (DataAccessException e) {
+			throw e;
 		}
 	}
 	

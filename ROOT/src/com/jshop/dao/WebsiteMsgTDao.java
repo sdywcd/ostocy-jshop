@@ -3,6 +3,7 @@ package com.jshop.dao;
 import java.util.List;
 
 
+import com.jshop.entity.MsgtextT;
 import com.jshop.entity.WebsiteMsgT;
 
 public interface WebsiteMsgTDao {
@@ -60,6 +61,12 @@ public interface WebsiteMsgTDao {
 	 * @return
 	 */
 	public abstract int countfindAllWebsitemsgOfStateByToUsername(String msgtousername,String state);
+	/**
+	 * 根据id获取站内信消息
+	 * @param id
+	 * @return
+	 */
+	public abstract WebsiteMsgT findMsgtextById(String id);
 	
 	
 	

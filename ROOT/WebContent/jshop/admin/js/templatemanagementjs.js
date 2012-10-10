@@ -208,6 +208,9 @@ $(function() {
 			display:'请选择搜索条件',
 			name:'sc',
 			isdefault : true
+		},{
+			display:'名称',
+			name:'name'
 		}],
 		sortname : "createtime",
 		sortorder : "desc",

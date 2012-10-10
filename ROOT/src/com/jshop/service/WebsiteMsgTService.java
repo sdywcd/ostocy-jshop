@@ -59,6 +59,12 @@ public interface WebsiteMsgTService {
 	 * @return
 	 */
 	public abstract int countfindAllWebsitemsgOfStateByToUsername(String msgtousername,String state);
+	/**
+	 * 根据id获取站内信消息
+	 * @param id
+	 * @return
+	 */
+	public abstract WebsiteMsgT findMsgtextById(String id);
 	
 	
 	

@@ -209,4 +209,19 @@ public class WebsiteMsgTDaoImpl extends HibernateDaoSupport implements WebsiteMs
 		}
 		return 0;
 	}
+
+	@Override
+	public WebsiteMsgT findMsgtextById(String id) {
+		try {
+			String queryString="from WebsiteMsgT as web where web.msgtextid=:msgtextid";
+			List<WebsiteMsgT> web= this.getHibernateTemplate().findByNamedParam(queryString, "msgtextid", id);
+			if(!web.isEmpty()){
+				 return web.get(0);
+			}
+			return null;
+		} catch (DataAccessException e) {
+			throw e;
+		}
+		
+	}
 }

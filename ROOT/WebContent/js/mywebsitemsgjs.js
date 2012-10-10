@@ -21,11 +21,31 @@ $(function(){
 	$("#btn_reportSpam").click(function(){
 		$('#inbox').hide();
 		$('#write').show();
+		$('#text1').hide();
 	});
 	//收件箱
 	$("#setAllReaded").click(function(){
+		
 		$('#inbox').show();
 		$('#write').hide();
+		$('#text1').hide();
+		window.location.href="findAllWebsiteMsgByToUsername.action";
+	});
+	//详细信息
+	$("#title").click(function(){	
+		
+		var msgtextid = $('#mailid').val();
+		$.post("findMsgtextById.action",{"msgtextid":msgtextid},function(data){
+			$('#webtitle').attr("value",data.webbean.title);
+			$('#msgfromusrname').attr("value",data.webbean.msgfromusrname);
+			$('#createtime').attr("value",data.webbean.createtime);
+			$('#msgtousername').attr("value",data.webbean.msgtousername);
+			$('#msgtext').attr("value",data.msgbean.text);
+		});
+		$('#text1').show();
+		$('#inbox').hide();
+		$('#write').hide();
+				
 	});
 	
 	$('#add').click(function(){

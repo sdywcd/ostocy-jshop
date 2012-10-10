@@ -98,6 +98,18 @@ public interface TemplateTDao {
 	 * @return
 	 */
 	public abstract TemplateT findTemplateBysign(String sign,String status);
-	
-	
+	/**
+	 * 模糊查询根据名称
+	 * @param currentPage
+	 * @param lineSize
+	 * @param name
+	 * @return
+	 */
+	public abstract List<TemplateT> findTemplateTByLikeName(final int currentPage,final int lineSize,final String name);
+	/**
+	 * 统计所有根据迷糊查询的数据
+	 * @param name
+	 * @return
+	 */
+	public abstract int countTemplateTBYLikeNmae(String name);
 }

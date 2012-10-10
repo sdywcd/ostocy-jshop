@@ -58,4 +58,10 @@ public class WebsiteMsgTServiceImpl implements WebsiteMsgTService {
 		
 		return this.getWebsiteMsgTDao().countfindAllWebsitemsgOfStateByToUsername(msgtousername, state);
 	}
+
+	@Override
+	public WebsiteMsgT findMsgtextById(String id) {
+		
+		return this.getWebsiteMsgTDao().findMsgtextById(id);
+	}
 }

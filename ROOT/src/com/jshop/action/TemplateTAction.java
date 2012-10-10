@@ -275,6 +275,7 @@ public class TemplateTAction extends ActionSupport {
 				if (Validate.StrisNull(this.getQuery())) {
 					return "json";
 				} else {
+					this.findTemplateByLikeName();
 					return "json";
 				}
 			}
@@ -524,5 +525,20 @@ public class TemplateTAction extends ActionSupport {
 			}
 			this.setSucflag(true);
 			return "json";
+	}
+	/**
+	 * 根据名称模糊查询
+	 * @return
+	 */
+	@Action(value="findTemplateByLikeName",results={@Result(name="json",type="json")})
+	public void findTemplateByLikeName(){
+		int currentPage = page;
+		int lineSize = rp;
+		total=this.getTemplateTService().countTemplateTBYLikeNmae(this.getQuery());
+		List<TemplateT> list = this.getTemplateTService().findTemplateTByLikeName(currentPage, lineSize, this.getQuery());
+		if(!list.isEmpty()){
+			this.ProcessTemplateList(list);
+		}
+		//return "json";
 	}
 }
