@@ -77,6 +77,19 @@ public class TemplateTServiceImpl implements TemplateTService {
 	public TemplateT findTemplateBysign(String sign, String status) {
 		return this.getTemplateTDao().findTemplateBysign(sign, status);
 	}
+
+	@Override
+	public List<TemplateT> findTemplateTByLikeName(int currentPage,
+			int lineSize, String name) {
+		
+		return this.getTemplateTDao().findTemplateTByLikeName(currentPage, lineSize, name);
+	}
+
+	@Override
+	public int countTemplateTBYLikeNmae(String name) {
+		
+		return this.getTemplateTDao().countTemplateTBYLikeNmae(name);
+	}
 	
 	
 }

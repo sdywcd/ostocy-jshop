@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import com.jshop.action.templates.DataCollectionTAction;
 import com.jshop.action.tools.BaseTools;
 import com.jshop.action.tools.Serial;
+import com.jshop.action.tools.Validate;
 import com.jshop.entity.MsgtextT;
 import com.jshop.entity.UserT;
 import com.jshop.entity.WebsiteMsgT;
@@ -45,9 +46,10 @@ public class MyWebsiteMsgAction extends ActionSupport {
 	private String title;
 	private Date createtime;
 	private static Date createtime1;
-	private String msgState;
-
+	private String msgState;	
 	private String cp;
+	MsgtextT msgbean = new MsgtextT();
+	WebsiteMsgT webbean= new WebsiteMsgT();
 	
 	private boolean sflag=false;
 	private boolean slogin=false;
@@ -171,7 +173,18 @@ public class MyWebsiteMsgAction extends ActionSupport {
 	public void setCp(String cp) {
 		this.cp = cp;
 	}
-
+	public MsgtextT getMsgbean() {
+		return msgbean;
+	}
+	public void setMsgbean(MsgtextT msgbean) {
+		this.msgbean = msgbean;
+	}
+	public WebsiteMsgT getWebbean() {
+		return webbean;
+	}
+	public void setWebbean(WebsiteMsgT webbean) {
+		this.webbean = webbean;
+	}
 	/**
 	 * 清理错误
 	 */
@@ -292,55 +305,64 @@ public class MyWebsiteMsgAction extends ActionSupport {
 	}
 	
 	/**
-	 *  获取站内信息消息
+	 *  根据id获取内容信息
 	 * @return
 	 */
 	@Action(value = "findMsgtextById", results = { 
-			@Result(name = "success",type="freemarker",location = "WEB-INF/theme/default/shop/mywebsitemsg.ftl"),
-			@Result(name = "input",type="redirect",location = "/html/default/shop/login.html")
+			@Result(name = "json",type="json")			
 	})
 	public String findMsgtextById(){
 		UserT user=(UserT) ActionContext.getContext().getSession().get(BaseTools.USER_SESSION_KEY);
-		if(user!=null){
-			MsgtextT list=this.getMsgtextTService().findMsgtextById(this.getMsgtextid().trim());
-			if(list!=null){
+		if(user!=null){			
+			if(!this.getMsgtextid().isEmpty()){
 				String temp=this.getMsgtextid().trim()+",";
 				String []tempid=temp.split(",");
 				int i=this.getWebsiteMsgTService().updateWebsiteMsgstate(tempid, "1");
-				//路径获取
-				ActionContext.getContext().put("basePath", this.getDataCollectionTAction().getBasePath());
-				//获取收货地址
-				ActionContext.getContext().put("msgtext", list);
-				//获取导航数据
-				ActionContext.getContext().put("siteNavigationList", this.getDataCollectionTAction().findSiteNavigation());
-				//获取商城基本数据
-				ActionContext.getContext().put("jshopbasicinfo", this.getDataCollectionTAction().findJshopbasicInfo());
-				//获取页脚分类数据
-				ActionContext.getContext().put("footcategory", this.getDataCollectionTAction().findFooterCateogyrT());
-				//获取页脚文章数据
-				ActionContext.getContext().put("footerarticle", this.getDataCollectionTAction().findFooterArticle());
-				return SUCCESS;
+				msgbean=this.getMsgtextTService().findMsgtextById(this.getMsgtextid().trim());
+				webbean= this.getWebsiteMsgTService().findMsgtextById(this.getMsgtextid());
+				this.setSflag(true);
+//				
+//				//路径获取
+//				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
+//				//获取内容
+//				ActionContext.getContext().put("msgtext", list);
+//				//获取单个信息
+//				ActionContext.getContext().put("webmsg", web);
+//				//获取导航数据				
+//				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
+//				//获取商城基本数据
+//				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
+//				//获取页脚分类数据
+//				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
+//				//获取页脚文章数据
+//				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
+				return "json";
 			}else{
 				String temp=this.getMsgtextid().trim()+",";
 				String []tempid=temp.split(",");
-				int i=this.getWebsiteMsgTService().updateWebsiteMsgstate(tempid, "1");
-				//路径获取
-				ActionContext.getContext().put("basePath", this.getDataCollectionTAction().getBasePath());
-				//获取收货地址
-				ActionContext.getContext().put("msgtext", list);
-				//获取导航数据
-				ActionContext.getContext().put("siteNavigationList", this.getDataCollectionTAction().findSiteNavigation());
-				//获取商城基本数据
-				ActionContext.getContext().put("jshopbasicinfo", this.getDataCollectionTAction().findJshopbasicInfo());
-				//获取页脚分类数据
-				ActionContext.getContext().put("footcategory", this.getDataCollectionTAction().findFooterCateogyrT());
-				//获取页脚文章数据
-				ActionContext.getContext().put("footerarticle", this.getDataCollectionTAction().findFooterArticle());
-				return SUCCESS;
+				int i=this.getWebsiteMsgTService().updateWebsiteMsgstate(tempid, "1");	
+//				//获取单个信息
+//				ActionContext.getContext().put("webmsg", web);
+//				//路径获取
+//				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
+//				//获取内容
+//				ActionContext.getContext().put("msgtext", list);
+//				//获取导航数据				
+//				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
+//				//获取商城基本数据
+//				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
+//				//获取页脚分类数据
+//				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
+//				//获取页脚文章数据
+//				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
+				this.setSflag(true);
+				return "json";
 			}
 		}
-		return INPUT;
+		this.setSflag(false);
+		return "json";
 	}
+
 	
 	
 }

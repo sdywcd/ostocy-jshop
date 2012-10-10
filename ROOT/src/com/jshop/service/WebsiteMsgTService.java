@@ -52,7 +52,22 @@ public interface WebsiteMsgTService {
 	 * @return
 	 */
 	public abstract int updateWebsiteMsgstate(String []list,String state);
+
+	/**
+	 * 根据消息状态统计所有收件人是我消息
+	 * @param msgtousername
+	 * @param state
+	 * @return
+	 */
+	public abstract int countfindAllWebsitemsgOfStateByToUsername(String msgtousername,String state);
+	/**
+	 * 根据id获取站内信消息
+	 * @param id
+	 * @return
+	 */
+	public abstract WebsiteMsgT findMsgtextById(String id);
 	
+
 	
 	
 }
