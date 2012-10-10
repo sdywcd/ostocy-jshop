@@ -418,10 +418,10 @@ $(function() {
             var htm = "<img id='logo' src='" + data.basepath+data.bean.logo + "'/>";
             var checkpc = "<input id='logo' name='pcpath' type='checkbox' value='" + data.bean.logo+ "' checked='true' />";
             $("#triggers").html(htm).append(checkpc);
-            if(data.bean.mobilesync=="1"){
-                $("#mobilesync").attr("checked",true);
+            if("1"==data.bean.mobilesync){
+            	$("input[name='mobilesync'][value=1]").attr("checked",'checked');
             }else{
-                $("#mobilesync").attr("checked",false);
+            	$("input[name='mobilesync'][value=0]").attr("checked",'checked');
             }
 		}
 	});

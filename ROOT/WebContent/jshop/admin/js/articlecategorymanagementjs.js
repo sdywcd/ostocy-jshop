@@ -365,10 +365,10 @@ $(function() {
 			$('#sort').attr("value", data.bean.sort);
 			$('#metaKeywords').attr("value", data.bean.metaKeywords);
 			$('#metaDes').attr("value", data.bean.metaDes);
-			if (data.bean.position == "1") {
-				$("#position").attr("checked", true);
+			if ("1"==data.bean.position) {
+				$("input[name='position'][value=1]").attr("checked",'checked'); 
 			} else {
-				$("#position").attr("checked", false);
+				$("input[name='position'][value=0]").attr("checked",'checked'); 
 			}
 			$('#hidarticleCategoryTid').attr("value", data.bean.articleCategoryTid);
 		}

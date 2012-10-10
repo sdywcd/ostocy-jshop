@@ -205,27 +205,6 @@
                 android:text="@string/t3"
                 android:textColor="@color/cobalt_blue"
                 android:textSize="38dp" />
-
-            <EditText
-                android:id="@+id/searchedit"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_below="@id/titletext"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="21dp"
-                android:layout_toRightOf="@id/advimage"
-                android:text="" 
-                android:focusable="false"/>
-
-            <ImageButton
-                android:id="@+id/searchbutton"
-                android:layout_width="40dp"
-                android:layout_height="32dp"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/titletext"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="22dp" 
-                />
         </RelativeLayout>
 
         <LinearLayout

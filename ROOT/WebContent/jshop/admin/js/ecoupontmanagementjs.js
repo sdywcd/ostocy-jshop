@@ -53,7 +53,6 @@ $(function(){
 			sortable:true,
 			align:'center'				
 		},{
-			
 			display:'使用说明',
 			name:'note',
 			width:'150',
@@ -71,10 +70,6 @@ $(function(){
 		},{
 			name : '删除',
 			bclass : 'delete',
-			onpress : action
-		},{
-			name : '指定用户',
-			bclass : 'add',
 			onpress : action
 		},{
 			separator : true		 
@@ -132,22 +127,6 @@ $(function(){
 				return ;				
 			}else{
 				jAlert('请选择要删除的信息!', '信息提示');
-				return false;
-			}
-		}else if(com=='指定用户'){
-			if($('.trSelected',grid).length==1){
-				jConfirm('确定编辑此项吗？','信息提示',function(r){
-					if(r){
-					var str	=$('.trSelected',grid)[0].id.substr(3);
-					window.location.href="../websitemsg/addwebsitemsg.jsp?session="+session+"#pagecontent&eid="+str;
-					
-					return;
-					}
-				});
-			}else if($('.trSelected').length>1){
-				jAlert('请不要选择多个','信息提示');
-			}else {
-				jAlert('请选择一条信息','信息提示');
 				return false;
 			}
 		}

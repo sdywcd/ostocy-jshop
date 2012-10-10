@@ -52,6 +52,7 @@ public interface WebsiteMsgTService {
 	 * @return
 	 */
 	public abstract int updateWebsiteMsgstate(String []list,String state);
+
 	/**
 	 * 根据消息状态统计所有收件人是我消息
 	 * @param msgtousername
@@ -66,8 +67,7 @@ public interface WebsiteMsgTService {
 	 */
 	public abstract WebsiteMsgT findMsgtextById(String id);
 	
-	
-	
+
 	
 	
 }
