@@ -3,22 +3,22 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-10-10 12:34:33 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.jshop.entity.GoodsstarCommentT" table="goodsstar_comment_t" catalog="jshopactive">
-        <id name="starcommentid" type="string">
-            <column name="STARCOMMENTID" length="20" />
+    <class name="com.jshop.entity.GoodsTwocodeRelationshipT" table="goods_twocode_relationship_t" catalog="jshopactive">
+        <id name="id" type="string">
+            <column name="ID" length="20" />
             <generator class="assigned" />
         </id>
         <property name="goodsid" type="string">
             <column name="GOODSID" length="20" not-null="true" />
         </property>
-        <property name="starnum" type="int">
-            <column name="STARNUM" not-null="true" />
+        <property name="goodsname" type="string">
+            <column name="GOODSNAME" length="100" not-null="true" />
         </property>
-        <property name="userid" type="string">
-            <column name="USERID" length="20" not-null="true" />
+        <property name="twocodepath" type="string">
+            <column name="TWOCODEPATH" not-null="true" />
         </property>
-        <property name="createtime" type="timestamp">
-            <column name="CREATETIME" length="0" not-null="true" />
+        <property name="state" type="string">
+            <column name="STATE" length="1" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
