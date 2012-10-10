@@ -205,10 +205,10 @@ $(function(){
 			$('#note').attr("value",data.bean.note);
 			$('#ttid').attr("value",data.bean.ttid);
 			$('#sign').attr("value",data.bean.sign);
-			if(data.bean.status=="1"){
-				$("#status").attr("checked",true);
+			if("1"==data.bean.status){
+				$("input[name='status'][value=1]").attr("checked",'checked'); 
 			}else{
-				$("#status").attr("checked",false);
+				$("input[name='status'][value=0]").attr("checked",'checked'); 
 			}
 			
 		});

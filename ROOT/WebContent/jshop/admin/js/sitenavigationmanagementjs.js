@@ -269,15 +269,15 @@ $(function() {
 			$('#syscontent').val(data.bean.htmlPath);
 			$('#htmlPath').attr("value", data.bean.htmlPath);
 			$('#position').val(data.bean.position);
-			if (data.bean.isTargetBlank == "1") {
-				$("#isTargetBlank").attr("checked", true);
+			if ("1"==data.bean.isTargetBlank) {
+				$("input[name='isTargetBlank'][value=1]").attr("checked",'checked'); 
 			} else {
-				$("#isTargetBlank").attr("checked", false);
+				$("input[name='isTargetBlank'][value=0]").attr("checked",'checked'); 
 			}
-			if (data.bean.isVisible == "1") {
-				$("#isVisible").attr("checked", true);
+			if ("1"==data.bean.isVisible) {
+				$("input[name='isVisible'][value=1]").attr("checked",'checked'); 
 			} else {
-				$("#isVisible").attr("checked", false);
+				$("input[name='isVisible'][value=0]").attr("checked",'checked'); 
 			}
 			$('#sort').attr("value", data.bean.sort);
 			$('#sign').attr("value", data.bean.sign);

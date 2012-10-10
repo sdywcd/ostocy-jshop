@@ -363,25 +363,25 @@ $(function(){
 			$('#title').attr("value",data.bean.title);
 			$('#parentName').attr("value",data.bean.articleCategoryName);
 			$('#author').attr("value",data.bean.author);
-			if(data.bean.ispublication=="1"){
-				$("#ispublication").attr("checked",true);
+			if("1"==data.bean.ispublication){
+				$("input[name='ispublication'][value=1]").attr("checked",'checked');
 			}else{
-				$("#ispublication").attr("checked",false);
+				$("input[name='ispublication'][value=0]").attr("checked",'checked');
 			}
-			if(data.bean.isrecommend=="1"){
-				$("#isrecommend").attr("checked",true);
+			if("1"==data.bean.isrecommend){
+				$("input[name='isrecommend'][value=1]").attr("checked",'checked');
 			}else{
-				$("#isrecommend").attr("checked",false);
+				$("input[name='isrecommend'][value=0]").attr("checked",'checked');
 			}
-			if(data.bean.istop=="1"){
-				$("#istop").attr("checked",true);
+			if("1"==data.bean.istop){
+				$("input[name='istop'][value=1]").attr("checked",'checked');
 			}else{
-				$("#istop").attr("checked",false);
+				$("input[name='istop'][value=0]").attr("checked",'checked');
 			}
-			if(data.bean.isnotice=="1"){
-				$("#isnotice").attr("checked",true);
+			if("1"==data.bean.isnotice){
+				$("input[name='isnotice'][value=1]").attr("checked",'checked');
 			}else{
-				$("#isnotice").attr("checked",false);
+				$("input[name='isnotice'][value=0]").attr("checked",'checked');
 			}
 			$('#sort').attr("value",data.bean.sort);
 			KE.html("contentvalue",data.bean.contentvalue);
