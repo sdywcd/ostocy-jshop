@@ -281,7 +281,7 @@ public class ElectableTAction extends ActionSupport {
 	 */
 	@Action(value = "updateTableT", results = { @Result(name = "json", type = "json") })
 	public String updateTableT(){
-		if(Validate.StrisNull(this.getTableid()) && Validate.StrisNull(this.getTableNumber()) && Validate.StrisNull(this.getRoomName())==false){
+		if(Validate.StrisNull(this.getTableid()) && Validate.StrisNull(this.getTableNumber()) && Validate.StrisNull(this.getRoomName())){
 			this.setSucflag(false);
 			return "json";
 		}

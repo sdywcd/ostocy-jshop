@@ -1121,40 +1121,40 @@ function findgoodsbyid(){
 			$('#points').val(data.bean.points);
 			KE.html("commoditylist", data.bean.commoditylist);
 			if("1"==data.bean.isNew){
-				$('#isNew').attr("checked","checked");
+				$("input[name='isNew'][value=1]").attr("checked",'checked');
 			}else{
-				$('#isNew').attr("checked","");
+				$("input[name='isNew'][value=0]").attr("checked",'checked');
 			}
 			if("1"==data.bean.recommended){
-				$('#recommended').attr("checked","checked");
+				$("input[name='recommended'][value=1]").attr("checked",'checked');
 			}else{
-				$('#recommended').attr("checked","");
+				$("input[name='recommended'][value=0]").attr("checked",'checked');
 			}
 			if("1"==data.bean.hotsale){
-				$('#hotsale').attr("checked","checked");
+				$("input[name='hotsale'][value=1]").attr("checked",'checked');
 			}else{
-				$('#hotsale').attr("checked","");
+				$("input[name='hotsale'][value=0]").attr("checked",'checked');
 			}
 			if("1"==data.bean.bargainprice){
-				$('#bargainprice').attr("checked","checked");
+				$("input[name='bargainprice'][value=1]").attr("checked",'checked');
 			}else{
-				$('#bargainprice').attr("checked","");
+				$("input[name='bargainprice'][value=0]").attr("checked",'checked');
 			}
 			if("1"==data.bean.salestate){
-				$('#salestate').attr("checked","checked");
+				$("input[name='salestate'][value=1]").attr("checked",'checked');
 			}else{
-				$('#salestate').attr("checked","");
+				$("input[name='salestate'][value=0]").attr("checked",'checked');
 			}
 			if("1"==data.bean.ismobileplatformgoods){
-				$('#ismobileplatformgoods').attr("checked","checked");
+				$("input[name='ismobileplatformgoods'][value=1]").attr("checked",'checked');
 			}else{
-				$('#ismobileplatformgoods').attr("checked","");
+				$("input[name='ismobileplatformgoods'][value=0]").attr("checked",'checked');
 			}
             //填充虚拟标记
             if("1"==data.bean.isvirtual){
-                $('#isvirtual').attr("checked","checked");
+            	$("input[name='isvirtual'][value=1]").attr("checked",'checked');
             }else{
-                $('#isvirtual').attr("checked","");
+            	$("input[name='isvirtual'][value=0]").attr("checked",'checked');
             }
             $("#virtualresults").val(data.bean.virtualresults);
 			$('#keywordname').val(data.bean.keywordid);

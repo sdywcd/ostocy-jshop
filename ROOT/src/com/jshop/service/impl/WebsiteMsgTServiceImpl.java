@@ -64,4 +64,5 @@ public class WebsiteMsgTServiceImpl implements WebsiteMsgTService {
 		
 		return this.getWebsiteMsgTDao().findMsgtextById(id);
 	}
+
 }

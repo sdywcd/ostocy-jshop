@@ -479,7 +479,7 @@
 .hotsale h1 .weekpro_title {Z-INDEX: 1;  TEXT-ALIGN: right; WIDTH: 200px; COLOR: #aaa; FONT-SIZE: 12px; TOP: 13px; RIGHT: 0px; FONT-WEIGHT: normal}
 .hotsale h1 .weekpro_tab {LINE-HEIGHT: 31px; MARGIN: 0px 7px; ZOOM: 1; DISPLAY: inline; COLOR: #333; CURSOR: pointer}
 .hotsale h1 .weekpro_title .now {COLOR: #c00}
-.hotsale .inner_box{width:100%;height:200px;float:left;border-left:#d0d0d0 solid 1px;border-right:#d0d0d0 solid 1px;border-bottom:#d0d0d0 solid 1px;overflow:hidden;}
+.hotsale .inner_box{width:548px;height:200px;float:left;border-left:#d0d0d0 solid 1px;border-right:#d0d0d0 solid 1px;border-bottom:#d0d0d0 solid 1px;overflow:hidden;}
 .hotsale .inner_box ul{width:540px;float:left;padding:0 0 0 8px;}
 .hotsale .inner_box li{width:160px;float:left;display:inline;margin:0 0 0 14px;padding:3px 0 0 0;}
 .hotsale .inner_box li .casepic{width:160px;height:130px;float:left;text-align:center;}
@@ -520,7 +520,7 @@
 .newcase .inner_box .newcase_left .newcase_l_price strong{color:#ff0000;font-size:24px;font-family:Arial,sans-serif;}
 .newcase .inner_box .newcase_left .newcase_l_price span{font-size:12px;font-family:"ËÎÌו";}
 .newcase .inner_box .newcase_left .newcase_l_info{width:200px;height:78px;float:left;word-break:break-all;overflow:hidden;line-height:1.6em;margin:6px 0 0 0;}
-.newcase .inner_box ul{width:100%;float:left;padding:0 0 0 0;}
+.newcase .inner_box ul{width:370px;float:left;padding:0 0 0 0;}
 .newcase .inner_box li{width:160px;float:left;margin:0 0 0 14px;display:inline;padding:3px 0 0 0;}
 .newcase .inner_box li .casepic{width:160px;height:130px;float:left;text-align:center;}
 .newcase .inner_box li .caseprice{width:160px;float:left;margin:5px 0 0 0;text-align:center;}

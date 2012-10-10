@@ -4,10 +4,6 @@ function ons(){
 	if(ecouponstate=="2" || ecouponstate=="1"){
 		$('#goods').show();
 		$('#goodss').show();
-		//$('#pricededuction').attr("value","0.0");
-		$('#pricededuction').attr("readonly","readonly");
-		//$('#favourableprices').attr("value","0.0");
-		$('#favourableprices').attr("readonly","readonly");
 	}else{
 		$('#goods').hide();
 		$('#goodss').hide();
@@ -67,9 +63,9 @@ $(function(){
 	  $('#goodsname').attr("value",data.bean.goodsname);
 	  $('#goodsid').attr("value",data.bean.goodsid);
 	  if("1"==data.bean.state){
-		  $('#state').attr("checked","checked");
+		  $("input[name='state'][value=1]").attr("checked",'checked'); 
 	  }else{
-		  $('#state').attr("checked","");
+		  $("input[name='state'][value=0]").attr("checked",'checked');
 	  }
 	  if("3"==data.bean.ecouponstate){
 		 

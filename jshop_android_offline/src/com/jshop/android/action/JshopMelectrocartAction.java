@@ -6,23 +6,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import android.app.Activity;
-import android.app.TabActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.jshop.android.shop.JshopActivityNGoodsList.JshopMyElecartListViewAdapter;
 import com.jshop.android.sqlite.DBHelper;
 import com.jshop.android.util.Arith;
 import com.jshop.android.util.JshopActivityUtil;

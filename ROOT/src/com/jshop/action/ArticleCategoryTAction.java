@@ -26,12 +26,12 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 @ParentPackage("jshop")
-//
-@InterceptorRefs({ @InterceptorRef("articlemoduleArticleInterecptor"),
-		@InterceptorRef("defaultStack") })
+@InterceptorRefs({  
+    @InterceptorRef("articlemoduleArticleInterecptor"),  
+    @InterceptorRef("defaultStack")
+})
 @Controller("articleCategoryTAction")
 public class ArticleCategoryTAction extends ActionSupport {
-
 	private ArticleCategoryTService articleCategoryTService;
 	private Serial serial;
 	private String articleCategoryTid;
@@ -61,7 +61,7 @@ public class ArticleCategoryTAction extends ActionSupport {
 	private String ltypeidlist;
 	private String stypeidlist;
 	private ArticleCategoryT bean = new ArticleCategoryT();
-	private List rows = new ArrayList<Map<String, Object>>();
+	private List rows=new ArrayList<Map<String,Object>>();
 	private int rp;
 	private int page = 1;
 	private int total = 0;
@@ -71,21 +71,23 @@ public class ArticleCategoryTAction extends ActionSupport {
 	private String sortorder;
 	private String usession;
 
+
 	@JSON(serialize = false)
 	public ArticleCategoryTService getArticleCategoryTService() {
 		return articleCategoryTService;
 	}
 
-	public void setArticleCategoryTService(
-			ArticleCategoryTService articleCategoryTService) {
+	public void setArticleCategoryTService(ArticleCategoryTService articleCategoryTService) {
 		this.articleCategoryTService = articleCategoryTService;
 	}
+
 
 	@JSON(serialize = false)
 	public Serial getSerial() {
 		return serial;
 	}
 
+	
 	public void setSerial(Serial serial) {
 		this.serial = serial;
 	}
@@ -387,6 +389,7 @@ public class ArticleCategoryTAction extends ActionSupport {
 
 	}
 
+
 	/**
 	 * 获取顶级分类和一级分类
 	 * 
@@ -395,16 +398,12 @@ public class ArticleCategoryTAction extends ActionSupport {
 	@Action(value = "findArticlCategoryByGradeZeroone", results = { @Result(name = "json", type = "json") })
 	public String findArticlCategoryByGradeZeroone() {
 		this.setArticlecategoryzero("");
-		List<ArticleCategoryT> list = this
-				.getArticleCategoryTService()
-				.findArticleCategoryByGrade("0", "1", BaseTools.adminCreateId());
+		List<ArticleCategoryT> list = this.getArticleCategoryTService().findArticleCategoryByGrade("0", "1", BaseTools.adminCreateId());
 		if (!list.isEmpty()) {
 			this.setArticlecategoryzero("<option value='-1'>---请选择---</option><option value='0'>顶级分类</option>");
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				ArticleCategoryT act = (ArticleCategoryT) it.next();
-				this.articlecategoryzero += "<option value='"
-						+ act.getArticleCategoryTid() + "'>" + act.getName()
-						+ "</option>";
+				this.articlecategoryzero += "<option value='" + act.getArticleCategoryTid() + "'>" + act.getName() + "</option>";
 			}
 			this.setSucflag(true);
 			return "json";
@@ -421,16 +420,12 @@ public class ArticleCategoryTAction extends ActionSupport {
 	@Action(value = "findArticleCategoryByGradeTwo", results = { @Result(name = "json", type = "json") })
 	public String findArticleCategoryByGradeTwo() {
 		this.setArticlecategorytwo("");
-		List<ArticleCategoryT> list = this
-				.getArticleCategoryTService()
-				.findArticleCategoryByGrade("1", "1", BaseTools.adminCreateId());
+		List<ArticleCategoryT> list = this.getArticleCategoryTService().findArticleCategoryByGrade("1", "1", BaseTools.adminCreateId());
 		if (!list.isEmpty()) {
 			this.setArticlecategorytwo("<option value='-1'>---请选择---</option>");
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				ArticleCategoryT act = (ArticleCategoryT) it.next();
-				this.articlecategorytwo += "<option value='"
-						+ act.getArticleCategoryTid() + "'>" + act.getName()
-						+ "</option>";
+				this.articlecategorytwo += "<option value='" + act.getArticleCategoryTid() + "'>" + act.getName() + "</option>";
 			}
 			this.setSucflag(true);
 			return "json";
@@ -449,16 +444,13 @@ public class ArticleCategoryTAction extends ActionSupport {
 	 */
 	@Action(value = "addArticleCategoryT", results = { @Result(name = "json", type = "json") })
 	public String addArticleCategoryT() {
-		int i = this.getArticleCategoryTService().checkArticleCategoryName(
-				this.getName(), BaseTools.adminCreateId());
-		int j = this.getArticleCategoryTService().checkArticleCategorySign(
-				this.getSign(), BaseTools.adminCreateId());
+		int i = this.getArticleCategoryTService().checkArticleCategoryName(this.getName(), BaseTools.adminCreateId());
+		int j = this.getArticleCategoryTService().checkArticleCategorySign(this.getSign(), BaseTools.adminCreateId());
 		if (i == 0 && j == 0) {
 			if (Integer.parseInt(this.getGrade()) == 0) {
 				ArticleCategoryT act = new ArticleCategoryT();
-				act.setArticleCategoryTid(this.getSerial().Serialid(
-						Serial.ARTICLECATEGORY));
-				act.setGrade(this.getGrade().trim());// 顶级，一级
+				act.setArticleCategoryTid(this.getSerial().Serialid(Serial.ARTICLECATEGORY));
+				act.setGrade(this.getGrade().trim());//顶级，一级
 				act.setMetaKeywords(this.getMetaKeywords().trim());
 				act.setMetaDes(this.getMetaDes().trim());
 				act.setName(this.getName().trim());
@@ -493,22 +485,18 @@ public class ArticleCategoryTAction extends ActionSupport {
 	 */
 	@Action(value = "addArticleCategoryTwo", results = { @Result(name = "json", type = "json") })
 	public String addArticleCategoryTwo() {
-		int i = this.getArticleCategoryTService().checkArticleCategoryName(
-				this.getName(), BaseTools.adminCreateId());
-		int j = this.getArticleCategoryTService().checkArticleCategorySign(
-				this.getSign(), BaseTools.adminCreateId());
+		int i = this.getArticleCategoryTService().checkArticleCategoryName(this.getName(), BaseTools.adminCreateId());
+		int j = this.getArticleCategoryTService().checkArticleCategorySign(this.getSign(), BaseTools.adminCreateId());
 		if (i == 0 && j == 0) {
 			if (Integer.parseInt(this.getGrade()) == 1) {
 				ArticleCategoryT act = new ArticleCategoryT();
-				act.setArticleCategoryTid(this.getSerial().Serialid(
-						Serial.ARTICLECATEGORY));
-				act.setGrade(this.getGrade().trim());// 二级
+				act.setArticleCategoryTid(this.getSerial().Serialid(Serial.ARTICLECATEGORY));
+				act.setGrade(this.getGrade().trim());//二级
 				act.setMetaKeywords(this.getMetaKeywords().trim());
 				act.setMetaDes(this.getMetaDes().trim());
 				act.setName(this.getName().trim());
 				act.setStatus("1");
-				act.setPath(this.getParentId() + ","
-						+ act.getArticleCategoryTid());
+				act.setPath(this.getParentId() + "," + act.getArticleCategoryTid());
 				act.setSort(Integer.parseInt(this.getSort().trim()));
 				act.setSign(this.getSign().trim());
 				act.setCreatetime(BaseTools.systemtime());
@@ -539,22 +527,18 @@ public class ArticleCategoryTAction extends ActionSupport {
 	 */
 	@Action(value = "addArticleCategoryThree", results = { @Result(name = "json", type = "json") })
 	public String addArticleCategoryThree() {
-		int i = this.getArticleCategoryTService().checkArticleCategoryName(
-				this.getName(), BaseTools.adminCreateId());
-		int j = this.getArticleCategoryTService().checkArticleCategorySign(
-				this.getSign(), BaseTools.adminCreateId());
+		int i = this.getArticleCategoryTService().checkArticleCategoryName(this.getName(), BaseTools.adminCreateId());
+		int j = this.getArticleCategoryTService().checkArticleCategorySign(this.getSign(), BaseTools.adminCreateId());
 		if (i == 0 && j == 0) {
 			if (Integer.parseInt(this.getGrade()) == 2) {
 				ArticleCategoryT act = new ArticleCategoryT();
-				act.setArticleCategoryTid(this.getSerial().Serialid(
-						Serial.ARTICLECATEGORY));
-				act.setGrade(this.getGrade().trim());// 三级
+				act.setArticleCategoryTid(this.getSerial().Serialid(Serial.ARTICLECATEGORY));
+				act.setGrade(this.getGrade().trim());//三级
 				act.setMetaKeywords(this.getMetaKeywords().trim());
 				act.setMetaDes(this.getMetaDes().trim());
 				act.setName(this.getName().trim());
 				act.setStatus("1");
-				act.setPath(this.getParentId() + "," + this.getParentId1()
-						+ "," + act.getArticleCategoryTid());
+				act.setPath(this.getParentId() + "," + this.getParentId1() + "," + act.getArticleCategoryTid());
 				act.setSort(Integer.parseInt(this.getSort().trim()));
 				act.setSign(this.getSign().trim());
 				act.setCreatetime(BaseTools.systemtime());
@@ -604,9 +588,7 @@ public class ArticleCategoryTAction extends ActionSupport {
 	@Action(value = "findArticleCategoryByarticleCategoryTid", results = { @Result(name = "json", type = "json") })
 	public String findArticleCategoryByarticleCategoryTid() {
 		if (Validate.StrNotNull(this.getArticleCategoryTid())) {
-			bean = this.getArticleCategoryTService()
-					.findArticleCategoryByarticleCategoryTid(
-							this.getArticleCategoryTid());
+			bean = this.getArticleCategoryTService().findArticleCategoryByarticleCategoryTid(this.getArticleCategoryTid());
 			if (bean != null) {
 				return "json";
 			}
@@ -618,15 +600,10 @@ public class ArticleCategoryTAction extends ActionSupport {
 		int currentPage = page;
 		int lineSize = rp;
 		this.setStatus("1");
-		total = this.getArticleCategoryTService().countfindAllArticleCategoryT(
-				this.getStatus(), BaseTools.adminCreateId());
+		total = this.getArticleCategoryTService().countfindAllArticleCategoryT(this.getStatus(), BaseTools.adminCreateId());
 		if (Validate.StrNotNull(sortname) && Validate.StrNotNull(sortorder)) {
-			String queryString = "from ArticleCategoryT as act where act.status=:status and act.creatorid=:creatorid  order by "
-					+ sortname + " " + sortorder + "";
-			List<ArticleCategoryT> list = this.getArticleCategoryTService()
-					.sortAllArticleCategoryT(currentPage, lineSize,
-							this.getStatus(), BaseTools.adminCreateId(),
-							queryString);
+			String queryString = "from ArticleCategoryT as act where act.status=:status and act.creatorid=:creatorid  order by " + sortname + " " + sortorder + "";
+			List<ArticleCategoryT> list = this.getArticleCategoryTService().sortAllArticleCategoryT(currentPage, lineSize, this.getStatus(), BaseTools.adminCreateId(), queryString);
 			if (!list.isEmpty()) {
 				this.ProcessArticleCategoryTList(list);
 			}
@@ -650,67 +627,40 @@ public class ArticleCategoryTAction extends ActionSupport {
 			}
 			Map<String, Object> cellMap = new HashMap<String, Object>();
 			cellMap.put("id", act.getArticleCategoryTid());
-			cellMap.put(
-					"cell",
-					new Object[] {
-							"<a href='addarticlecategory.jsp?session="
-									+ this.getUsession()
-									+ "#pagecontent&articleCategoryTid="
-									+ act.getArticleCategoryTid() + "'>"
-									+ act.getName() + "</a>",
-							act.getParentName(), act.getGrade(), act.getSign(),
-							act.getSort(), act.getPosition(),
-							act.getCreatetime(), act.getCreatorid() });
+			cellMap.put("cell", new Object[] {"<a href='addarticlecategory.jsp?session=" + this.getUsession() + "#pagecontent&articleCategoryTid=" + act.getArticleCategoryTid() + "'>" + act.getName() + "</a>", act.getParentName(), act.getGrade(), act.getSign(), act.getSort(), act.getPosition(), act.getCreatetime(), act.getCreatorid() });
 			rows.add(cellMap);
 		}
 
 	}
 
 	/**
-	 * 更新文章分类 已添加校验
+	 * 更新文章分类
 	 * 
 	 * @return
 	 */
 	@Action(value = "updateArticleCategoryT", results = { @Result(name = "json", type = "json") })
 	public String updateArticleCategoryT() {
-	
-		if (!(Validate.StrNotNull(this.getName())
-				&& Validate.StrNotNull(this.getSign())
-				&& Validate.StrNotNull(this.getSort())
-				&& Validate.StrNotNull(this.getPosition()))) {
-			
+		int i = this.getArticleCategoryTService().checkArticleCategoryNamewithoutMe(this.getArticleCategoryTid(), this.getName(), BaseTools.adminCreateId());
+		int j = this.getArticleCategoryTService().checkArticleCategorySignwithoutMe(this.getArticleCategoryTid(), this.getSign(), BaseTools.adminCreateId());
+		if (i == 0 && j == 0) {
+			bean=this.getArticleCategoryTService().findArticleCategoryByarticleCategoryTid(this.getArticleCategoryTid());
+			bean.setName(this.getName().trim());
+			bean.setSign(this.getSign().trim());
+			bean.setSort(Integer.parseInt(this.getSort().trim()));
+			bean.setMetaKeywords(this.getMetaKeywords());
+			bean.setMetaDes(this.getMetaDes());
+			bean.setPosition(this.getPosition());
+			//bean.setCreatetime(BaseTools.systemtime());
+			bean.setUpdatetime(BaseTools.systemtime());
+			bean.setCreatorid(BaseTools.adminCreateId());
+			this.getArticleCategoryTService().updateArticleCategoryT(bean);
+			this.setSucflag(true);
+			return "json";
+		} else {
 			this.setSucflag(false);
 			return "json";
-		}else{
-			int i = this.getArticleCategoryTService()
-					.checkArticleCategoryNamewithoutMe(
-							this.getArticleCategoryTid(), this.getName(),
-							BaseTools.adminCreateId());
-			int j = this.getArticleCategoryTService()
-					.checkArticleCategorySignwithoutMe(
-							this.getArticleCategoryTid(), this.getSign(),
-							BaseTools.adminCreateId());
-			if ((i == 0 && j == 0)) {
-				bean = this.getArticleCategoryTService()
-						.findArticleCategoryByarticleCategoryTid(
-								this.getArticleCategoryTid());
- 				bean.setName(this.getName().trim());
-				bean.setSign(this.getSign().trim());
-				bean.setSort(Integer.parseInt(this.getSort().trim()));
-				bean.setMetaKeywords(this.getMetaKeywords());
-				bean.setMetaDes(this.getMetaDes());
-				bean.setPosition(this.getPosition());
-				// bean.setCreatetime(BaseTools.systemtime());
-				bean.setUpdatetime(BaseTools.systemtime());
-				bean.setCreatorid(BaseTools.adminCreateId());
-				this.getArticleCategoryTService().updateArticleCategoryT(bean);
-				this.setSucflag(true);
-				return "json";
-			} else {
-				this.setSucflag(false);
-				return "json";
-			}
 		}
+
 	}
 
 	/**
@@ -722,14 +672,13 @@ public class ArticleCategoryTAction extends ActionSupport {
 	public String delArticleCategoryT() {
 		if (Validate.StrNotNull(this.getArticleCategoryTid())) {
 			String[] strs = this.getArticleCategoryTid().split(",");
-			for (String s : strs) {
-				bean = this.getArticleCategoryTService()
-						.findArticleCategoryByarticleCategoryTid(s);
-				bean.setArticleCategoryTid(s);
-				bean.setStatus("0");
-				bean.setCreatorid(BaseTools.adminCreateId());
-				this.getArticleCategoryTService().delArticleCategoryT(bean);
-			}
+			for (String s : strs) {  
+				bean=this.getArticleCategoryTService().findArticleCategoryByarticleCategoryTid(s);
+			    bean.setArticleCategoryTid(s);
+			    bean.setStatus("0");
+			    bean.setCreatorid(BaseTools.adminCreateId());
+			    this.getArticleCategoryTService().delArticleCategoryT(bean);
+			}  
 			this.setSucflag(true);
 			return "json";
 		}

@@ -20,7 +20,6 @@ import com.jshop.entity.OrderT;
 import com.jshop.entity.UserT;
 import com.jshop.service.GoodsTService;
 import com.jshop.service.OrderTService;
-import com.jshop.service.WebsiteMsgTService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -38,16 +37,7 @@ public class UserCenterIndexAction extends ActionSupport {
 	private UserCenterMyorderAction userCenterMyorderAction;
 	private OrderTService orderTService;
 	private GoodsTService goodsTService;
-	private WebsiteMsgTService websiteMsgTService;
 	private boolean slogin = false;
-	
-	public WebsiteMsgTService getWebsiteMsgTService() {
-		return websiteMsgTService;
-	}
-
-	public void setWebsiteMsgTService(WebsiteMsgTService websiteMsgTService) {
-		this.websiteMsgTService = websiteMsgTService;
-	}
 
 	public GoodsTService getGoodsTService() {
 		return goodsTService;
@@ -118,14 +108,10 @@ public class UserCenterIndexAction extends ActionSupport {
 	public String InitUserCenterIndex() {
 		UserT user = (UserT) ActionContext.getContext().getSession().get(BaseTools.USER_SESSION_KEY);
 		if (user != null) {
-			int allInfo=this.getWebsiteMsgTService().countfindAllWebsitemsgOfStateByToUsername(user.getUsername(), "0");
-			
 			//获取最近的订单信息
 			this.findAllUserOrderOn(user.getUserid());
 			//乱序获取推荐商品
 			this.shuffleGoods();
-			//获取所有收件人是我未读的信息
-			ActionContext.getContext().put("allInfo", allInfo);
 			//路径获取
 			ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
 			//获取导航数据
