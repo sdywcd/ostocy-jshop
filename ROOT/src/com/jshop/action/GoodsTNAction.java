@@ -1,5 +1,8 @@
 package com.jshop.action;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
@@ -9,6 +12,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -38,6 +44,7 @@ import com.jshop.service.JshopbasicInfoTService;
 import com.jshop.service.ProductTService;
 import com.jshop.service.SiteNavigationTService;
 import com.opensymphony.xwork2.ActionSupport;
+import com.swetake.util.Qrcode;
 
 import freemarker.template.TemplateException;
 
@@ -61,7 +68,7 @@ public class GoodsTNAction extends ActionSupport {
 	private String goodsid;
 	private String goodsname;
 	private String brandname;
-	
+	private boolean flag;
 	private String model;
 	private String nname;
 	private String lname;
@@ -1221,6 +1228,14 @@ public class GoodsTNAction extends ActionSupport {
 		this.basepath = basepath;
 	}
 
+	public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
 	/**
 	 * 清理错误
 	 */
@@ -1238,22 +1253,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @throws TemplateException
 	 */
 	private boolean addNormalGoods() {
-		if(Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getBrandname())&&
-				Validate.StrNotNull(this.getModel())&&
-				Validate.StrNotNull(this.getNname())&&
-				Validate.StrNotNull(this.getLname())&&
-				Validate.StrNotNull(this.getNavid())&&
-				Validate.StrNotNull(this.getLtypeid())&&
-				Validate.StrNotNull(this.getStypeid())&&
-				Validate.StrNotNull(this.getPictureurl())&&
-				Validate.StrNotNull(this.getQuantity())&&
-				Validate.StrNotNull(this.getDetail())&&
-				Validate.StrNotNull(this.getRecommended())==false
-				){
-			return false;
-			
-		}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -1356,23 +1355,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateNormalGoods() {
-		//////////////////////////////////////////
-		if(Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getBrandname())&&
-				Validate.StrNotNull(this.getModel())&&
-				Validate.StrNotNull(this.getNname())&&
-				Validate.StrNotNull(this.getLname())&&
-				Validate.StrNotNull(this.getNavid())&&
-				Validate.StrNotNull(this.getLtypeid())&&
-				Validate.StrNotNull(this.getStypeid())&&
-				Validate.StrNotNull(this.getPictureurl())&&
-				Validate.StrNotNull(this.getQuantity())&&
-				Validate.StrNotNull(this.getDetail())&&
-				Validate.StrNotNull(this.getRecommended())==false
-				){
-			return false;
-			
-		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());
@@ -1476,23 +1458,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean addAttrsGoods() {
-//////////////////////////////////////////////////////////////////////////////
-			if(Validate.StrNotNull(this.getGoodsname())&&
-					Validate.StrNotNull(this.getBrandname())&&
-					Validate.StrNotNull(this.getModel())&&
-					Validate.StrNotNull(this.getNname())&&
-					Validate.StrNotNull(this.getLname())&&
-					Validate.StrNotNull(this.getNavid())&&
-					Validate.StrNotNull(this.getLtypeid())&&
-					Validate.StrNotNull(this.getStypeid())&&
-					Validate.StrNotNull(this.getPictureurl())&&
-					Validate.StrNotNull(this.getQuantity())&&
-					Validate.StrNotNull(this.getDetail())&&
-					Validate.StrNotNull(this.getRecommended())==false
-					){
-				return false;
-				
-			}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -1595,22 +1560,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateAttrsGoods() {
-		if(Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getBrandname())&&
-				Validate.StrNotNull(this.getModel())&&
-				Validate.StrNotNull(this.getNname())&&
-				Validate.StrNotNull(this.getLname())&&
-				Validate.StrNotNull(this.getNavid())&&
-				Validate.StrNotNull(this.getLtypeid())&&
-				Validate.StrNotNull(this.getStypeid())&&
-				Validate.StrNotNull(this.getPictureurl())&&
-				Validate.StrNotNull(this.getQuantity())&&
-				Validate.StrNotNull(this.getDetail())&&
-				Validate.StrNotNull(this.getRecommended())==false
-				){
-			return false;
-			
-		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());
@@ -1715,22 +1664,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean addSpecificationGoods() {
-		if(Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getBrandname())&&
-				Validate.StrNotNull(this.getModel())&&
-				Validate.StrNotNull(this.getNname())&&
-				Validate.StrNotNull(this.getLname())&&
-				Validate.StrNotNull(this.getNavid())&&
-				Validate.StrNotNull(this.getLtypeid())&&
-				Validate.StrNotNull(this.getStypeid())&&
-				Validate.StrNotNull(this.getPictureurl())&&
-				Validate.StrNotNull(this.getQuantity())&&
-				Validate.StrNotNull(this.getDetail())&&
-				Validate.StrNotNull(this.getRecommended())==false
-				){
-			return false;
-			
-		}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -1909,22 +1842,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateSpecificationGoods() {
-		if(Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getBrandname())&&
-				Validate.StrNotNull(this.getModel())&&
-				Validate.StrNotNull(this.getNname())&&
-				Validate.StrNotNull(this.getLname())&&
-				Validate.StrNotNull(this.getNavid())&&
-				Validate.StrNotNull(this.getLtypeid())&&
-				Validate.StrNotNull(this.getStypeid())&&
-				Validate.StrNotNull(this.getPictureurl())&&
-				Validate.StrNotNull(this.getQuantity())&&
-				Validate.StrNotNull(this.getDetail())&&
-				Validate.StrNotNull(this.getRecommended())==false
-				){
-			return false;
-			
-		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());
@@ -2114,22 +2031,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean addAttrandSpecificationGoods() {
-		if(Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getBrandname())&&
-				Validate.StrNotNull(this.getModel())&&
-				Validate.StrNotNull(this.getNname())&&
-				Validate.StrNotNull(this.getLname())&&
-				Validate.StrNotNull(this.getNavid())&&
-				Validate.StrNotNull(this.getLtypeid())&&
-				Validate.StrNotNull(this.getStypeid())&&
-				Validate.StrNotNull(this.getPictureurl())&&
-				Validate.StrNotNull(this.getQuantity())&&
-				Validate.StrNotNull(this.getDetail())&&
-				Validate.StrNotNull(this.getRecommended())==false
-				){
-			return false;
-			
-		}
 		GoodsT gt = new GoodsT();
 		gt.setGoodsid(this.getSerial().Serialid(Serial.GOODS));
 		gt.setGoodsname(this.getGoodsname());
@@ -2309,22 +2210,6 @@ public class GoodsTNAction extends ActionSupport {
 	 * @return
 	 */
 	private boolean updateAttrandSpecificationGoods() {
-		if(Validate.StrNotNull(this.getGoodsname())&&
-				Validate.StrNotNull(this.getBrandname())&&
-				Validate.StrNotNull(this.getModel())&&
-				Validate.StrNotNull(this.getNname())&&
-				Validate.StrNotNull(this.getLname())&&
-				Validate.StrNotNull(this.getNavid())&&
-				Validate.StrNotNull(this.getLtypeid())&&
-				Validate.StrNotNull(this.getStypeid())&&
-				Validate.StrNotNull(this.getPictureurl())&&
-				Validate.StrNotNull(this.getQuantity())&&
-				Validate.StrNotNull(this.getDetail())&&
-				Validate.StrNotNull(this.getRecommended())==false
-				){
-			return false;
-			
-		}
 		GoodsT gt = new GoodsT();
 		bean=this.getGoodsTService().findGoodsById(this.getGoodsid());
 		gt.setGoodsid(this.getGoodsid());
@@ -3014,7 +2899,89 @@ public class GoodsTNAction extends ActionSupport {
 		return "json";
 	}
 	
-	
+	/**
+	 * 生成商品静态路径二维码
+	 * @return
+	 * @throws IOException
+	 */
+	@Action(value="encoderQRcode",results={@Result(name="json",type="json")})
+	public String encoderQRcode() throws IOException{
+		GoodsT goods=new GoodsT();
+		 // 根据商品id获取商品数据
+			if (Validate.StrNotNull(this.getGoodsid())) {
+				goods = this.getGoodsTService().findGoodsById(this.getGoodsid().trim());
+				if (goods != null) {
+					Qrcode qr =new Qrcode();
+					qr.setQrcodeErrorCorrect('M');
+					qr.setQrcodeEncodeMode('B');
+					qr.setQrcodeVersion(7);
+					
+					byte[] htmlPath=goods.getHtmlPath().getBytes("gb2312");
+					BufferedImage bufImg= new BufferedImage(140, 140, BufferedImage.TYPE_INT_RGB);
+					Graphics2D gs = bufImg.createGraphics();
+					gs.setBackground(Color.WHITE);
+					gs.clearRect(0, 0, 140,140);
+					gs.setColor(Color.BLACK);
+					int pixoff=2;
+					if(htmlPath.length>0 && htmlPath.length<120){
+						boolean[][] codeOut=qr.calQrcode(htmlPath);
+						for(int i=0;i<codeOut.length;i++){
+							for(int j=0;j<codeOut.length;j++){
+								if(codeOut[j][i]){
+									gs.fillRect(j * 3 + pixoff, i * 3 + pixoff, 3, 3);
+									
+								}
+							}
+						}
+					}else{
+						System.err.println("QRcode htmlPath bytes length="+htmlPath.length+ "not in[0,120]");
+					}
+					gs.dispose();
+					bufImg.flush();
+					String jshoppath=ServletActionContext.getServletContext().getRealPath("");//获取根目录
+					String path=jshoppath+isexistdir();
+					File imgFile= new File(path+goods.getGoodsid()+".png");
+					ImageIO.write(bufImg, "png", imgFile);
+					this.setFlag(true);
+					return "json";
+				}else{
+					this.setFlag(false);
+					return "json";
+				}
+				
+			}
+			return "json";
+		
+		
+		
+		
+		
+	}
+	/**
+	 * 检测目录是否存在
+	 * 
+	 * @return
+	 */
+
+	public static String isexistdir() {
+		String nowTimeStr = "";
+		String savedir = "/QRcode/";
+		String realpath = "";
+//		SimpleDateFormat sDateFormat;
+//		sDateFormat = new SimpleDateFormat("yyyyMMdd");
+//		nowTimeStr = sDateFormat.format(new Date());
+		String savePath = ServletActionContext.getServletContext().getRealPath("");
+		savePath = savePath + savedir ;
+		File dir = new File(savePath);
+		if (!dir.exists()) {
+			dir.mkdirs();
+			realpath = savedir ;
+			return realpath;
+		} else {
+			realpath = savedir ;
+			return realpath;
+		}
+	}
 	
 	
 	
