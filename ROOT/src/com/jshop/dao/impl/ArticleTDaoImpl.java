@@ -269,6 +269,29 @@ public class ArticleTDaoImpl extends HibernateDaoSupport implements ArticleTDao 
 		}
 		return 0;
 	}
+
+	@Override
+	public int delArticleT(final String id) {
+		log.debug("delArticleT");
+		try {
+
+			final String queryString = "delete from  ArticleT as at where at.articleid=:articleid ";
+			Integer integer=(Integer) this.getHibernateTemplate().execute(new HibernateCallback() {
+
+				public Object doInHibernate(Session session) throws HibernateException, SQLException {
+					int i = 0;
+					Query query = session.createQuery(queryString);
+					query.setParameter("articleid", id);
+					i = query.executeUpdate();
+					return i;
+				}
+			});
+			return integer;
+		} catch (RuntimeException re) {
+			log.error("delArticleT error", re);
+			throw re;
+		}
+	}
 	
 	
 	

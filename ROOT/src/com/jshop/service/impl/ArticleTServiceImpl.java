@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jshop.dao.ArticleTDao;
 import com.jshop.dao.impl.ArticleTDaoImpl;
@@ -14,6 +16,7 @@ import com.jshop.entity.ArticleT;
 import com.jshop.service.ArticleTService;
 @Service("articleTService")
 @Scope("prototype")
+@Transactional(readOnly=true)
 public class ArticleTServiceImpl implements ArticleTService {
 	@Resource(name="articleTDao")
 	private ArticleTDao articleTDao;
@@ -63,8 +66,10 @@ public class ArticleTServiceImpl implements ArticleTService {
 
 		return this.getArticleTDao().sortAllArticleT(currentPage, lineSize, creatorid, queryString);
 	}
-
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public int delArticleT(String[] list) {
+		System.out.print("shiwu kaishi");
 		return this.getArticleTDao().delArticleT(list);
 	}
 
@@ -76,6 +81,12 @@ public class ArticleTServiceImpl implements ArticleTService {
 	public int updateHtmlPath(String articleid, String htmlPath,
 			Date updatetime) {
 		return this.getArticleTDao().updateHtmlPath(articleid, htmlPath, updatetime);
+	}
+
+	@Override
+	//@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public int delArticleT(String id) {
+		return this.getArticleTDao().delArticleT(id);
 	}
 	
 	

@@ -90,5 +90,12 @@ public interface ArticleTDao {
 	 * @return
 	 */
 	public abstract int updateArticlepositionByarticleCategoryTid(String articleCategoryTid,String position);
+	/**
+	 * 删除文章
+	 * @param id
+	 * @return
+	 */
+	public int delArticleT(String id);
+	
 	
 }

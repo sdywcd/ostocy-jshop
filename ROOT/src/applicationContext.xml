@@ -98,14 +98,14 @@
 		</property>
 	</bean> -->
 	
-	<aop:config>
-		<aop:advisor pointcut="execution(* com.jshop.action.service.*Service.*(..))" advice-ref="txAdvice"/>
+	<!--  <aop:config>
+		<aop:advisor pointcut="execution(* com.jshop.service.impl.*Service.*(..))" advice-ref="txAdvice"/>
 	</aop:config>
  	
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />  
-	        <tx:method name="delete*" propagation="REQUIRED" />  
+	        <tx:method name="del*" propagation="REQUIRED" />  
 	        <tx:method name="update*" propagation="REQUIRED" /> 
 			<tx:method name="get*" read-only="true"/>
 			<tx:method name="query*" read-only="true"/>
@@ -114,8 +114,8 @@
 			<tx:method name="*" rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
-	
-
+	-->
+	<tx:annotation-driven transaction-manager="transactionManager"/> 
 
 	<!-- 配置异步线程执行器 -->  <!-- 为异步线程执行器 进注入  -->
 	<bean id="taskExecutor"

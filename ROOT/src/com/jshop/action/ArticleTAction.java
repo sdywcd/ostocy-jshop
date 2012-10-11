@@ -539,9 +539,13 @@ public class ArticleTAction extends ActionSupport {
 	 */
 	@Action(value = "delArticleT", results = { @Result(name = "json", type = "json") })
 	public String delArticleT() {
+		//this.setArticleid("201205060090,1,2,3");
 		String[] strs = this.getArticleid().split(",");
-		this.getArticleTService().delArticleT(strs);
-		this.setSucflag(true);
+		for(String s:strs){
+			this.getArticleTService().delArticleT(s);
+			this.setSucflag(true);
+			return "json";
+		}
 		return "json";
 	}
 
