@@ -97,8 +97,8 @@
 			</props>
 		</property>
 	</bean> -->
-	
-	<!--  <aop:config>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<aop:config>
 		<aop:advisor pointcut="execution(* com.jshop.service.impl.*Service.*(..))" advice-ref="txAdvice"/>
 	</aop:config>
  	
@@ -114,8 +114,8 @@
 			<tx:method name="*" rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
-	-->
-	<tx:annotation-driven transaction-manager="transactionManager"/> 
+
+	
 
 	<!-- 配置异步线程执行器 -->  <!-- 为异步线程执行器 进注入  -->
 	<bean id="taskExecutor"

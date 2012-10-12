@@ -16,7 +16,7 @@ import com.jshop.entity.ArticleT;
 import com.jshop.service.ArticleTService;
 @Service("articleTService")
 @Scope("prototype")
-@Transactional(readOnly=true)
+
 public class ArticleTServiceImpl implements ArticleTService {
 	@Resource(name="articleTDao")
 	private ArticleTDao articleTDao;
@@ -67,7 +67,7 @@ public class ArticleTServiceImpl implements ArticleTService {
 		return this.getArticleTDao().sortAllArticleT(currentPage, lineSize, creatorid, queryString);
 	}
 	
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
 	public int delArticleT(String[] list) {
 		System.out.print("shiwu kaishi");
 		return this.getArticleTDao().delArticleT(list);
@@ -84,7 +84,7 @@ public class ArticleTServiceImpl implements ArticleTService {
 	}
 
 	@Override
-	//@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	//@Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
 	public int delArticleT(String id) {
 		return this.getArticleTDao().delArticleT(id);
 	}
