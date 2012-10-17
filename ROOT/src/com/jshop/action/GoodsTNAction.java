@@ -2,9 +2,11 @@ package com.jshop.action;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.httpclient.HttpURL;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -2915,21 +2919,31 @@ public class GoodsTNAction extends ActionSupport {
 					qr.setQrcodeErrorCorrect('M');
 					qr.setQrcodeEncodeMode('B');
 					qr.setQrcodeVersion(7);
+					HttpServletRequest requet=ServletActionContext.getRequest();
+//					String s="http://www.baidu.com";
+					String Path="http://"+requet.getRemoteAddr()+"/"+ goods.getHtmlPath();
+//					String pic="";
+//					Image image=null;
+//					File file = new File("d:/潘倩VS小祥子.jpeg");
+//					image=ImageIO.read(file);
+					byte[] htmlPath=Path.getBytes("utf-8");
 					
-					byte[] htmlPath=goods.getHtmlPath().getBytes("gb2312");
+//					byte[] htmlPath=((String) image).getBytes("utf-8");
 					BufferedImage bufImg= new BufferedImage(140, 140, BufferedImage.TYPE_INT_RGB);
 					Graphics2D gs = bufImg.createGraphics();
 					gs.setBackground(Color.WHITE);
 					gs.clearRect(0, 0, 140,140);
+					  // 设定图像颜色 > BLACK  
 					gs.setColor(Color.BLACK);
+					// 设置偏移量 不设置可能导致解析出错
 					int pixoff=2;
+					 // 输出内容 > 二维码  
 					if(htmlPath.length>0 && htmlPath.length<120){
 						boolean[][] codeOut=qr.calQrcode(htmlPath);
 						for(int i=0;i<codeOut.length;i++){
 							for(int j=0;j<codeOut.length;j++){
 								if(codeOut[j][i]){
 									gs.fillRect(j * 3 + pixoff, i * 3 + pixoff, 3, 3);
-									
 								}
 							}
 						}
@@ -2940,7 +2954,9 @@ public class GoodsTNAction extends ActionSupport {
 					bufImg.flush();
 					String jshoppath=ServletActionContext.getServletContext().getRealPath("");//获取根目录
 					String path=jshoppath+isexistdir();
+					//生成二维码图片名称
 					File imgFile= new File(path+goods.getGoodsid()+".png");
+					// 生成二维码QRCode图片
 					ImageIO.write(bufImg, "png", imgFile);
 					this.setFlag(true);
 					return "json";
