@@ -321,40 +321,40 @@ public class MyWebsiteMsgAction extends ActionSupport {
 				msgbean=this.getMsgtextTService().findMsgtextById(this.getMsgtextid().trim());
 				webbean= this.getWebsiteMsgTService().findMsgtextById(this.getMsgtextid());
 				this.setSflag(true);
-//				
-//				//路径获取
-//				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
-//				//获取内容
-//				ActionContext.getContext().put("msgtext", list);
-//				//获取单个信息
-//				ActionContext.getContext().put("webmsg", web);
-//				//获取导航数据				
-//				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
-//				//获取商城基本数据
-//				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
-//				//获取页脚分类数据
-//				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
-//				//获取页脚文章数据
-//				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
+				
+				//路径获取
+				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
+				//获取内容
+				ActionContext.getContext().put("msgtext", msgbean);
+				//获取单个信息
+				ActionContext.getContext().put("webmsg", webbean);
+				//获取导航数据				
+				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
+				//获取商城基本数据
+				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
+				//获取页脚分类数据
+				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
+				//获取页脚文章数据
+				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
 				return "json";
 			}else{
 				String temp=this.getMsgtextid().trim()+",";
 				String []tempid=temp.split(",");
 				int i=this.getWebsiteMsgTService().updateWebsiteMsgstate(tempid, "1");	
-//				//获取单个信息
-//				ActionContext.getContext().put("webmsg", web);
-//				//路径获取
-//				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
-//				//获取内容
-//				ActionContext.getContext().put("msgtext", list);
-//				//获取导航数据				
-//				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
-//				//获取商城基本数据
-//				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
-//				//获取页脚分类数据
-//				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
-//				//获取页脚文章数据
-//				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
+				//获取单个信息
+				ActionContext.getContext().put("webmsg", webbean);
+				//路径获取
+				ActionContext.getContext().put(FreeMarkervariable.BASEPATH, this.getDataCollectionTAction().getBasePath());
+				//获取内容
+				ActionContext.getContext().put("msgtext", msgbean);
+				//获取导航数据				
+				ActionContext.getContext().put(FreeMarkervariable.SITENAVIGATIONLIST, this.getDataCollectionTAction().findSiteNavigation());
+				//获取商城基本数据
+				ActionContext.getContext().put(FreeMarkervariable.JSHOPBASICINFO, this.getDataCollectionTAction().findJshopbasicInfo());
+				//获取页脚分类数据
+				ActionContext.getContext().put(FreeMarkervariable.FOOTCATEGORY, this.getDataCollectionTAction().findFooterCateogyrT());
+				//获取页脚文章数据
+				ActionContext.getContext().put(FreeMarkervariable.FOOTERATRICLE, this.getDataCollectionTAction().findFooterArticle());
 				this.setSflag(true);
 				return "json";
 			}
