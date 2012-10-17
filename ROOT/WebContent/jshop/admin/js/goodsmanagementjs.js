@@ -125,6 +125,10 @@ $(function() {
 			bclass : 'add',
 			onpress : action
 		}, {
+			name : '生成QRCODE',
+			bclass : 'add',
+			onpress : action
+		}, {
 			separator : true
 		} ],
 
@@ -401,6 +405,31 @@ $(function() {
 				return false;
 			}
 	
+		}else if(com=='生成QRCODE'){
+
+			if ($('.trSelected', grid).length == 1) {
+				jConfirm('确定生成此项吗?', '信息提示', function(r) {
+					if (r) {
+						var str = $('.trSelected', grid)[0].id.substr(3);
+						$.post("encoderQRcode.action",{"goodsid":str},function(data){
+							if(data.flag){
+								jAlert("二维码生成成功","信息提示");
+								return;
+							}else{
+								jAlert("二维码生成失败","信息提示");
+								return;
+							}
+						});
+						return;
+					}
+				});
+			} else {
+				jAlert('请选择一条信息', '信息提示');
+				return false;
+			}
+		
+//			window.location.href = 'QRcode.jsp?session='+session+"#goods";
+//			return;
 		}
 
 	}
