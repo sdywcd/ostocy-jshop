@@ -1,0 +1,318 @@
+
+body, h1, h2, h3, h4, h5, h6, hr, img, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, a, tr {
+    margin: 0;
+    padding: 0;
+}
+body, button, input, select, textarea {
+    background-color: #FFFFFF;
+    font-family: Microsoft YaHei,Î¢ÈíÑÅºÚ,Verdana,sans-serif,ËÎÌå;
+    font-size: 14px;
+    line-height: 18px;
+}
+body {
+    background: url("../img/headerBg.gif") repeat-x scroll 0 0 transparent;
+}
+ul, li {
+    list-style: none outside none;
+}
+a {
+    color: #006CBF;
+    text-decoration: none;
+}
+a:hover {
+    color: #FF9600;
+    cursor: pointer;
+}
+img, input {
+    border: medium none;
+}
+.wrapper {
+    margin: 0 auto;
+    width: 1000px;
+}
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+.clearfix {
+    display: block;
+    height: 1%;
+}
+.texthidden {
+    line-height: 0;
+    text-indent: -9999px;
+    white-space: nowrap;
+}
+.mr20 {
+    margin-right: 20px;
+}
+#header {
+    height: 50px;
+    width: 100%;
+}
+#logo {
+    background: url("../img/logo.gif") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    width: 250px;
+}
+#mainSearch {
+    float: right;
+    margin-top: 10px;
+}
+.searchBox {
+    background-color: #FFFFFF;
+    color: #AAAAAA;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px 0 5px;
+    vertical-align: middle;
+}
+.searchButton {
+    background-color: #FF9600;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    margin-left: 20px;
+    padding: 2px 5px;
+    vertical-align: middle;
+}
+.searchButton:hover {
+    background-color: #FF8000;
+}
+#mainContent {
+}
+#footer {
+    background-color: #ECECEC;
+    line-height: 30px;
+    margin-top: 20px;
+}
+.column {
+    margin-top: 10px;
+}
+.column h2 {
+    color: #006CBF;
+    font-size: 24px;
+    font-weight: normal;
+}
+.used ul {
+    margin-top: 20px;
+}
+.used li {
+    border: 1px solid #EEEEEE;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.used a, .coming a {
+    display: block;
+    height: 60px;
+    width: 60px;
+}
+.latestTool {
+    background-color: #F6FCFF;
+    float: left;
+    margin-top: 20px;
+    padding: 10px;
+    position: relative;
+    width: 300px;
+    z-index: 1;
+}
+.latestTool dt {
+    float: right;
+    font-size: 18px;
+    line-height: 24px;
+}
+.latestTool img {
+    float: left;
+    margin-right: 10px;
+    width: 96px;
+}
+.toolDescription dt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 194px;
+}
+.latestTool .intro {
+    float: right;
+    height: 36px;
+    margin: 5px 0;
+    overflow: hidden;
+    width: 194px;
+}
+.latestTool .tags, .detailTags {
+    color: #909090;
+    float: right;
+    font-size: 12px;
+    width: 194px;
+}
+.boxShadow {
+    box-shadow: 2px 2px 10px #AAAAAA;
+}
+.detailTags {
+    width: 294px;
+}
+.detail {
+    background-color: #DFF5FE;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 400px;
+    z-index: 999;
+}
+.detail dt {
+    width: 294px;
+}
+.detailIntro {
+    float: right;
+    margin: 5px 0;
+    width: 294px;
+}
+.coming ul {
+    margin-top: 20px;
+}
+.coming h2 {
+    color: #AAAAAA;
+}
+.coming li {
+    border: 1px solid #EEEEEE;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.advise {
+    color: #333333;
+    font-size: 16px;
+    margin: 30px 0 30px 20px;
+}
+.toolActive {
+    z-index: 998;
+}
+#header {
+    height: 55px;
+    position: relative;
+    z-index: 1;
+}
+#mainContent textarea, #mainContent input[type="text"] {
+    border: 1px solid #CCCCCC;
+}
+.toolButton {
+    background-color: #EAF8FF;
+    border-color: #FAFDFF #A8E6FF #A8E6FF #FAFDFF;
+    border-style: solid;
+    border-width: 1px;
+    color: #666666;
+    cursor: pointer;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
+    margin: 5px;
+    overflow: visible;
+    padding: 0 10px;
+    vertical-align: middle;
+    width: auto;
+}
+.toolButton:hover {
+    color: #006CBF;
+}
+.buttonSelected {
+    background-color: #BFEAFF;
+    border-bottom: 1px solid #65D2FF;
+    border-right: 1px solid #65D2FF;
+    color: #0061AB;
+}
+.toolUsing {
+    margin-top: 30px;
+}
+.toolInput {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+    vertical-align: middle;
+    width: 300px;
+}
+.toolLabel {
+    color: #006CBF;
+    font-weight: bold;
+}
+.description {
+    background-color: #DFF5FE;
+    margin-top: -4px;
+    padding: 15px 10px;
+}
+.description h2, .intro, .tags {
+    float: right;
+    width: 874px;
+}
+.description h2 {
+    font-size: 18px;
+    line-height: 24px;
+}
+.description .img {
+    float: left;
+    margin-right: 10px;
+    width: 96px;
+}
+.description .intro {
+    margin: 5px 0;
+}
+.description .tags {
+    color: #909090;
+    font-size: 12px;
+}
+.toolName {
+    color: #777777;
+    font-size: 24px;
+    line-height: 24px;
+    margin-top: 10px;
+}
+.leftBar {
+    float: left;
+}
+.rightBar {
+    float: right;
+}
+.leftBar textarea, .rightBar textarea {
+    height: 500px;
+    width: 410px;
+}
+.operateLR {
+    float: left;
+    margin: 30px 5px 0;
+    text-align: center;
+    width: 136px;
+}
+.topBar textarea, .bottomBar textarea {
+    height: 200px;
+    width: 998px;
+}
+.toolTable {
+    border: medium none;
+    border-collapse: collapse;
+    line-height: 36px;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+.toolTable caption {
+    color: #777777;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.toolTable th, .toolTable td {
+    border: 1px solid #CCCCCC;
+}
+.toolTable th {
+    color: #006CBF;
+}
+.separateColor {
+    background-color: #F4F4F4;
+}
