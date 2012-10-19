@@ -50,6 +50,7 @@ import com.jshop.service.SiteNavigationTService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.swetake.util.Qrcode;
 
+
 import freemarker.template.TemplateException;
 
 @ParentPackage("jshop")
@@ -141,6 +142,7 @@ public class GoodsTNAction extends ActionSupport {
 	private String goodsAttrVal23;
 	private String goodsAttrVal24;
 	private String goodsAttrVal25;
+	
 	private String goodsAttrVal26;
 	private String goodsAttrVal27;
 	private String goodsAttrVal28;
@@ -152,6 +154,8 @@ public class GoodsTNAction extends ActionSupport {
 	private String specificationsid;
 	private String specificationsName;
 	private String star;
+	private String otherPath;
+	private String pathName;
 	private String staruser;
 	private String totalcomment;
 	private String ismobileplatformgoods;
@@ -1238,6 +1242,22 @@ public class GoodsTNAction extends ActionSupport {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+
+	public String getOtherPath() {
+		return otherPath;
+	}
+
+	public void setOtherPath(String otherPath) {
+		this.otherPath = otherPath;
+	}
+
+	public String getPathName() {
+		return pathName;
+	}
+
+	public void setPathName(String pathName) {
+		this.pathName = pathName;
 	}
 
 	/**
@@ -2911,14 +2931,24 @@ public class GoodsTNAction extends ActionSupport {
 	@Action(value="encoderQRcode",results={@Result(name="json",type="json")})
 	public String encoderQRcode() throws IOException{
 		GoodsT goods=new GoodsT();
+		Qrcode qr =new Qrcode();
+		qr.setQrcodeErrorCorrect('M');
+		qr.setQrcodeEncodeMode('B');
+		qr.setQrcodeVersion(7);
+		BufferedImage bufImg= new BufferedImage(140, 140, BufferedImage.TYPE_INT_RGB);
+		Graphics2D gs = bufImg.createGraphics();
+		gs.setBackground(Color.WHITE);
+		gs.clearRect(0, 0, 140,140);
+		  // 设定图像颜色 > BLACK  
+		gs.setColor(Color.BLACK);
+		// 设置偏移量 不设置可能导致解析出错
+		int pixoff=2;
+		byte[] htmlPath;
 		 // 根据商品id获取商品数据
 			if (Validate.StrNotNull(this.getGoodsid())) {
 				goods = this.getGoodsTService().findGoodsById(this.getGoodsid().trim());
-				if (goods != null) {
-					Qrcode qr =new Qrcode();
-					qr.setQrcodeErrorCorrect('M');
-					qr.setQrcodeEncodeMode('B');
-					qr.setQrcodeVersion(7);
+				
+				if (goods != null) {					
 					HttpServletRequest requet=ServletActionContext.getRequest();
 //					String s="http://www.baidu.com";
 					String Path="http://"+requet.getRemoteAddr()+"/"+ goods.getHtmlPath();
@@ -2926,17 +2956,8 @@ public class GoodsTNAction extends ActionSupport {
 //					Image image=null;
 //					File file = new File("d:/潘倩VS小祥子.jpeg");
 //					image=ImageIO.read(file);
-					byte[] htmlPath=Path.getBytes("utf-8");
-					
-//					byte[] htmlPath=((String) image).getBytes("utf-8");
-					BufferedImage bufImg= new BufferedImage(140, 140, BufferedImage.TYPE_INT_RGB);
-					Graphics2D gs = bufImg.createGraphics();
-					gs.setBackground(Color.WHITE);
-					gs.clearRect(0, 0, 140,140);
-					  // 设定图像颜色 > BLACK  
-					gs.setColor(Color.BLACK);
-					// 设置偏移量 不设置可能导致解析出错
-					int pixoff=2;
+					 htmlPath=Path.getBytes("utf-8");				
+
 					 // 输出内容 > 二维码  
 					if(htmlPath.length>0 && htmlPath.length<120){
 						boolean[][] codeOut=qr.calQrcode(htmlPath);
@@ -2947,8 +2968,6 @@ public class GoodsTNAction extends ActionSupport {
 								}
 							}
 						}
-					}else{
-						System.err.println("QRcode htmlPath bytes length="+htmlPath.length+ "not in[0,120]");
 					}
 					gs.dispose();
 					bufImg.flush();
@@ -2960,11 +2979,34 @@ public class GoodsTNAction extends ActionSupport {
 					ImageIO.write(bufImg, "png", imgFile);
 					this.setFlag(true);
 					return "json";
-				}else{
-					this.setFlag(false);
-					return "json";
+						
+				
 				}
 				
+			}else{
+				htmlPath=this.getOtherPath().getBytes("utf-8");		
+//				
+					 // 输出内容 > 二维码  
+					if(htmlPath.length>0 && htmlPath.length<120){
+						boolean[][] codeOut=qr.calQrcode(htmlPath);
+						for(int i=0;i<codeOut.length;i++){
+							for(int j=0;j<codeOut.length;j++){
+								if(codeOut[j][i]){
+									gs.fillRect(j * 3 + pixoff, i * 3 + pixoff, 3, 3);
+								}
+							}
+						}
+				}
+				gs.dispose();
+				bufImg.flush();
+				String jshoppath=ServletActionContext.getServletContext().getRealPath("");//获取根目录
+				String path=jshoppath+isexistdir();
+				//生成二维码图片名称
+				File imgFile= new File(path+this.getPathName()+".png");
+				// 生成二维码QRCode图片
+				ImageIO.write(bufImg, "png", imgFile);
+				this.setFlag(true);
+				return "json";
 			}
 			return "json";
 		
