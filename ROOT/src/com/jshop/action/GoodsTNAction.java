@@ -35,6 +35,7 @@ import com.jshop.action.tools.BaseTools;
 import com.jshop.action.tools.Serial;
 import com.jshop.action.tools.Validate;
 import com.jshop.entity.GoodsT;
+import com.jshop.entity.GoodsTwocodeRelationshipT;
 import com.jshop.entity.GoodsTypeTN;
 import com.jshop.entity.ProductT;
 import com.jshop.service.ArticleCategoryTService;
@@ -43,6 +44,7 @@ import com.jshop.service.GoodsBelinkedTService;
 import com.jshop.service.GoodsCommentTService;
 import com.jshop.service.GoodsSpecificationsRelationshipTService;
 import com.jshop.service.GoodsTService;
+import com.jshop.service.GoodsTwocodeRelationshipTService;
 import com.jshop.service.GoodsTypeTNService;
 import com.jshop.service.JshopbasicInfoTService;
 import com.jshop.service.ProductTService;
@@ -70,6 +72,7 @@ public class GoodsTNAction extends ActionSupport {
 	private CreateHtml createHtml;
 	private DataCollectionTAction dataCollectionTAction;
 	private GoodsSpecificationsRelationshipTService goodsSpecificationsRelationshipTService;
+	private GoodsTwocodeRelationshipTService goodsTwocodeRelationshipTService;
 	private String goodsid;
 	private String goodsname;
 	private String brandname;
@@ -189,6 +192,17 @@ public class GoodsTNAction extends ActionSupport {
 	private String usession;
 	private String specificationsId;
 	private String basepath;
+	private String twocodepath;
+	@JSON(serialize = false)
+	public GoodsTwocodeRelationshipTService getGoodsTwocodeRelationshipTService() {
+		return goodsTwocodeRelationshipTService;
+	}
+
+	public void setGoodsTwocodeRelationshipTService(
+			GoodsTwocodeRelationshipTService goodsTwocodeRelationshipTService) {
+		this.goodsTwocodeRelationshipTService = goodsTwocodeRelationshipTService;
+	}
+
 	@JSON(serialize = false)
 	public GoodsBelinkedTService getGoodsBelinkedTService() {
 		return goodsBelinkedTService;
@@ -314,6 +328,14 @@ public class GoodsTNAction extends ActionSupport {
 
 	public void setCreateHtml(CreateHtml createHtml) {
 		this.createHtml = createHtml;
+	}
+
+	public String getTwocodepath() {
+		return twocodepath;
+	}
+
+	public void setTwocodepath(String twocodepath) {
+		this.twocodepath = twocodepath;
 	}
 
 	public Map<String, Object> getMap() {
@@ -2950,14 +2972,8 @@ public class GoodsTNAction extends ActionSupport {
 				
 				if (goods != null) {					
 					HttpServletRequest requet=ServletActionContext.getRequest();
-//					String s="http://www.baidu.com";
 					String Path="http://"+requet.getRemoteAddr()+"/"+ goods.getHtmlPath();
-//					String pic="";
-//					Image image=null;
-//					File file = new File("d:/潘倩VS小祥子.jpeg");
-//					image=ImageIO.read(file);
-					 htmlPath=Path.getBytes("utf-8");				
-
+					 htmlPath=Path.getBytes("utf-8");
 					 // 输出内容 > 二维码  
 					if(htmlPath.length>0 && htmlPath.length<120){
 						boolean[][] codeOut=qr.calQrcode(htmlPath);
@@ -2973,19 +2989,38 @@ public class GoodsTNAction extends ActionSupport {
 					bufImg.flush();
 					String jshoppath=ServletActionContext.getServletContext().getRealPath("");//获取根目录
 					String path=jshoppath+isexistdir();
+					//根目录路径
+					String codePath=path+goods.getGoodsid()+".png";
+					//文件夹路径
+					String code = isexistdir()+goods.getGoodsid()+".png";
 					//生成二维码图片名称
-					File imgFile= new File(path+goods.getGoodsid()+".png");
+					File imgFile= new File(codePath);
 					// 生成二维码QRCode图片
 					ImageIO.write(bufImg, "png", imgFile);
-					this.setFlag(true);
-					return "json";
+					GoodsTwocodeRelationshipT list = this.getGoodsTwocodeRelationshipTService().findGoodsQRCodeByGoodsid(goods.getGoodsid());
+					GoodsTwocodeRelationshipT goodscode = new GoodsTwocodeRelationshipT();
+					//当数据里面存在此记录的时候，只修改二维码路径
+					if(list!=null){						
+						this.getGoodsTwocodeRelationshipTService().updateGoodsQRCode(goods.getGoodsid(), code);
+						this.setFlag(true);
+						return "json";
+					}else{
+						//生成商品与二维码关系的记录
 						
-				
+						goodscode.setGoodsname(goods.getGoodsname());
+						goodscode.setGoodsid(goods.getGoodsid());
+						goodscode.setId(this.getSerial().Serialid(Serial.GOODSQRCODE));
+						goodscode.setState("1");
+						goodscode.setTwocodepath(code);
+						this.getGoodsTwocodeRelationshipTService().addGoodsQRCode(goodscode);
+						
+						this.setFlag(true);
+						return "json";
+					}
 				}
 				
 			}else{
-				htmlPath=this.getOtherPath().getBytes("utf-8");		
-//				
+				htmlPath=this.getOtherPath().getBytes("utf-8");	
 					 // 输出内容 > 二维码  
 					if(htmlPath.length>0 && htmlPath.length<120){
 						boolean[][] codeOut=qr.calQrcode(htmlPath);
@@ -3005,6 +3040,7 @@ public class GoodsTNAction extends ActionSupport {
 				File imgFile= new File(path+this.getPathName()+".png");
 				// 生成二维码QRCode图片
 				ImageIO.write(bufImg, "png", imgFile);
+				
 				this.setFlag(true);
 				return "json";
 			}

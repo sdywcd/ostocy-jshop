@@ -21,3 +21,4 @@ Export-Package: com.jshop.action,
  com.jshop.entity,
  com.jshop.service,
  com.jshop.service.impl
+Import-Package: javax.servlet.http

@@ -140,6 +140,8 @@ public class Serial {
 	public static String ECOUPONT="ecoupont";
 	//抢购商品
 	public static String SALEGOODST="salegoodst";
+	//商品和二维码关系
+	public static String  GOODSQRCODE="goodsqrcode";
 	
 	private SerialTService serialTService;
 	

@@ -1,6 +1,6 @@
 package com.jshop.entity;
 
-// Generated 2012-9-18 10:14:54 by Hibernate Tools 3.4.0.CR1
+// Generated 2012-10-22 9:51:27 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
