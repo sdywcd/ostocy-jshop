@@ -168,19 +168,19 @@ $(function(){
 			var nname=$('#navid').find("option:selected").text();
 			if(navid==null){
 				navid=0;
-				nname="";
+				nname="null";
 			}
 			var ltypeid=$('#ltypeid').val();
 			var lname=$('#ltypeid').find("option:selected").text();
 			if(ltypeid==null){
 				ltypeid=0;
-				lname="";
+				lname="null";
 			}
 			var stypeid=$('#stypeid').val();
 			var sname=$('#stypeid').find("option:selected").text();
 			if(stypeid==null){
 				stypeid=0;
-				sname="";
+				sname="null";
 			}
 			var fname="";
 			var goodsname=$('#goodsname').val();

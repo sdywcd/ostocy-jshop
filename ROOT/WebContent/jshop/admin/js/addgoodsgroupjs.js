@@ -199,10 +199,27 @@ $(function(){
 
 		$('#groupprice').attr("value",data.groupList.groupprice);
 		$('#memberprice').attr("value",data.groupList.memberprice);
-		//图片显示		
+//		//图片显示		
+//		var pcurl=data.groupList.pictureurl;
+//		
+//		$('#triggers').html("<img src='"+pcurl+"'/>");
+		//图片显示
+		var pcpath="";
 		var pcurl=data.groupList.pictureurl;
-		
-		$('#triggers').html("<img src='"+pcurl+"'/>");
+		var htm="";
+		var checkpc="";
+		var temp=pcurl.split(',');
+		var allpcpath="";
+		$.each(temp,function(n,value){
+			if(""==value){
+				return;
+			}
+			pcpath=value;
+			htm="<img id='"+value+"' src='"+pcpath+"'></img>";
+			checkpc="<input id='"+value+"' name='pcpath' type='checkbox' value='"+value+"' checked/>";
+			allpcpath=htm+checkpc;
+			$('#triggers').append(allpcpath);
+		});
 		
 		$('#update').show();
 		$('#add').hide();
@@ -232,6 +249,7 @@ $(function(){
 			$(":checkbox[name='pcpath'][checked=true]").each(function(){
 				pictureurl=this.value;
 			});	
+		
 			var regFlag = $(this).regme([{
 				regid : "goodsname",
 				type : "text",

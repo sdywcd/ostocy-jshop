@@ -3045,11 +3045,6 @@ public class GoodsTNAction extends ActionSupport {
 				return "json";
 			}
 			return "json";
-		
-		
-		
-		
-		
 	}
 	/**
 	 * 检测目录是否存在
